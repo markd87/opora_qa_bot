@@ -13,7 +13,7 @@ bot.start((ctx) => {
 
 bot.action("topics", async (ctx) => {
   await ctx.reply(
-    `Будь ласка, оберіть тему зі списку нижче:`,
+    `🔍 Будь ласка, оберіть тему зі списку нижче ▼:`,
     Markup.inlineKeyboard([
       [Markup.button.callback("Міграція", "topic1")],
       [Markup.button.callback("Робота", "topic2")],
@@ -26,9 +26,7 @@ bot.action("topics", async (ctx) => {
 });
 
 bot.action("topic1", async (ctx) => {
-  await ctx.reply(
-    "Будь ласка, виберіть питання зі списку нижче (Please select a question from the list below):"
-  );
+  await ctx.reply("❓ Будь ласка, виберіть питання зі списку нижче ▼:");
 
   await ctx.reply(
     `
@@ -51,7 +49,7 @@ bot.action("topic1", async (ctx) => {
 
 bot.action("q1", async (ctx) => {
   await ctx.reply(
-    `Відповідь на П1: прикладова відповідь 1.`,
+    `🌟 Відповідь на П1: прикладова відповідь 1.`,
     Markup.inlineKeyboard([
       [Markup.button.callback("Показати всі теми", "topics")],
     ])
@@ -61,7 +59,7 @@ bot.action("q1", async (ctx) => {
 
 bot.action("q2", async (ctx) => {
   await ctx.reply(
-    `Відповідь на П2: прикладова відповідь 2.`,
+    `🌟 Відповідь на П2: прикладова відповідь 2.`,
     Markup.inlineKeyboard([
       [Markup.button.callback("Показати всі теми", "topics")],
     ])
@@ -71,7 +69,7 @@ bot.action("q2", async (ctx) => {
 
 bot.action("q3", async (ctx) => {
   await ctx.reply(
-    `Відповідь на П3: прикладова відповідь 3.`,
+    `🌟 Відповідь на П3: прикладова відповідь 3.`,
     Markup.inlineKeyboard([
       [Markup.button.callback("Показати всі теми", "topics")],
     ])
@@ -81,7 +79,7 @@ bot.action("q3", async (ctx) => {
 
 bot.action("q4", async (ctx) => {
   await ctx.reply(
-    `Відповідь на П4 прикладова відповідь 4.`,
+    `🌟 Відповідь на П4 прикладова відповідь 4.`,
     Markup.inlineKeyboard([
       [Markup.button.callback("Показати всі теми", "topics")],
     ])
