@@ -1,5 +1,3 @@
-const { getUser } = require("../components/helper");
-
 module.exports = async (ctx) => {
   const { id, isBot, name, username } = getUser(ctx.from);
 
@@ -9,6 +7,6 @@ module.exports = async (ctx) => {
 
   ctx.reply(
     `Welcome to the Opora QA Bot,
-    \nType \help to see the available questions`
+    \nType \help to see the available topics`
   );
 };
