@@ -8,7 +8,7 @@ module.exports = async (ctx) => {
   }
 
   try {
-    ctx.reply(
+    await ctx.reply(
       `Ласкаво просимо до Opora QA Bot.
      \nБудь ласка, оберіть тему зі списку нижче:`,
       Markup.inlineKeyboard([
