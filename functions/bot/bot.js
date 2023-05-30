@@ -45,20 +45,20 @@ bot.action("topic1", async (ctx) => {
   );
 });
 
-bot.action("q1", (ctx) => {
-  ctx.reply(`Відповідь на Q1: прикладова відповідь 1.`);
+bot.action("q1", async (ctx) => {
+  await ctx.reply(`Відповідь на Q1: прикладова відповідь 1.`);
 });
 
-bot.action("q2", (ctx) => {
-  ctx.reply(`Відповідь на Q2: прикладова відповідь 2.`);
+bot.action("q2", async (ctx) => {
+  await ctx.reply(`Відповідь на Q2: прикладова відповідь 2.`);
 });
 
-bot.action("q3", (ctx) => {
-  ctx.reply(`Відповідь на Q3: прикладова відповідь 3.`);
+bot.action("q3", async (ctx) => {
+  await ctx.reply(`Відповідь на Q3: прикладова відповідь 3.`);
 });
 
-bot.action("q4", (ctx) => {
-  ctx.reply(`Відповідь на Q4 прикладова відповідь 4.`);
+bot.action("q4", async (ctx) => {
+  await ctx.reply(`Відповідь на Q4 прикладова відповідь 4.`);
 });
 
 exports.handler = async (event) => {
