@@ -12,11 +12,11 @@ module.exports = async (ctx) => {
     await ctx.reply(
       "Please select a topic from the list below:",
       Markup.inlineKeyboard([
-        [Markup.button.callback("Topic 1", "topic1")],
-        [Markup.button.callback("Topic 2", "topic2")],
-        [Markup.button.callback("Topic 3", "topic3")],
-        [Markup.button.callback("Topic 4", "topic5")],
-        [Markup.button.callback("Topic 5", "topic5")],
+        [Markup.button.callback("Міграція", "topic1")],
+        [Markup.button.callback("Робота", "topic2")],
+        [Markup.button.callback("Інтеграція", "topic3")],
+        [Markup.button.callback("Освіта", "topic5")],
+        [Markup.button.callback("Охорона здоров'я", "topic5")],
       ])
     );
   } catch (e) {

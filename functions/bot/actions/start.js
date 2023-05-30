@@ -8,7 +8,6 @@ module.exports = async (ctx) => {
   }
 
   ctx.reply(
-    `Welcome to the Opora QA Bot,
-    \nType \help to see the available topics`
+    `Ласкаво просимо до Opora QA Bot. Напишіть /help, щоб побачити доступні теми`
   );
 };

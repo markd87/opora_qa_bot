@@ -22,9 +22,43 @@ bot.start((ctx) => {
 // register commands
 bot.command("help", require("./actions/help"));
 
-// bot.action("next", (ctx) => {
-//   return ctx.scene.enter("super-wizard");
-// });
+bot.action("topic1", (ctx) => {
+  ctx.reply(
+    "Будь ласка, виберіть питання зі списку нижче (Please select a question from the list below):",
+    Markup.inlineKeyboard([
+      [
+        Markup.button.callback(
+          "Які є вимоги до віз для українців, які бажають працювати у Великій Британії?",
+          "q1"
+        ),
+      ],
+      [
+        Markup.button.callback(
+          "Як можу продовжити своє перебування у Великій Британії як український іммігрант?",
+          "q2"
+        ),
+      ],
+      [
+        Markup.button.callback(
+          "Чи існують спеціальні робочі дозволи або візи для висококваліфікованих фахівців з України?",
+          "q3"
+        ),
+      ],
+      [
+        Markup.button.callback(
+          "Які мої права та обов'язки як українського іммігранта у Великій Британії",
+          "q4"
+        ),
+      ],
+      [
+        Markup.button.callback(
+          "Як я можу привезти своїх родичів, щоб вони приєдналися до мене у Великій Британії?",
+          "q5"
+        ),
+      ],
+    ])
+  );
+});
 
 exports.handler = async (event) => {
   try {
