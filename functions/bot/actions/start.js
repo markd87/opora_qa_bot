@@ -7,7 +7,20 @@ module.exports = async (ctx) => {
     return ctx.reply(`Sorry I only interact with humans!`);
   }
 
-  ctx.reply(
-    `Ласкаво просимо до Opora QA Bot. Напишіть /help, щоб побачити доступні теми`
-  );
+  try {
+    ctx.reply(
+      `Ласкаво просимо до Opora QA Bot.
+     \nБудь ласка, оберіть тему зі списку нижче: (Please select a topic from the list below:)`,
+      Markup.inlineKeyboard([
+        [Markup.button.callback("Міграція", "topic1")],
+        [Markup.button.callback("Робота", "topic2")],
+        [Markup.button.callback("Інтеграція", "topic3")],
+        [Markup.button.callback("Освіта", "topic5")],
+        [Markup.button.callback("Охорона здоров'я", "topic5")],
+      ])
+    );
+  } catch (e) {
+    console.log(e);
+    return ctx.reply(`Error occurred`);
+  }
 };
