@@ -25,6 +25,9 @@ bot.command("help", require("./actions/help"));
 bot.action("topic1", (ctx) => {
   ctx.reply(
     "Будь ласка, виберіть питання зі списку нижче (Please select a question from the list below):",
+
+    "Q1: Які є вимоги до віз для українців, \nякі бажають \nпрацювати у Великій Британії?",
+    "Q2: Як можу продовжити своє перебування \nу Великій Британії \nяк український іммігрант?",
     Markup.inlineKeyboard([
       [
         Markup.button.callback(
