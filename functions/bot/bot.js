@@ -65,8 +65,8 @@ bot.action("q2", async (ctx) => {
     `🌟 Відповідь на П2: прикладова відповідь 2.`,
     Markup.inlineKeyboard([
       [
-        Markup.button.callback("Показати всі теми", "topics"),
-        Markup.button.callback("Показати питання по темі", "topic1"),
+        Markup.button.callback("Всі теми", "topics"),
+        Markup.button.callback("Всі питання по темі", "topic1"),
       ],
     ])
   );
