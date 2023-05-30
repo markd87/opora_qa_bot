@@ -43,6 +43,7 @@ bot.action("topic1", async (ctx) => {
       ],
     ])
   );
+  ctx.answerCbQuery();
 });
 
 bot.action("q1", async (ctx) => {
