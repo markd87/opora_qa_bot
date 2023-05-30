@@ -47,18 +47,22 @@ bot.action("topic1", async (ctx) => {
 
 bot.action("q1", async (ctx) => {
   await ctx.reply(`Відповідь на Q1: прикладова відповідь 1.`);
+  ctx.answerCbQuery();
 });
 
 bot.action("q2", async (ctx) => {
   await ctx.reply(`Відповідь на Q2: прикладова відповідь 2.`);
+  ctx.answerCbQuery();
 });
 
 bot.action("q3", async (ctx) => {
   await ctx.reply(`Відповідь на Q3: прикладова відповідь 3.`);
+  ctx.answerCbQuery();
 });
 
 bot.action("q4", async (ctx) => {
   await ctx.reply(`Відповідь на Q4 прикладова відповідь 4.`);
+  ctx.answerCbQuery();
 });
 
 exports.handler = async (event) => {
