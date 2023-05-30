@@ -10,7 +10,7 @@ module.exports = async (ctx) => {
 
   try {
     await ctx.reply(
-      "Please select a topic from the list below:",
+      "Будь ласка, оберіть тему зі списку нижче: (Please select a topic from the list below:)",
       Markup.inlineKeyboard([
         [Markup.button.callback("Міграція", "topic1")],
         [Markup.button.callback("Робота", "topic2")],
