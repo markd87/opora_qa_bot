@@ -90,11 +90,15 @@ bot.action("q1_2", async (ctx) => {
     ],
   });
 
-  await ctx.replyWithMarkdownV2(
-    `*How to find a sponsor ?*
+  await ctx.telegram.sendMessage(
+    ctx.chat.id,
+    `*How to find a sponsor?*
     \nRead our article:
     \n[https://ua.opora.uk/blog/yakim-chinom-ukrayinczam-zaraz-mozhna-znajti-sponsora-shob-priyihati-do-uk](https://ua.opora.uk/blog/yakim-chinom-ukrayinczam-zaraz-mozhna-znajti-sponsora-shob-priyihati-do-uk)
-  `
+  `,
+    {
+      parse_mode: "Markdown",
+    }
   );
   ctx.answerCbQuery();
 });
