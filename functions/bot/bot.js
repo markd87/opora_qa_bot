@@ -69,7 +69,7 @@ bot.action("q1", async (ctx) => {
 
   await ctx.reply(
     `*Do you have parents in the UK?* ${collapsibleText}`,
-    Extra.markdown().markup(kb)
+    Extra.markdown().markup(kb.reply_markup)
     // Markup.inlineKeyboard([
     //   [Markup.button.callback("Yes", "q1_1")],
     //   [Markup.button.callback("No - I don't have family in the UK", "q1_2")],
