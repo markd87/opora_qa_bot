@@ -9,15 +9,25 @@ module.exports = async (ctx) => {
   }
 
   try {
-    await ctx.reply(
-      `👋 Ласкаво просимо до Opora QA Bot 🤖.
-     \n🔍 Будь ласка, оберіть тему зі списку нижче 🎯:`,
+    await ctx.replyWithMarkdownV2(
+      `## What questions do you have about UK visas?
+      \n\nCommon questions:`,
       Markup.inlineKeyboard([
-        [Markup.button.callback("Міграція", "topic1")],
-        [Markup.button.callback("Робота", "topic2")],
-        [Markup.button.callback("Інтеграція", "topic3")],
-        [Markup.button.callback("Освіта", "topic5")],
-        [Markup.button.callback("Охорона здоров'я", "topic5")],
+        [Markup.button.callback("Choose the right visa", "topic1")],
+        [
+          Markup.button.callback(
+            "Homes for Ukraine (sponsorship scheme)",
+            "topic2"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "Ukraine Family Scheme \n(family members of Ukranians)",
+            "topic3"
+          ),
+        ],
+        [Markup.button.callback("Ukraine Extension Scheme", "topic4")],
+        [Markup.button.callback("Visa decision delayed", "topic5")],
       ])
     );
   } catch (e) {

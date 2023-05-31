@@ -12,14 +12,24 @@ bot.start((ctx) => {
 });
 
 bot.action("topics", async (ctx) => {
-  await ctx.reply(
-    `🔍 Будь ласка, оберіть тему зі списку нижче 🎯:`,
+  await ctx.replyWithMarkdownV2(
+    `\n\nCommon questions:`,
     Markup.inlineKeyboard([
-      [Markup.button.callback("Міграція", "topic1")],
-      [Markup.button.callback("Робота", "topic2")],
-      [Markup.button.callback("Інтеграція", "topic3")],
-      [Markup.button.callback("Освіта", "topic5")],
-      [Markup.button.callback("Охорона здоров'я", "topic5")],
+      [Markup.button.callback("Choose the right visa", "topic1")],
+      [
+        Markup.button.callback(
+          "Homes for Ukraine (sponsorship scheme)",
+          "topic2"
+        ),
+      ],
+      [
+        Markup.button.callback(
+          "Ukraine Family Scheme \n(family members of Ukranians)",
+          "topic3"
+        ),
+      ],
+      [Markup.button.callback("Ukraine Extension Scheme", "topic4")],
+      [Markup.button.callback("Visa decision delayed", "topic5")],
     ])
   );
   ctx.answerCbQuery();
@@ -28,19 +38,15 @@ bot.action("topics", async (ctx) => {
 bot.action("topic1", async (ctx) => {
   await ctx.reply("❓ Будь ласка, виберіть питання зі списку нижче 🤔:");
 
-  await ctx.replyWithMarkdown(
-    `
-    *1*: Які є вимоги до віз для українців, які бажають працювати у Великій Британії?
-    \n*2*: Як можу продовжити своє перебування у Великій Британії як український іммігрант?
-    \n*3*: Які мої права та обов'язки як українського іммігранта у Великій Британії?
-    \n*4*: Як я можу привезти своїх родичів, щоб вони приєдналися до мене у Великій Британії?
-    `,
+  await ctx.replyWithMarkdownV2(
+    `## What is the purpose of your visit to the UK?`,
     Markup.inlineKeyboard([
       [
-        Markup.button.callback("1", "q1"),
-        Markup.button.callback("2", "q2"),
-        Markup.button.callback("3", "q3"),
-        Markup.button.callback("4", "q4"),
+        [Markup.button.callback("Run from the war in ukraine", "q1")],
+        [Markup.button.callback("Visiting friends or family", "q2")],
+        [Markup.button.callback("Work in the UK", "q3")],
+        [Markup.button.callback("Other reason", "q4")],
+        [Markup.button.callback("I'm already in the UK", "q5")],
       ],
     ])
   );
