@@ -49,9 +49,22 @@ bot.action("topic1", async (ctx) => {
   ctx.answerCbQuery();
 });
 
+const collapsibleText = `
+<details>
+<summary>Click to expand/collapse</summary>
+
+This is the content of the collapsible section.
+
+- Bullet point 1
+- Bullet point 2
+
+</details>
+`;
+
 bot.action("q1", async (ctx) => {
   await ctx.replyWithMarkdownV2(
-    "*Do you have parents in the UK?*",
+    `*Do you have parents in the UK?* \n${collapsibleText}`,
+
     Markup.inlineKeyboard([
       [Markup.button.callback("Yes", "q1_1")],
       [Markup.button.callback("No - I don't have family in the UK", "q1_2")],
