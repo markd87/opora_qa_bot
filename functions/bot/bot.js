@@ -36,10 +36,8 @@ bot.action("topics", async (ctx) => {
 });
 
 bot.action("topic1", async (ctx) => {
-  await ctx.reply("❓ Будь ласка, виберіть питання зі списку нижче 🤔:");
-
   await ctx.replyWithMarkdownV2(
-    `## What is the purpose of your visit to the UK?`,
+    `##What is the purpose of your visit to the UK?`,
     Markup.inlineKeyboard([
       [
         [Markup.button.callback("Run from the war in ukraine", "q1")],

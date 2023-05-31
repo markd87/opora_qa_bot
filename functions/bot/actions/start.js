@@ -10,7 +10,7 @@ module.exports = async (ctx) => {
 
   try {
     await ctx.replyWithMarkdownV2(
-      `## What questions do you have about UK visas?
+      `##What questions do you have about UK visas?
       \n\nCommon questions:`,
       Markup.inlineKeyboard([
         [Markup.button.callback("Choose the right visa", "topic1")],
