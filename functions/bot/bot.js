@@ -62,13 +62,19 @@ This is the content of the collapsible section.
 `;
 
 bot.action("q1", async (ctx) => {
-  await ctx.replyWithMarkdownV2(
-    `*Do you have parents in the UK?* \n${collapsibleText}`,
+  const kb = Markup.inlineKeyboard([
+    [Markup.button.callback("Yes", "q1_1")],
+    [Markup.button.callback("No - I don't have family in the UK", "q1_2")],
+  ]);
 
-    Markup.inlineKeyboard([
-      [Markup.button.callback("Yes", "q1_1")],
-      [Markup.button.callback("No - I don't have family in the UK", "q1_2")],
-    ])
+  await ctx.reply(
+    `*Do you have parents in the UK?* ${collapsibleText}`,
+    Extra.markdown().markup(kb)
+    // Markup.inlineKeyboard([
+    //   [Markup.button.callback("Yes", "q1_1")],
+    //   [Markup.button.callback("No - I don't have family in the UK", "q1_2")],
+    // ]),
+    // Extra.markdown()
   );
 
   ctx.answerCbQuery();
