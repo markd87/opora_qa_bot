@@ -57,7 +57,8 @@ bot.action("q1", async (ctx) => {
       [Markup.button.callback("No - I don't have family in the UK", "q1_2")],
     ])
   );
-  ctx.answerCbQuery((text = "YES"));
+  await ctx.editMessageText("🎉 Awesome! 🎉");
+  ctx.answerCbQuery();
 });
 
 exports.handler = async (event) => {
