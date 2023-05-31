@@ -69,12 +69,11 @@ bot.action("q1_1", async (ctx) => {
   });
 
   await ctx.telegram.sendMessage(
+    ctx.chat.id,
     `*How to find a sponsor?*
     \nRead our article:
     \n[https://ua.opora.uk/blog/yakim-chinom-ukrayinczam-zaraz-mozhna-znajti-sponsora-shob-priyihati-do-uk](https://ua.opora.uk/blog/yakim-chinom-ukrayinczam-zaraz-mozhna-znajti-sponsora-shob-priyihati-do-uk)
   `,
-    ctx.chat.id,
-    markdownText,
     {
       parse_mode: "Markdown",
     }
