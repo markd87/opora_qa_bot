@@ -67,15 +67,9 @@ bot.action("q1", async (ctx) => {
     [Markup.button.callback("No - I don't have family in the UK", "q1_2")],
   ]);
 
-  await ctx.reply(
-    `*Do you have parents in the UK?* ${collapsibleText}`,
-    { reply_markup: kb }
-    // Markup.inlineKeyboard([
-    //   [Markup.button.callback("Yes", "q1_1")],
-    //   [Markup.button.callback("No - I don't have family in the UK", "q1_2")],
-    // ]),
-    // Extra.markdown()
-  );
+  await ctx.replyWithMarkdownV2(collapsibleText);
+
+  await ctx.reply(``, kb);
 
   ctx.answerCbQuery();
 });
