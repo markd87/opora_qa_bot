@@ -50,15 +50,15 @@ bot.action("topic1", async (ctx) => {
 });
 
 const collapsibleText = `
-<details>
-<summary>Click to expand/collapse</summary>
+<details\>
+<summary\>Click to expand/collapse</summary\>
 
 This is the content of the collapsible section.
 
 - Bullet point 1
 - Bullet point 2
 
-</details>
+</details\>
 `;
 
 bot.action("q1", async (ctx) => {
