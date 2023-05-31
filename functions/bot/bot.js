@@ -57,12 +57,17 @@ bot.action("q1", async (ctx) => {
       [Markup.button.callback("No - I don't have family in the UK", "q1_2")],
     ])
   );
-  await ctx.editMessageText("🎉 Awesome! 🎉");
+
   ctx.answerCbQuery();
 });
 
 bot.action("q1_1", async (ctx) => {
-  await ctx.reply("yes");
+  await ctx.editMessageReplyMarkup(
+    Markup.inlineKeyboard([
+      [Markup.button.callback("✅ Yes", "q1_1")],
+      [Markup.button.callback("No - I don't have family in the UK", "q1_2")],
+    ])
+  );
 });
 
 exports.handler = async (event) => {
