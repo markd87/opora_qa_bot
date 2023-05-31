@@ -11,7 +11,7 @@ module.exports = async (ctx) => {
   try {
     await ctx.replyWithHTML(
       `
-      <h3>What questions do you have about UK visas?</h3>
+      <b>What questions do you have about UK visas?</b>
       <br/>
       Common questions:
       `,

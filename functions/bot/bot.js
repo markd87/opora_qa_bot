@@ -37,7 +37,7 @@ bot.action("topics", async (ctx) => {
 
 bot.action("topic1", async (ctx) => {
   await ctx.replyWithHTML(
-    `<h3>What is the purpose of your visit to the UK?</h3>`,
+    `<b>What is the purpose of your visit to the UK?</b>`,
     Markup.inlineKeyboard([
       [
         [Markup.button.callback("Run from the war in ukraine", "q1")],
