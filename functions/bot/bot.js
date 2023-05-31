@@ -72,6 +72,18 @@ bot.action("q1_1", async (ctx) => {
   ctx.answerCbQuery();
 });
 
+bot.action("q1_2", async (ctx) => {
+  await ctx.editMessageReplyMarkup({
+    inline_keyboard: [
+      [Markup.button.callback("Yes", "q1_1")],
+      [Markup.button.callback("✅ No - I don't have family in the UK", "q1_2")],
+    ],
+  });
+
+  await ctx.reply("Second Follow up question...");
+  ctx.answerCbQuery();
+});
+
 exports.handler = async (event) => {
   try {
     await bot.handleUpdate(JSON.parse(event.body));
