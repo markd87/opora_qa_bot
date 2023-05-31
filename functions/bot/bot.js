@@ -1,4 +1,4 @@
-const { Telegraf, session, Scenes, Markup } = require("telegraf");
+const { Telegraf, session, Scenes, Markup, Extra } = require("telegraf");
 
 const startAction = require("./actions/start");
 
