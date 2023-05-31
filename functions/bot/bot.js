@@ -61,6 +61,10 @@ bot.action("q1", async (ctx) => {
   ctx.answerCbQuery();
 });
 
+bot.action("q1_1", async (ctx) => {
+  await ctx.reply("yes");
+});
+
 exports.handler = async (event) => {
   try {
     await bot.handleUpdate(JSON.parse(event.body));
