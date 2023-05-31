@@ -50,15 +50,15 @@ bot.action("topic1", async (ctx) => {
 });
 
 const collapsibleText = `
-<details>
-Click to expand/collapse
+<details\\>
+<summary\\>Click to expand/collapse</summary\\>
 
-This is the content of the collapsible section.
+This is the content of the collapsible section\\.
 
 - Bullet point 1
 - Bullet point 2
 
-</details>
+</details\\>
 `;
 
 bot.action("q1", async (ctx) => {
@@ -67,7 +67,7 @@ bot.action("q1", async (ctx) => {
   //   [Markup.button.callback("No - I don't have family in the UK", "q1_2")],
   // ]);
 
-  await ctx.replyWithHTML(collapsibleText);
+  await ctx.replyWireplthMarkdownV2(collapsibleText);
 
   // await ctx.reply(``, kb);
 
