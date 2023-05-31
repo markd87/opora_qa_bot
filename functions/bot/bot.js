@@ -1,4 +1,4 @@
-const { Telegraf, session, Scenes, Markup, Extra } = require("telegraf");
+const { Telegraf, session, Scenes, Markup } = require("telegraf");
 
 const startAction = require("./actions/start");
 
@@ -37,67 +37,24 @@ bot.action("topics", async (ctx) => {
 
 bot.action("topic1", async (ctx) => {
   await ctx.replyWithHTML(
-    `<b>What is the purpose of your visit to the UK?</b>`,
+    "<b>What is the purpose of your visit to the UK?</b>",
     Markup.inlineKeyboard([
-      [
-        [Markup.button.callback("Run from the war in ukraine", "q1")],
-        [Markup.button.callback("Visiting friends or family", "q2")],
-        [Markup.button.callback("Work in the UK", "q3")],
-        [Markup.button.callback("Other reason", "q4")],
-        [Markup.button.callback("I'm already in the UK", "q5")],
-      ],
+      [Markup.button.callback("Run from the war in ukraine", "q1")],
+      [Markup.button.callback("Visiting friends or family", "q2")],
+      [Markup.button.callback("Work in the UK", "q3")],
+      [Markup.button.callback("Other reason", "q4")],
+      [Markup.button.callback("I'm already in the UK", "q5")],
     ])
   );
   ctx.answerCbQuery();
 });
 
 bot.action("q1", async (ctx) => {
-  await ctx.reply(
-    `🌟 Відповідь на П1: прикладова відповідь 1.`,
+  await ctx.replyWithHTML(
+    "<b>Do you have parents in the UK?<b/>",
     Markup.inlineKeyboard([
-      [
-        Markup.button.callback("Всі теми", "topics"),
-        Markup.button.callback("Всі питання по темі", "topic1"),
-      ],
-    ])
-  );
-  ctx.answerCbQuery();
-});
-
-bot.action("q2", async (ctx) => {
-  await ctx.reply(
-    `🌟 Відповідь на П2: прикладова відповідь 2.`,
-    Markup.inlineKeyboard([
-      [
-        Markup.button.callback("Всі теми", "topics"),
-        Markup.button.callback("Всі питання по темі", "topic1"),
-      ],
-    ])
-  );
-  ctx.answerCbQuery();
-});
-
-bot.action("q3", async (ctx) => {
-  await ctx.reply(
-    `🌟 Відповідь на П3: прикладова відповідь 3.`,
-    Markup.inlineKeyboard([
-      [
-        Markup.button.callback("Всі теми", "topics"),
-        Markup.button.callback("Всі питання по темі", "topic1"),
-      ],
-    ])
-  );
-  ctx.answerCbQuery();
-});
-
-bot.action("q4", async (ctx) => {
-  await ctx.reply(
-    `🌟 Відповідь на П4 прикладова відповідь 4.`,
-    Markup.inlineKeyboard([
-      [
-        Markup.button.callback("Всі теми", "topics"),
-        Markup.button.callback("Всі питання по темі", "topic1"),
-      ],
+      [Markup.button.callback("Yes", "q1_1")],
+      [Markup.button.callback("No - I don't have family in the UK", "q1_2")],
     ])
   );
   ctx.answerCbQuery();
