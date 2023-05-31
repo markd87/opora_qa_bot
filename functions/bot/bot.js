@@ -1,4 +1,4 @@
-const { Telegraf, session, Scenes, Markup } = require("telegraf");
+const { Telegraf, session, Scenes, Markup, Extra } = require("telegraf");
 
 const startAction = require("./actions/start");
 
@@ -12,8 +12,8 @@ bot.start((ctx) => {
 });
 
 bot.action("topics", async (ctx) => {
-  await ctx.replyWithMarkdownV2(
-    `\n\nCommon questions:`,
+  await ctx.reply(
+    `Common questions:`,
     Markup.inlineKeyboard([
       [Markup.button.callback("Choose the right visa", "topic1")],
       [
@@ -36,17 +36,19 @@ bot.action("topics", async (ctx) => {
 });
 
 bot.action("topic1", async (ctx) => {
-  await ctx.replyWithMarkdownV2(
-    `##What is the purpose of your visit to the UK?`,
-    Markup.inlineKeyboard([
-      [
-        [Markup.button.callback("Run from the war in ukraine", "q1")],
-        [Markup.button.callback("Visiting friends or family", "q2")],
-        [Markup.button.callback("Work in the UK", "q3")],
-        [Markup.button.callback("Other reason", "q4")],
-        [Markup.button.callback("I'm already in the UK", "q5")],
-      ],
-    ])
+  await ctx.replyWithHTML(
+    `<h3>What is the purpose of your visit to the UK?</h3>`,
+    Extra.HTML().markup((m) =>
+      m.inlineKeyboard([
+        [
+          [m.button.callback("Run from the war in ukraine", "q1")],
+          [m.button.callback("Visiting friends or family", "q2")],
+          [m.button.callback("Work in the UK", "q3")],
+          [m.button.callback("Other reason", "q4")],
+          [m.button.callback("I'm already in the UK", "q5")],
+        ],
+      ])
+    )
   );
   ctx.answerCbQuery();
 });

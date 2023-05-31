@@ -1,4 +1,4 @@
-const { Markup } = require("telegraf");
+const { Markup, Extra } = require("telegraf");
 const { getUser } = require("../components/helper");
 
 module.exports = async (ctx) => {
@@ -9,26 +9,31 @@ module.exports = async (ctx) => {
   }
 
   try {
-    await ctx.replyWithMarkdownV2(
-      `##What questions do you have about UK visas?
-      \n\nCommon questions:`,
-      Markup.inlineKeyboard([
-        [Markup.button.callback("Choose the right visa", "topic1")],
-        [
-          Markup.button.callback(
-            "Homes for Ukraine (sponsorship scheme)",
-            "topic2"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "Ukraine Family Scheme \n(family members of Ukranians)",
-            "topic3"
-          ),
-        ],
-        [Markup.button.callback("Ukraine Extension Scheme", "topic4")],
-        [Markup.button.callback("Visa decision delayed", "topic5")],
-      ])
+    await ctx.replyWithHTML(
+      `
+      <h3>What questions do you have about UK visas?</h3>
+      <br/>
+      Common questions:
+      `,
+      Extra.HTML().markup((m) =>
+        m.inlineKeyboard([
+          [m.button.callback("Choose the right visa", "topic1")],
+          [
+            m.button.callback(
+              "Homes for Ukraine (sponsorship scheme)",
+              "topic2"
+            ),
+          ],
+          [
+            m.button.callback(
+              "Ukraine Family Scheme \n(family members of Ukranians)",
+              "topic3"
+            ),
+          ],
+          [m.button.callback("Ukraine Extension Scheme", "topic4")],
+          [m.button.callback("Visa decision delayed", "topic5")],
+        ])
+      )
     );
   } catch (e) {
     console.log(e);
