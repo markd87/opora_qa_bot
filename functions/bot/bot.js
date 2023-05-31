@@ -52,15 +52,10 @@ bot.action("topic1", async (ctx) => {
 bot.action("q1", async (ctx) => {
   await ctx.replyWithMarkdownV2(
     "*Do you have parents in the UK?*",
-    Extra.webPreview(true)
-      .markup((m) =>
-        m.keyboard([
-          [m.button.callback("Yes", "q1_1")],
-          [m.button.callback("No - I don't have family in the UK", "q1_2")],
-        ])
-      )
-      .oneTime()
-      .resize()
+    Markup.inlineKeyboard([
+      [Markup.button.callback("Yes", "q1_1")],
+      [Markup.button.callback("No - I don't have family in the UK", "q1_2")],
+    ])
   );
   ctx.answerCbQuery();
 });
