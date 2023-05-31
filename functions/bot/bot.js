@@ -52,8 +52,8 @@ bot.action("q1", async (ctx) => {
     `🌟 Відповідь на П1: прикладова відповідь 1.`,
     Markup.inlineKeyboard([
       [
-        Markup.button.callback("Показати всі теми", "topics"),
-        Markup.button.callback("Показати питання по темі", "topic1"),
+        Markup.button.callback("Всі теми", "topics"),
+        Markup.button.callback("Всі питання по темі", "topic1"),
       ],
     ])
   );
@@ -78,8 +78,8 @@ bot.action("q3", async (ctx) => {
     `🌟 Відповідь на П3: прикладова відповідь 3.`,
     Markup.inlineKeyboard([
       [
-        Markup.button.callback("Показати всі теми", "topics"),
-        Markup.button.callback("Показати питання по темі", "topic1"),
+        Markup.button.callback("Всі теми", "topics"),
+        Markup.button.callback("Всі питання по темі", "topic1"),
       ],
     ])
   );
@@ -91,8 +91,8 @@ bot.action("q4", async (ctx) => {
     `🌟 Відповідь на П4 прикладова відповідь 4.`,
     Markup.inlineKeyboard([
       [
-        Markup.button.callback("Показати всі теми", "topics"),
-        Markup.button.callback("Показати питання по темі", "topic1"),
+        Markup.button.callback("Всі теми", "topics"),
+        Markup.button.callback("Всі питання по темі", "topic1"),
       ],
     ])
   );
