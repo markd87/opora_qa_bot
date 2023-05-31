@@ -68,7 +68,12 @@ bot.action("q1_1", async (ctx) => {
     ],
   });
 
-  await ctx.reply("Follow up question...");
+  await ctx.replyWithMarkdownV2(
+    `*How to find a sponsor?*
+    \nRead our article:
+    \n[https://ua.opora.uk/blog/yakim-chinom-ukrayinczam-zaraz-mozhna-znajti-sponsora-shob-priyihati-do-uk](https://ua.opora.uk/blog/yakim-chinom-ukrayinczam-zaraz-mozhna-znajti-sponsora-shob-priyihati-do-uk)
+  `
+  );
   ctx.answerCbQuery();
 });
 
@@ -80,7 +85,12 @@ bot.action("q1_2", async (ctx) => {
     ],
   });
 
-  await ctx.reply("Second Follow up question...");
+  await ctx.replyWithMarkdownV2(
+    `*How to find a sponsor?*
+    \nRead our article:
+    \n[https://ua.opora.uk/blog/yakim-chinom-ukrayinczam-zaraz-mozhna-znajti-sponsora-shob-priyihati-do-uk](https://ua.opora.uk/blog/yakim-chinom-ukrayinczam-zaraz-mozhna-znajti-sponsora-shob-priyihati-do-uk)
+  `
+  );
   ctx.answerCbQuery();
 });
 
