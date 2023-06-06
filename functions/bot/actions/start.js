@@ -46,12 +46,6 @@ module.exports = async (ctx) => {
             "stay_forever"
           ),
         ],
-        [
-          Markup.button.callback(
-            "How to stay in the UK forever",
-            "stay_forever"
-          ),
-        ],
         [Markup.button.callback("Problem with my visa or BRP", "problem_visa")],
       ])
     );
