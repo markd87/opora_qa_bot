@@ -11,23 +11,28 @@ module.exports = async (ctx) => {
   try {
     await ctx.replyWithHTML(
       `<b>What questions do you have about UK visas?</b>
-      \n<i>Common questions</i>:`,
+      \n<i>Choose a topic</i>:`,
       Markup.inlineKeyboard([
-        [Markup.button.callback("Choose the right visa", "topic1")],
+        [Markup.button.callback("Choose the right visa", "right_visa")],
         [
           Markup.button.callback(
             "Homes for Ukraine (sponsorship scheme)",
-            "topic2"
+            "homes_for_ukraine"
           ),
         ],
         [
           Markup.button.callback(
             "Ukraine Family Scheme \n(family members of Ukranians)",
-            "topic3"
+            "family_scheme"
           ),
         ],
-        [Markup.button.callback("Ukraine Extension Scheme", "topic4")],
-        [Markup.button.callback("Visa decision delayed", "topic5")],
+        [
+          Markup.button.callback(
+            "Ukraine Extension Scheme",
+            "extension_scheme"
+          ),
+        ],
+        [Markup.button.callback("Visa decision delayed", "decision_delayed")],
       ])
     );
   } catch (e) {
