@@ -20,13 +20,12 @@ exports.right_visa = (bot) => {
         [
           Markup.button.callback(
             "Short visit to see family or friends",
-            "right_visa_o2"
+            "tourist_visa"
           ),
         ],
-        [Markup.button.callback("Work in the UK", "right_visa_o3")],
-        [Markup.button.callback("Work in the UK", "right_visa_o4")],
+        [Markup.button.callback("Work in the UK", "work_visa")],
         [Markup.button.callback("Other purpose", "right_visa_o5")],
-        [Markup.button.callback("I am already in the UK", "right_visa_o6")],
+        [Markup.button.callback("I am already in the UK", "extension_scheme")],
       ])
     );
     ctx.answerCbQuery();
@@ -94,7 +93,10 @@ exports.right_visa = (bot) => {
 
   bot.action("right_visa_o1_yes_status1", async (ctx) => {
     await ctx.replyWithHTML(
-      "Your family member can invite you on Ukraine Family Scheme visa."
+      "Your family member can invite you on Ukraine Family Scheme visa.",
+      Markup.inlineKeyboard([
+        [Markup.button.callback("Continue", "family_scheme")],
+      ])
     );
   });
 
@@ -135,7 +137,7 @@ exports.right_visa = (bot) => {
           [
             Markup.button.callback(
               "How do they find a sponsor for me?",
-              "right_visa_o1_yes_status3_o1"
+              "sponsor_how"
             ),
           ],
           [

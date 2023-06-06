@@ -105,6 +105,11 @@ bot.action("tourist_visa", async (ctx) => {
   ctx.answerCbQuery();
 });
 
+bot.action("tourist_visa_yes", async (ctx) => {
+  await ctx.replyWithHTML(`<b>Tourist visa  (PLACEHOLDER)</b>`);
+  ctx.answerCbQuery();
+});
+
 // work visa
 bot.action("work_visa", async (ctx) => {
   await ctx.replyWithHTML(
@@ -134,7 +139,7 @@ bot.action("stay_forever", async (ctx) => {
 //
 bot.action("problem_visa", async (ctx) => {
   await ctx.replyWithHTML(
-    `<b>What kind of problem??</b>`,
+    `<b>What kind of problem?</b>`,
     Markup.inlineKeyboard([
       [Markup.button.callback("Visa decision delayed", "problem_visa_delayed")],
       [Markup.button.callback("Visa rejected", "problem_visa_rejected")],
@@ -144,15 +149,34 @@ bot.action("problem_visa", async (ctx) => {
           "problem_visa_didnt"
         ),
       ],
-      [Markup.button.callback("Lost my BRP", "problem_visa_didnt")],
+      [Markup.button.callback("Lost my BRP", "problem_visa_lost")],
       [Markup.button.callback("Mistake on my BRP", "problem_visa_mistake")],
     ])
   );
   ctx.answerCbQuery();
 });
 
-bot.action("stay_forever_yes", async (ctx) => {
-  await ctx.replyWithHTML(`<b>ILR paths (PLACEHOLDER)</b>`);
+bot.action("problem_visa_delayed", async (ctx) => {
+  await ctx.replyWithHTML(`<b>Visa delay (PLACEHOLDER)</b>`);
+  ctx.answerCbQuery();
+});
+
+bot.action("problem_visa_rejected", async (ctx) => {
+  await ctx.replyWithHTML(`<b>Visa rejected (PLACEHOLDER)</b>`);
+  ctx.answerCbQuery();
+});
+
+bot.action("problem_visa_didnt", async (ctx) => {
+  await ctx.replyWithHTML(`<b>BRP problems (PLACEHOLDER)</b>`);
+  ctx.answerCbQuery();
+});
+
+bot.action("problem_visa_lost", async (ctx) => {
+  await ctx.replyWithHTML(`<b>BRP problems (PLACEHOLDER)</b>`);
+  ctx.answerCbQuery();
+});
+bot.action("problem_visa_mistake", async (ctx) => {
+  await ctx.replyWithHTML(`<b>BRP problems (PLACEHOLDER)</b>`);
   ctx.answerCbQuery();
 });
 
