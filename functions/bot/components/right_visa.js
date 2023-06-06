@@ -23,8 +23,8 @@ exports.right_visa = (bot) => {
 
   bot.action("right_visa_o5", async (ctx) => {
     await ctx.replyWithHTML(
-      `**Check gov.uk for available visa types?**
-          \n [https://www.gov.uk/check-uk-visa](url)`
+      `<b>Check gov.uk for available visa types?</b>
+          \nhttps://www.gov.uk/check-uk-visa`
     );
     ctx.answerCbQuery();
   });
@@ -39,5 +39,67 @@ exports.right_visa = (bot) => {
     );
 
     ctx.answerCbQuery();
+  });
+
+  bot.action("right_visa_o1_yes", async (ctx) => {
+    await ctx.replyWithHTML(
+      "<b>What is their immigration status in the UK?</b>",
+      Markup.inlineKeyboard([
+        [
+          Markup.button.callback(
+            "They are British citizens",
+            "right_visa_o1_yes_status1"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "They have settled or pre-settled status",
+            "right_visa_o1_yes_status1"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "They are here on a sponsorship (Homes for Ukraine) visa",
+            "right_visa_o1_yes_status3"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "They are here on Ukraine Family Scheme visa",
+            "right_visa_o1_yes_status3"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "They are in the UK illegally",
+            "right_visa_o1_yes_status4"
+          ),
+        ],
+      ])
+    );
+
+    ctx.answerCbQuery();
+  });
+
+  bot.action("right_visa_o1_yes_status1", async (ctx) => {
+    await ctx.replyWithHTML(
+      "<b>Your family member can invite you on Ukraine Family Scheme visa.</b>"
+    );
+  });
+
+  bot.action("right_visa_o1_yes_status3", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Your family member can invite you on Ukraine Family Scheme visa.</b>
+      Your family member can either find a suitable sponsor for you or choose to become your 
+      sponsor themselves. This will enable you to apply for the Homes for Ukraine (sponsorship) visa.
+      `
+    );
+  });
+
+  bot.action("right_visa_o1_yes_status4", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Your family member can not invite you if they are in the UK illegally.</b>
+      You need to find a sponsor to come to the UK.`
+    );
   });
 };
