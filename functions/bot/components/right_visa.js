@@ -138,7 +138,7 @@ exports.right_visa = (bot) => {
         [
           Markup.button.callback(
             "How do they find a sponsor for me?",
-            "right_visa_o1_yes_status3_o1"
+            "sponsor_how"
           ),
         ],
         [
