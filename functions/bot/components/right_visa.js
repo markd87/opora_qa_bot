@@ -41,7 +41,31 @@ exports.right_visa = (bot) => {
 
   bot.action(["family_scheme_yes", "right_visa_o1"], async (ctx) => {
     await ctx.replyWithHTML(
-      "<b>Do you have a family member in the UK?</b>",
+      `<b>Do you have a family member in the UK?</b>
+
+      Your UK-based family member must be one of the following:
+      1. your immediate family member
+      Your or your UK-based family member's:
+      - spouse or civil partner
+      - unmarried partner (you must have been living together in a relationship for at least 2 years)
+      - child who is under 18
+      - parent (if you are under 18)
+      - fiancé(e) or proposed civil partner
+      
+      2. your extended family member 
+      Your UK-based family member's:
+      - parent (if you are over 18)
+      - child who is over 18
+      - grandparent
+      - grandchild or your partner's grandchild
+      - brother or sister
+      - aunt or uncle
+      - niece or nephew
+      - cousin
+      - mother-in-law or father-in-law
+      - grandparent-in-law
+      - brother-in-law or sister-in-law
+      - spouse or civil partner, unmarried partner, child, parent, or fiancé(e) or proposed civil partner of your extended family member`,
       Markup.inlineKeyboard([
         [Markup.button.callback("Yes", "right_visa_o1_yes")],
         [Markup.button.callback("No ", "right_visa_o1_no")],
