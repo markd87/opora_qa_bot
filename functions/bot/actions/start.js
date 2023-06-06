@@ -26,13 +26,33 @@ module.exports = async (ctx) => {
             "family_scheme"
           ),
         ],
+
         [
           Markup.button.callback(
             "Ukraine Extension Scheme",
             "extension_scheme"
           ),
         ],
-        [Markup.button.callback("Visa decision delayed", "decision_delayed")],
+        [
+          Markup.button.callback(
+            "Tourist visa to see family or friends",
+            "tourist_visa"
+          ),
+        ],
+        [Markup.button.callback("Work visas", "work_visa")],
+        [
+          Markup.button.callback(
+            "How to stay in the UK forever",
+            "stay_forever"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "How to stay in the UK forever",
+            "stay_forever"
+          ),
+        ],
+        [Markup.button.callback("Problem with my visa or BRP", "problem_visa")],
       ])
     );
   } catch (e) {

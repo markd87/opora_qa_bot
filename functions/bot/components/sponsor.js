@@ -2,7 +2,7 @@ const { Markup } = require("telegraf");
 
 exports.sponsor = (bot) => {
   bot.action(
-    ["homes_for_ukraine", "right_visa_o1_no", "sponsor"],
+    ["homes_for_ukraine_yes", "right_visa_o1_no", "sponsor"],
     async (ctx) => {
       await ctx.replyWithHTML(
         `<b>You need a sponsor</b>

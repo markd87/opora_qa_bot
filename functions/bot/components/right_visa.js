@@ -3,6 +3,17 @@ const { Markup } = require("telegraf");
 exports.right_visa = (bot) => {
   bot.action("right_visa", async (ctx) => {
     await ctx.replyWithHTML(
+      "<b>Would you like to figure out which visa do you need to come to the UK?</b>",
+      Markup.inlineKeyboard([
+        [Markup.button.callback("Yes", "right_visa_yes")],
+        [Markup.button.callback("No", "right_visa_no")],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("right_visa_yes", async (ctx) => {
+    await ctx.replyWithHTML(
       "<b>What is the purpose of your visit to the UK?</b>",
       Markup.inlineKeyboard([
         [Markup.button.callback("Fleeing the war in Ukraine", "right_visa_o1")],
@@ -29,7 +40,7 @@ exports.right_visa = (bot) => {
     ctx.answerCbQuery();
   });
 
-  bot.action(["family_scheme", "right_visa_o1"], async (ctx) => {
+  bot.action(["family_scheme_yes", "right_visa_o1"], async (ctx) => {
     await ctx.replyWithHTML(
       "<b>Do you have a family member in the UK?</b>",
       Markup.inlineKeyboard([
