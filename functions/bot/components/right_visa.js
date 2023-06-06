@@ -29,7 +29,7 @@ exports.right_visa = (bot) => {
     ctx.answerCbQuery();
   });
 
-  bot.action("right_visa_o1", async (ctx) => {
+  bot.action(["family_scheme", "right_visa_o1"], async (ctx) => {
     await ctx.replyWithHTML(
       "<b>Do you have a family member in the UK?</b>",
       Markup.inlineKeyboard([
@@ -96,9 +96,7 @@ exports.right_visa = (bot) => {
   bot.action("right_visa_o1_yes_status3", async (ctx) => {
     await ctx.replyWithHTML(
       `<b>Your family member can not invite you on Ukraine Family Scheme visa</b>.
-      Your family member can either find a suitable sponsor for you or choose to become your 
-      sponsor themselves. This will enable you to apply for the Homes for Ukraine (sponsorship) visa.
-      `,
+      Your family member can either find a suitable sponsor for you or choose to become your sponsor themselves. This will enable you to apply for the Homes for Ukraine (sponsorship) visa.`,
       Markup.inlineKeyboard([
         [
           Markup.button.callback(
@@ -118,9 +116,8 @@ exports.right_visa = (bot) => {
 
   bot.action("right_visa_o1_yes_status4", async (ctx) => {
     await ctx.replyWithHTML(
-      `<b>Your family member can not invite you on Ukraine Family Scheme visa</b>.
-      Your family member can either find a suitable sponsor for you or choose to become your 
-      sponsor themselves. This will enable you to apply for the Homes for Ukraine (sponsorship) visa.
+      `<b>Your family member can not invite you on Ukraine Family Scheme visa</b>. 
+      Your family member can either find a suitable sponsor for you or choose to become your sponsor themselves. This will enable you to apply for the Homes for Ukraine (sponsorship) visa.
       `,
       [
         Markup.inlineKeyboard([
