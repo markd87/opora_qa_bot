@@ -22,7 +22,7 @@ module.exports = async (ctx) => {
         ],
         [
           Markup.button.callback(
-            "Ukraine Family Scheme \n(family members of Ukranians)",
+            "Ukraine Family Scheme (family members of Ukranians)",
             "family_scheme"
           ),
         ],
