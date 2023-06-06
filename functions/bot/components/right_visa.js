@@ -1,3 +1,5 @@
+const { Markup } = require("telegraf");
+
 exports.right_visa = (bot) => {
   bot.action("right_visa", async (ctx) => {
     await ctx.replyWithHTML(
