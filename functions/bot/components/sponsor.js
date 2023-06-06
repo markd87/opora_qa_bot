@@ -5,7 +5,8 @@ exports.sponsor = (bot) => {
     ["homes_for_ukraine", "right_visa_o1_no", "sponsor"],
     async (ctx) => {
       await ctx.replyWithHTML(
-        "<b>You need a sponsor</b>To participate in the Homes for Ukraine sponsorship scheme, you will need a sponsor.",
+        `<b>You need a sponsor</b>
+        To participate in the Homes for Ukraine sponsorship scheme, you will need a sponsor.`,
         Markup.inlineKeyboard([
           [Markup.button.callback("How do I find a sponsor?", "sponsor_how")],
           [
@@ -29,7 +30,8 @@ exports.sponsor = (bot) => {
 
   bot.action("sponsor_already", async (ctx) => {
     await ctx.replyWithHTML(
-      `<b>Is your sponsor genuine?</b>To determine if your UK visa sponsor is genuine, ensure that they meet all of the following criteria:</b>
+      `<b>Is your sponsor genuine?</b>
+      To determine if your UK visa sponsor is genuine, ensure that they meet all of the following criteria:
           1. They are an individual person.
           2. They provide accommodation for your stay.
           3. They do not request money in exchange for the visa.
