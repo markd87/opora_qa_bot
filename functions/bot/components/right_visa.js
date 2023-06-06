@@ -54,7 +54,7 @@ exports.right_visa = (bot) => {
         [
           Markup.button.callback(
             "They have settled or pre-settled status",
-            "right_visa_o1_yes_status1"
+            "right_visa_o1_yes_status2"
           ),
         ],
         [
@@ -66,13 +66,13 @@ exports.right_visa = (bot) => {
         [
           Markup.button.callback(
             "They are here on Ukraine Family Scheme visa",
-            "right_visa_o1_yes_status3"
+            "right_visa_o1_yes_status4"
           ),
         ],
         [
           Markup.button.callback(
             "They are in the UK illegally",
-            "right_visa_o1_yes_status4"
+            "right_visa_o1_yes_status5"
           ),
         ],
       ])
@@ -83,23 +83,74 @@ exports.right_visa = (bot) => {
 
   bot.action("right_visa_o1_yes_status1", async (ctx) => {
     await ctx.replyWithHTML(
-      "<b>Your family member can invite you on Ukraine Family Scheme visa.</b>"
+      "Your family member can invite you on Ukraine Family Scheme visa."
+    );
+  });
+
+  bot.action("right_visa_o1_yes_status2", async (ctx) => {
+    await ctx.replyWithHTML(
+      "Your family member can invite you on Ukraine Family Scheme visa."
     );
   });
 
   bot.action("right_visa_o1_yes_status3", async (ctx) => {
     await ctx.replyWithHTML(
-      `<b>Your family member can invite you on Ukraine Family Scheme visa.</b>
+      `<b>Your family member can not invite you on Ukraine Family Scheme visa</b>.
       Your family member can either find a suitable sponsor for you or choose to become your 
       sponsor themselves. This will enable you to apply for the Homes for Ukraine (sponsorship) visa.
-      `
+      `,
+      Markup.inlineKeyboard([
+        [
+          Markup.button.callback(
+            "How do they find a sponsor for me?",
+            "right_visa_o1_yes_status3_o1"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "How can they become my sponsor?",
+            "right_visa_o1_yes_status3_o2"
+          ),
+        ],
+      ])
     );
   });
 
   bot.action("right_visa_o1_yes_status4", async (ctx) => {
     await ctx.replyWithHTML(
-      `<b>Your family member can not invite you if they are in the UK illegally.</b>
-      You need to find a sponsor to come to the UK.`
+      `<b>Your family member can not invite you on Ukraine Family Scheme visa</b>.
+      Your family member can either find a suitable sponsor for you or choose to become your 
+      sponsor themselves. This will enable you to apply for the Homes for Ukraine (sponsorship) visa.
+      `,
+      [
+        Markup.inlineKeyboard([
+          [
+            Markup.button.callback(
+              "How do they find a sponsor for me?",
+              "right_visa_o1_yes_status3_o1"
+            ),
+          ],
+          [
+            Markup.button.callback(
+              "How can they become my sponsor?",
+              "right_visa_o1_yes_status3_o2"
+            ),
+          ],
+        ]),
+      ]
+    );
+  });
+
+  bot.action("right_visa_o1_yes_status3_o2", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Become a sponsor for a relative or friend (PLACEHOLDER)</b>`
+    );
+  });
+
+  bot.action("right_visa_o1_yes_status5", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Your family member can not invite you if they are in the UK illegally.</b>\nYou need to find a sponsor to come to the UK.`,
+      Markup.inlineKeyboard([[Markup.button.callback("Continue", "sponsor")]])
     );
   });
 };
