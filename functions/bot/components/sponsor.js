@@ -25,7 +25,6 @@ To participate in the Homes for Ukraine sponsorship scheme, you will need a spon
     await ctx.replyWithHTML(
       "Read our article: https://ua.opora.uk/blog/yakim-chinom-ukrayincyam-zaraz-mozhna-znajti-sponsora-shob-priyihati-do-uk"
     );
-    ctx.answerCbQuery();
   });
 
   bot.action("sponsor_already", async (ctx) => {
@@ -64,7 +63,8 @@ https://www.gov.uk/guidance/apply-for-a-visa-under-the-ukraine-sponsorship-schem
 
   bot.action("sponsor_already_no", async (ctx) => {
     await ctx.replyWithHTML(
-      `<b>They are likely a scammer</b>To avoid falling victim to scams, be cautious of individuals who promise a UK visa without providing accommodation or who request money or work in exchange for a visa. These situations often result in visa rejections or counterfeit visas that won't grant you entry into the UK.`,
+      `<b>They are likely a scammer</b>
+To avoid falling victim to scams, be cautious of individuals who promise a UK visa without providing accommodation or who request money or work in exchange for a visa. These situations often result in visa rejections or counterfeit visas that won't grant you entry into the UK.`,
       Markup.inlineKeyboard([
         [Markup.button.callback("How to find a sponsor?", "sponsor_how")],
       ])
