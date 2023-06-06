@@ -1,7 +1,7 @@
 const { Markup } = require("telegraf");
 
 exports.right_visa = (bot) => {
-  bot.action("right_visa", async (ctx) => {
+  bot.action("right_visa_q", async (ctx) => {
     await ctx.replyWithHTML(
       "<b>Would you like to figure out which visa do you need to come to the UK?</b>",
       Markup.inlineKeyboard([
@@ -12,7 +12,7 @@ exports.right_visa = (bot) => {
     ctx.answerCbQuery();
   });
 
-  bot.action("right_visa_yes", async (ctx) => {
+  bot.action("right_visa", async (ctx) => {
     await ctx.replyWithHTML(
       "<b>What is the purpose of your visit to the UK?</b>",
       Markup.inlineKeyboard([
@@ -153,7 +153,8 @@ exports.right_visa = (bot) => {
 
   bot.action("right_visa_o1_yes_status4", async (ctx) => {
     await ctx.replyWithHTML(
-      `<b>Your family member can not invite you on Ukraine Family Scheme visa</b>. 
+      `<b>Your family member can not invite you on Ukraine Family Scheme visa</b>.
+
       Your family member can either find a suitable sponsor for you or choose to become your sponsor themselves. This will enable you to apply for the Homes for Ukraine (sponsorship) visa.
       `,
       [
