@@ -6,7 +6,7 @@ exports.sponsor = (bot) => {
     async (ctx) => {
       await ctx.replyWithHTML(
         `<b>You need a sponsor</b>
-        To participate in the Homes for Ukraine sponsorship scheme, you will need a sponsor.`,
+To participate in the Homes for Ukraine sponsorship scheme, you will need a sponsor.`,
         Markup.inlineKeyboard([
           [Markup.button.callback("How do I find a sponsor?", "sponsor_how")],
           [
@@ -31,11 +31,11 @@ exports.sponsor = (bot) => {
   bot.action("sponsor_already", async (ctx) => {
     await ctx.replyWithHTML(
       `<b>Is your sponsor genuine?</b>
-      To determine if your UK visa sponsor is genuine, ensure that they meet all of the following criteria:
-          1. They are an individual person.
-          2. They provide accommodation for your stay.
-          3. They do not request money in exchange for the visa.
-          4. They do not require you to work in exchange for the visa.`,
+To determine if your UK visa sponsor is genuine, ensure that they meet all of the following criteria:
+1. They are an individual person.
+2. They provide accommodation for your stay.
+3. They do not request money in exchange for the visa.
+4. They do not require you to work in exchange for the visa.`,
       Markup.inlineKeyboard([
         [
           Markup.button.callback(
@@ -56,8 +56,10 @@ exports.sponsor = (bot) => {
 
   bot.action("sponsor_already_yes", async (ctx) => {
     await ctx.replyWithHTML(
-      `<bPrepare your visa application and apply on gov.uk</b>https://www.gov.uk/guidance/apply-for-a-visa-under-the-ukraine-sponsorship-scheme`
+      `<b>Prepare your visa application and apply on gov.uk</b>
+https://www.gov.uk/guidance/apply-for-a-visa-under-the-ukraine-sponsorship-scheme`
     );
+    ctx.answerCbQuery();
   });
 
   bot.action("sponsor_already_no", async (ctx) => {
