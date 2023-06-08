@@ -33,7 +33,7 @@ exports.right_visa = (bot) => {
 
   bot.action("right_visa_o5", async (ctx) => {
     await ctx.replyWithHTML(
-      `<b>Check gov.uk for available visa types?</b>
+      `<b>Check gov.uk for available visa types</b>
           \nhttps://www.gov.uk/check-uk-visa`
     );
     ctx.answerCbQuery();

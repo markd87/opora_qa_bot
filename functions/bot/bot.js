@@ -42,7 +42,7 @@ sponsor(bot);
 // homes for ukraine
 bot.action("homes_for_ukraine", async (ctx) => {
   await ctx.replyWithHTML(
-    `<b>Would you like to apply for Homes for Ukraine visa??</b>`,
+    `<b>Would you like to apply for Homes for Ukraine visa?</b>`,
     Markup.inlineKeyboard([
       [
         Markup.button.callback("Yes", "homes_for_ukraine_yes"),
@@ -157,7 +157,43 @@ bot.action("problem_visa", async (ctx) => {
 });
 
 bot.action("problem_visa_delayed", async (ctx) => {
-  await ctx.replyWithHTML(`<b>Visa delay (PLACEHOLDER)</b>`);
+  await ctx.replyWithHTML(
+    `<b>How long are you waiting for your visa?</b>
+  The processing times for "Ukrainian" visas vary greatly, ranging from 1 day to 6 months or longer. 
+  As of February 2023, 25% of applicants wait for a visa for more than 4 months. 
+  If you are waiting for your visa less than 2 months you do not need to do any actions  in this case.`,
+    Markup.inlineKeyboard([
+      [
+        Markup.button.callback(
+          "less than 2 months",
+          "problem_visa_delayed_less"
+        ),
+      ],
+      [
+        Markup.button.callback(
+          "more than 2 months",
+          "problem_visa_delayed_more"
+        ),
+      ],
+    ])
+  );
+  ctx.answerCbQuery();
+});
+
+bot.action("problem_visa_delayed_more", async (ctx) => {
+  await ctx.replyWithHTML(
+    `<b>What can I do if I am waiting for my visa more than 2 months?</b>
+
+    If the visa does not arrive within 2 months, you can submit an escalation: https://t.me/uspuk/178 This is not a guarantee of visa issuance but only a chance to expedite the process.
+    If escalations do not yield results, ask your sponsor/relative to write to the MP (Member of Parliament). 
+    You can find their contacts here https://members.parliament.uk/members/commons.
+    Submitting a new application for a "Ukrainian" visa cancels all your previous applications, and the processing time starts anew.
+`,
+    Markup.inlineKeyboard([
+      [Markup.button.callback("OK", "OK")],
+      [Markup.button.callback("Go to the start", "go_to_start")],
+    ])
+  );
   ctx.answerCbQuery();
 });
 
