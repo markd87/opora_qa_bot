@@ -65,7 +65,7 @@ bot.action("general", async (ctx) => {
 });
 
 bot.action("OK", async (ctx) => {
-  await ctx.replyWithHTML(`Дякуємо, що скористалися нашим асистентом!`);
+  await ctx.replyWithHTML(`✅ Дякуємо, що скористалися нашим асистентом!`);
 });
 
 bot.action("topics", async (ctx) => {
