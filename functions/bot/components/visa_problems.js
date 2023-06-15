@@ -255,10 +255,10 @@ exports.visa_problems = (bot) => {
       ])
     );
 
-    // await ctx.sendPhoto(
-    //   ctx.chat.id,
-    //   "https://thriving-frangollo-33fd04.netlify.app/assets/status_says.jpeg"
-    // );
+    await ctx.telegram.sendPhoto(
+      ctx.chat.id,
+      "https://thriving-frangollo-33fd04.netlify.app/assets/status_says.jpeg"
+    );
 
     ctx.answerCbQuery();
   });
