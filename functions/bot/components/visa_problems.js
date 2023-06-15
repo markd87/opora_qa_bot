@@ -208,27 +208,28 @@ exports.visa_problems = (bot) => {
   });
 
   bot.action("what_decision_look", async (ctx) => {
-    // await ctx.replyWithHTML(
-    //   `Перевірте електронну пошту, з якої ви подавали заявку на візу. Чи отримали ви електронний лист "Application Update"?
-    //   \n* Якщо в ньому написано: "*Your application under the Ukraine Scheme has been successful*", це означає, що віза була <b>схвалена</b>, і ви можете вперше подорожувати Великою Британією з цим листом і вашим паспортом (тобто, це ваш лист про дозвіл на в'їзд). У ньому також вказано точний термін дії вашої візи - 3 роки.
-    //   * Якщо є слова "* rejected*" або "* refused*", це означає, що віза не була схвалена.`,
-    //   Markup.inlineKeyboard([
-    //     [
-    //       Markup.button.callback(
-    //         "Я не отримав цього листа.",
-    //         "problem_visa_delayed"
-    //       ),
-    //     ],
-    //     [Markup.button.callback("Гаразд, це все.", "OK")],
-    //     [
-    //       Markup.button.callback(
-    //         "У мене є ще одне питання, пов'язане з візою.",
-    //         "visas"
-    //       ),
-    //     ],
-    //   ])
-    // );
-    const imageUrl = "/assets/c_3 - Application Update.jpeg";
+    await ctx.replyWithHTML(
+      `Перевірте електронну пошту, з якої ви подавали заявку на візу. Чи отримали ви електронний лист "Application Update"?
+      \n* Якщо в ньому написано: "*Your application under the Ukraine Scheme has been successful*", це означає, що віза була <b>схвалена</b>, і ви можете вперше подорожувати Великою Британією з цим листом і вашим паспортом (тобто, це ваш лист про дозвіл на в'їзд). У ньому також вказано точний термін дії вашої візи - 3 роки.
+      * Якщо є слова "* rejected*" або "* refused*", це означає, що віза не була схвалена.`,
+      Markup.inlineKeyboard([
+        [
+          Markup.button.callback(
+            "Я не отримав цього листа.",
+            "problem_visa_delayed"
+          ),
+        ],
+        [Markup.button.callback("Гаразд, це все.", "OK")],
+        [
+          Markup.button.callback(
+            "У мене є ще одне питання, пов'язане з візою.",
+            "visas"
+          ),
+        ],
+      ])
+    );
+    const imageUrl =
+      "https://thriving-frangollo-33fd04.netlify.app/assets/c_3%20-%20Application%20Update.jpeg";
     // await ctx.replyWithPhoto({ source: imageUrl });
     await ctx.telegram.sendPhoto(ctx.chat.id, imageUrl);
 
