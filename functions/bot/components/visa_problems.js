@@ -255,10 +255,10 @@ exports.visa_problems = (bot) => {
       ])
     );
 
-    await ctx.telegram.sendPhoto(
-      ctx.chat.id,
-      "https://thriving-frangollo-33fd04.netlify.app/assets/c_Screenshot%202023-06-10%20at%2017.28.07.png"
-    );
+    // await ctx.replyWithIm.sendPhoto(
+    //   ctx.chat.id,
+    //   "https://thriving-frangollo-33fd04.netlify.app/assets/c_Screenshot%202023-06-10%20at%2017.28.07.png"
+    // );
     ctx.answerCbQuery();
   });
 
