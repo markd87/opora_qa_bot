@@ -97,28 +97,26 @@ exports.visa_problems = (bot) => {
       1. Переконайтеся, що ваша візова анкета подана на розгляд. Багато людей не заповнюють свої заяви і чекають на рішення протягом невизначеного часу, в той час як їхні заяви навіть не розглядаються Home Office.
       2. Регулярно перевіряйте електронну пошту, яку ви використовували для подачі заяви на візу, на предмет будь-яких оновлень щодо рішення по візовій заявці.
       3. Якщо ви подавали заяву через мобільний додаток ID Check і відсканували свій паспорт, ви також можете скористатися послугою <a href="https://www.gov.uk/view-prove-immigration-status">"View and prove your immigration status"</a>, щоб дізнатися, чи була видана ваша віза.`,
-      Extra.markup((markup) => {
-        return markup.inlineKeyboard([
-          [
-            markup.callbackButton(
-              "Як перевірити, чи була подана візова анкета",
-              "check_submitted"
-            ),
-          ],
-          [
-            markup.callbackButton(
-              "Як виглядає візове рішення.",
-              "what_decision_look"
-            ),
-          ],
-          [
-            markup.callbackButton(
-              "Імміграційний статус: 'The details entered don't match our records'.",
-              "status_says"
-            ),
-          ],
-        ]);
-      })
+      Markup.inlineKeyboard([
+        [
+          Markup.button.callback(
+            "Як перевірити, чи була подана візова анкета",
+            "check_submitted"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "Як виглядає візове рішення.",
+            "what_decision_look"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "Імміграційний статус: 'The details entered don't match our records'.",
+            "status_says"
+          ),
+        ],
+      ])
     );
     ctx.answerCbQuery();
   });
