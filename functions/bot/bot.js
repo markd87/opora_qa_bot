@@ -1,5 +1,6 @@
 const { Telegraf, session, Scenes, Markup, Extra } = require("telegraf");
 const { visas } = require("./components/visas");
+const { visa_problems } = require("./components/visa_problems");
 const { sponsor } = require("./components/sponsor");
 const startAction = require("./actions/start");
 
@@ -12,6 +13,11 @@ bot.start((ctx) => {
 });
 
 const ok_markup = Markup.inlineKeyboard([[Markup.button.callback("Ок", "OK")]]);
+
+// initialize actions paths
+visas(bot);
+visa_problems(bot);
+sponsor(bot);
 
 bot.action("housing", async (ctx) => {
   await ctx.replyWithHTML(
@@ -85,9 +91,6 @@ bot.action("topics", async (ctx) => {
   );
   ctx.answerCbQuery();
 });
-
-visas(bot);
-sponsor(bot);
 
 // homes for ukraine
 bot.action("homes_for_ukraine", async (ctx) => {
@@ -187,73 +190,6 @@ bot.action("stay_forever", async (ctx) => {
 });
 
 //
-bot.action("problem_visa", async (ctx) => {
-  await ctx.replyWithHTML(
-    `<b>What kind of problem?</b>`,
-    Markup.inlineKeyboard([
-      [Markup.button.callback("Visa decision delayed", "problem_visa_delayed")],
-      [Markup.button.callback("Visa rejected", "problem_visa_rejected")],
-      [
-        Markup.button.callback(
-          "Didn't get my BRP in time",
-          "problem_visa_didnt"
-        ),
-      ],
-      [Markup.button.callback("Lost my BRP", "problem_visa_lost")],
-      [Markup.button.callback("Mistake on my BRP", "problem_visa_mistake")],
-    ])
-  );
-  ctx.answerCbQuery();
-});
-
-bot.action("problem_visa_delayed", async (ctx) => {
-  await ctx.replyWithHTML(
-    `<b>How long are you waiting for your visa?</b>
-  
-  The processing times for "Ukrainian" visas vary greatly, ranging from 1 day to 6 months or longer.
-  
-  As of February 2023, 25% of applicants wait for a visa for more than 4 months.
-  
-  If you are waiting for your visa less than 2 months you do not need to do any actions in this case.`,
-    Markup.inlineKeyboard([
-      [
-        Markup.button.callback(
-          "less than 2 months",
-          "problem_visa_delayed_less"
-        ),
-      ],
-      [
-        Markup.button.callback(
-          "more than 2 months",
-          "problem_visa_delayed_more"
-        ),
-      ],
-    ])
-  );
-  ctx.answerCbQuery();
-});
-
-bot.action("problem_visa_delayed_more", async (ctx) => {
-  await ctx.replyWithHTML(
-    `<b>What can I do if I am waiting for my visa more than 2 months?</b>
-
-    If the visa does not arrive within 2 months, you can submit an escalation: https://t.me/uspuk/178 This is not a guarantee of visa issuance but only a chance to expedite the process.
-
-    If escalations do not yield results, ask your sponsor/relative to write to the MP (Member of Parliament). You can find their contacts here https://members.parliament.uk/members/commons.
-
-    Submitting a new application for a "Ukrainian" visa cancels all your previous applications, and the processing time starts anew.`,
-    Markup.inlineKeyboard([
-      [Markup.button.callback("OK", "OK")],
-      [Markup.button.callback("Go to the start", "go_to_start")],
-    ])
-  );
-  ctx.answerCbQuery();
-});
-
-bot.action("problem_visa_rejected", async (ctx) => {
-  await ctx.replyWithHTML(`<b>Visa rejected (PLACEHOLDER)</b>`);
-  ctx.answerCbQuery();
-});
 
 bot.action("want_to_be_sponsor", async (ctx) => {
   await ctx.replyWithHTML(

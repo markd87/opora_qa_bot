@@ -3,12 +3,50 @@ const { Markup } = require("telegraf");
 exports.visas = (bot) => {
   bot.action("visas", async (ctx) => {
     await ctx.replyWithHTML(
-      "<b>Would you like to figure out which visa do you need to come to the UK?</b>",
+      `<b>Виберіть тему:</b>`,
       Markup.inlineKeyboard([
-        [Markup.button.callback("Yes", "right_visa_yes")],
-        [Markup.button.callback("No", "right_visa_no")],
+        [
+          Markup.button.callback(
+            "Виберіть правильну візу до Великобританії",
+            "right_visa"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "Схема Homes for Ukraine (спонсорська допомога)",
+            "homes_for_ukraine"
+          ),
+        ],
+        [Markup.button.callback("Ukraine Family Scheme", "family_scheme")],
+
+        [
+          Markup.button.callback(
+            "Ukraine Extension Scheme",
+            "extension_scheme"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "Як залишитися у Великобританії назавжди",
+            "stay_forever"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "Подорожі за межі Великобританії",
+            "travel_outside"
+          ),
+        ],
+        [Markup.button.callback("Проблема з візою або BRP", "problem_visa")],
       ])
     );
+
+    //   "<b>Would you like to figure out which visa do you need to come to the UK?</b>",
+    //   Markup.inlineKeyboard([
+    //     [Markup.button.callback("Yes", "right_visa_yes")],
+    //     [Markup.button.callback("No", "right_visa_no")],
+    //   ])
+    // );
     ctx.answerCbQuery();
   });
 
