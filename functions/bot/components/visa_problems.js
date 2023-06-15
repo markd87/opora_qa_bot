@@ -229,7 +229,7 @@ exports.visa_problems = (bot) => {
       ])
     );
     const imageUrl =
-      "https://thriving-frangollo-33fd04.netlify.app/assets/c_3%20-%20Application%20Update.jpeg";
+      "https://thriving-frangollo-33fd04.netlify.app/assets/what_decision_look.jpeg";
     await ctx.telegram.sendPhoto(ctx.chat.id, imageUrl);
 
     ctx.answerCbQuery();
@@ -255,10 +255,10 @@ exports.visa_problems = (bot) => {
       ])
     );
 
-    // await ctx.replyWithIm.sendPhoto(
-    //   ctx.chat.id,
-    //   "https://thriving-frangollo-33fd04.netlify.app/assets/c_Screenshot%202023-06-10%20at%2017.28.07.png"
-    // );
+    await ctx.replyWithIm.sendPhoto(
+      ctx.chat.id,
+      "https://thriving-frangollo-33fd04.netlify.app/assets/status_says.jpeg"
+    );
     ctx.answerCbQuery();
   });
 
