@@ -86,7 +86,7 @@ bot.action("topics", async (ctx) => {
   ctx.answerCbQuery();
 });
 
-right_visa(bot);
+visas(bot);
 sponsor(bot);
 
 // homes for ukraine
