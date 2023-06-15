@@ -233,6 +233,11 @@ exports.visa_problems = (bot) => {
         ],
       ])
     );
+    const imageUrl = "./assets/c_3 - Application Update.jpeg";
+    await ctx.replyWithPhoto({ url: imageUrl }).catch((error) => {
+      console.error("Error sending image:", error);
+    });
+
     ctx.answerCbQuery();
   });
 
