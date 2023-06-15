@@ -8,24 +8,25 @@ module.exports = async (ctx) => {
     return ctx.reply(`Sorry I only interact with humans!`);
   }
 
-  await ctx.replyWithHTML(`<b>What is your question about?</b>`, main_topics);
-
   try {
     await ctx.replyWithHTML(
       `<b>Про що ваше питання?</b>`,
       Markup.inlineKeyboard([
-        [Markup.button.callback("Візи до Великобританії", "visa")],
-        [Markup.button.callback("Житло", "housing")],
-        [Markup.button.callback("Працевлаштування", "employment")],
-
-        [Markup.button.callback("Соцвиплати (бенефіти)", "benefits")],
+        [
+          Markup.button.callback("Візи до Великобританії", "visas"),
+          Markup.button.callback("Житло", "housing"),
+        ],
+        [
+          Markup.button.callback("Працевлаштування", "employment"),
+          Markup.button.callback("Соцвиплати (бенефіти)", "benefits"),
+        ],
         [
           Markup.button.callback(
             "Підтримка психічного здоров'я",
             "mental_health"
           ),
+          Markup.button.callback("Загальні питання після прибуття", "general"),
         ],
-        [Markup.button.callback("Загальні питання після прибуття", "general")],
       ])
     );
   } catch (e) {

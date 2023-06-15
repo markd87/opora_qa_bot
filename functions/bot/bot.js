@@ -16,7 +16,7 @@ const ok_markup = Markup.inlineKeyboard([[Markup.button.callback("Ок", "OK")]]
 bot.action("housing", async (ctx) => {
   await ctx.replyWithHTML(
     `Якщо у вас є житлове питання
-    \nПерейдіть до чату Opora Житло: [https://t.me/opora_housing](https://t.me/opora_housing)`,
+    \nПерейдіть до чату Opora Житло: https://t.me/opora_housing`,
     ok_markup
   );
   ctx.answerCbQuery();
@@ -25,7 +25,7 @@ bot.action("housing", async (ctx) => {
 bot.action("employment", async (ctx) => {
   await ctx.replyWithHTML(
     `Якщо у вас є питання щодо працевлаштування
-    \nПерейдіть на канал Opora з питань роботи: [https://t.me/opora_employment](https://t.me/opora_employment)`,
+    \nПерейдіть на канал Opora з питань роботи: https://t.me/opora_employment`,
     ok_markup
   );
   ctx.answerCbQuery();
@@ -34,7 +34,7 @@ bot.action("employment", async (ctx) => {
 bot.action("benefits", async (ctx) => {
   await ctx.replyWithHTML(
     `Якщо ваше питання про соцвиплати (бенефіти)
-    \nДивіться цей вебінар: [https: ](https://ua.opora.uk/benefits)//ua.opora.uk/benefits`,
+    \nДивіться цей вебінар: https://ua.opora.uk/benefits/ua.opora.uk/benefits`,
     ok_markup
   );
   ctx.answerCbQuery();
@@ -43,7 +43,7 @@ bot.action("benefits", async (ctx) => {
 bot.action("mental_health", async (ctx) => {
   await ctx.replyWithHTML(
     `Підтримка психічного здоров'я
-    \nПерейдіть у чат Opora з питань психічного здоров'я [https://t.me/opora_mentalhealth](https://t.me/opora_mentalhealth)`,
+    \nПерейдіть у чат Opora з питань психічного здоров'я https://t.me/opora_mentalhealth`,
     ok_markup
   );
   ctx.answerCbQuery();
@@ -52,7 +52,7 @@ bot.action("mental_health", async (ctx) => {
 bot.action("general", async (ctx) => {
   await ctx.replyWithHTML(
     `Загальні питання після прибуття
-    \nПерейдіть в чат Opora Після прибуття [https://t.me/oporaukarrivals](https://t.me/oporaukarrivals)`,
+    \nПерейдіть в чат Opora Після прибуття [ttps://t.me/oporaukarrivals`,
     ok_markup
   );
   ctx.answerCbQuery();
