@@ -229,7 +229,8 @@ exports.visa_problems = (bot) => {
     //   ])
     // );
     const imageUrl = "/assets/c_3 - Application Update.jpeg";
-    await ctx.replyWithPhoto({ source: imageUrl });
+    // await ctx.replyWithPhoto({ source: imageUrl });
+    await ctx.telegram.sendPhoto(ctx.chat.id, imageUrl);
 
     ctx.answerCbQuery();
   });
