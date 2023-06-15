@@ -228,7 +228,7 @@ exports.visa_problems = (bot) => {
     //     ],
     //   ])
     // );
-    const imageUrl = "/components/assets/c_3 - Application Update.jpeg";
+    const imageUrl = "/assets/c_3 - Application Update.jpeg";
     await ctx.replyWithPhoto({ source: imageUrl });
 
     ctx.answerCbQuery();
