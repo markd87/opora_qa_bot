@@ -219,12 +219,6 @@ exports.visa_problems = (bot) => {
             "problem_visa_delayed"
           ),
         ],
-        [
-          Markup.button.callback(
-            "У мене є ще одне питання, пов'язане з візою.",
-            "visas"
-          ),
-        ],
         [Markup.button.callback("Гаразд, це все.", "OK")],
         [
           Markup.button.callback(
@@ -234,8 +228,8 @@ exports.visa_problems = (bot) => {
         ],
       ])
     );
-    const imageUrl = "./assets/c_3 - Application Update.jpeg";
-    await ctx.replyWithPhoto({ source: imageUrl });
+    // const imageUrl = "/components/assets/c_3 - Application Update.jpeg";
+    // await ctx.replyWithPhoto({ source: imageUrl });
 
     ctx.answerCbQuery();
   });
