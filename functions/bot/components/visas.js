@@ -1,7 +1,7 @@
 const { Markup } = require("telegraf");
 
-exports.right_visa = (bot) => {
-  bot.action("right_visa_q", async (ctx) => {
+exports.visas = (bot) => {
+  bot.action("visas", async (ctx) => {
     await ctx.replyWithHTML(
       "<b>Would you like to figure out which visa do you need to come to the UK?</b>",
       Markup.inlineKeyboard([
@@ -12,7 +12,7 @@ exports.right_visa = (bot) => {
     ctx.answerCbQuery();
   });
 
-  bot.action("right_visa", async (ctx) => {
+  bot.action("right_visa_yes", async (ctx) => {
     await ctx.replyWithHTML(
       "<b>What is the purpose of your visit to the UK?</b>",
       Markup.inlineKeyboard([

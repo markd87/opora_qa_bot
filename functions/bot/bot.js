@@ -1,15 +1,65 @@
 const { Telegraf, session, Scenes, Markup, Extra } = require("telegraf");
-const { right_visa } = require("./components/right_visa");
+const { visas } = require("./components/visas");
 const { sponsor } = require("./components/sponsor");
 const startAction = require("./actions/start");
 
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN);
 
-bot.use(session());
-// bot.use(stage.middleware());
+// bot.use(session());
 
 bot.start((ctx) => {
   return startAction(ctx);
+});
+
+const ok_markup = Markup.inlineKeyboard([[Markup.button.callback("Ок", "OK")]]);
+
+bot.action("housing", async (ctx) => {
+  await ctx.replyWithHTML(
+    `Якщо у вас є житлове питання
+    \nПерейдіть до чату Opora Житло: [https://t.me/opora_housing](https://t.me/opora_housing)`,
+    ok_markup
+  );
+  ctx.answerCbQuery();
+});
+
+bot.action("employment", async (ctx) => {
+  await ctx.replyWithHTML(
+    `Якщо у вас є питання щодо працевлаштування
+    \nПерейдіть на канал Opora з питань роботи: [https://t.me/opora_employment](https://t.me/opora_employment)`,
+    ok_markup
+  );
+  ctx.answerCbQuery();
+});
+
+bot.action("benefits", async (ctx) => {
+  await ctx.replyWithHTML(
+    `Якщо ваше питання про соцвиплати (бенефіти)
+    \nДивіться цей вебінар: [https: ](https://ua.opora.uk/benefits)//ua.opora.uk/benefits`,
+    ok_markup
+  );
+  ctx.answerCbQuery();
+});
+
+bot.action("mental_health", async (ctx) => {
+  await ctx.replyWithHTML(
+    `Підтримка психічного здоров'я
+    \nПерейдіть у чат Opora з питань психічного здоров'я [https://t.me/opora_mentalhealth](https://t.me/opora_mentalhealth)`,
+    ok_markup
+  );
+  ctx.answerCbQuery();
+});
+
+bot.action("general", async (ctx) => {
+  await ctx.replyWithHTML(
+    `Загальні питання після прибуття
+    \nПерейдіть в чат Opora Після прибуття [https://t.me/oporaukarrivals](https://t.me/oporaukarrivals)`,
+    ok_markup
+  );
+  ctx.answerCbQuery();
+});
+
+bot.action("OK", async (ctx) => {
+  await ctx.replyWithHTML(`Дякуємо, що скористалися нашим асистентом!`);
 });
 
 bot.action("topics", async (ctx) => {
