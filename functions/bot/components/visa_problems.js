@@ -1,5 +1,6 @@
 const { Markup } = require("telegraf");
 const { Extra } = require("telegraf");
+// const fs = require("fs");
 
 exports.visa_problems = (bot) => {
   bot.action("problem_visa", async (ctx) => {
@@ -234,9 +235,7 @@ exports.visa_problems = (bot) => {
       ])
     );
     const imageUrl = "./assets/c_3 - Application Update.jpeg";
-    await ctx.replyWithPhoto({ url: imageUrl }).catch((error) => {
-      console.error("Error sending image:", error);
-    });
+    await ctx.replyWithPhoto({ source: imageUrl });
 
     ctx.answerCbQuery();
   });
