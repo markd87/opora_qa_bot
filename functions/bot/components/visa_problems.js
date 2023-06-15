@@ -112,8 +112,151 @@ exports.visa_problems = (bot) => {
         ],
         [
           Markup.button.callback(
-            "Імміграційний статус: 'The details entered don't match our records'.",
+            "Імміграційний статус:'The details entered don't match our records'.",
             "status_says"
+          ),
+        ],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("check_submitted", async (ctx) => {
+    await ctx.replyWithHTML(
+      `Скористайтеся цим посібником, щоб перевірити свою візову заяву`,
+      Markup.inlineKeyboard([
+        [
+          Markup.button.callback(
+            "Продовжити посібник.",
+            "check_submitted_guide"
+          ),
+        ],
+        [Markup.button.callback("Гаразд, це все.", "OK")],
+        [
+          Markup.button.callback(
+            "У мене є ще одне питання, пов'язане з візою.",
+            "visas"
+          ),
+        ],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("check_submitted_guide", async (ctx) => {
+    await ctx.replyWithHTML(
+      `Перевірте електронну пошту, на яку ви подавали заявку на візу. Ви отримали лист "UK Visa - application submitted"?
+      \nПротягом усього процесу подачі заявок ви отримаєте три ключові електронні листи.
+
+      <b>Електронний лист №1: "UK Visa - application submitted"</b>:
+      * Цей лист надсилається після того, як ви заповнили візову анкету.
+      * На цьому етапі ви більше не можете вносити зміни до заяви.
+      * Однак, заявка ще не оброблена, оскільки вам все ще потрібно завантажити підтверджуючі документи.`,
+      Markup.inlineKeyboard([
+        [Markup.button.callback("Далі", "check_submitted_guide_1")],
+        [Markup.button.callback("Гаразд, це все.", "OK")],
+        [
+          Markup.button.callback(
+            "У мене є ще одне питання, пов'язане з візою.",
+            "visas"
+          ),
+        ],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("check_submitted_guide_1", async (ctx) => {
+    await ctx.replyWithHTML(
+      `Ви отримали електронного листа "Evidence sent/ Ukraine Scheme"?
+      \n<b>Електронний лист №2 - Evidence sent/ Ukraine Scheme</b>:
+      * Приходить після завантаження доказів (паспорт гостя або інший документ, що посвідчує особу, паспорт спонсора або BRP, підтвердження перебування гостя в Україні станом на 01.01.2022 і т.д.)
+      * Тільки з цього моменту Ваша візова анкета буде розглядатися
+      * У вас можуть попросити додаткові докази.`,
+      Markup.inlineKeyboard([
+        [Markup.button.callback("Далі", "check_submitted_guide_2")],
+        [Markup.button.callback("Гаразд, це все.", "OK")],
+        [
+          Markup.button.callback(
+            "У мене є ще одне питання, пов'язане з візою.",
+            "visas"
+          ),
+        ],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("check_submitted_guide_2", async (ctx) => {
+    await ctx.replyWithHTML(
+      `Ви отримали лист "Application Update"?
+      \n<b>Лист №3 - Application Update</b>:
+      * Якщо в ньому написано: "<b>Your application under the Ukraine Scheme has been successful</b>", це означає, що віза була <b>схвалена</b>, і ви можете вперше подорожувати Великою Британією з цим листом і вашим паспортом (тобто, це ваш лист про дозвіл на в'їзд). У ньому також вказано точний термін дії вашої візи - 3 роки.
+      * Якщо є слова "<b>rejected</b>" або "<b>refused</b>", це означає, що віза не була схвалена.`,
+      Markup.inlineKeyboard([
+        [Markup.button.callback("Гаразд, це все.", "OK")],
+        [
+          Markup.button.callback(
+            "У мене є ще одне питання, пов'язане з візою.",
+            "visas"
+          ),
+        ],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("what_decision_look", async (ctx) => {
+    await ctx.replyWithHTML(
+      `Перевірте електронну пошту, з якої ви подавали заявку на візу. Чи отримали ви електронний лист "Application Update"?
+      \n* Якщо в ньому написано: "*Your application under the Ukraine Scheme has been successful*", це означає, що віза була **схвалена**, і ви можете вперше подорожувати Великою Британією з цим листом і вашим паспортом (тобто, це ваш лист про дозвіл на в'їзд). У ньому також вказано точний термін дії вашої візи - 3 роки.
+      * Якщо є слова "* rejected*" або "* refused*", це означає, що віза не була схвалена.`,
+      Markup.inlineKeyboard([
+        [
+          Markup.button.callback(
+            "Я не отримав цього листа.",
+            "problem_visa_delayed"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "У мене є ще одне питання, пов'язане з візою.",
+            "visas"
+          ),
+        ],
+        [Markup.button.callback("Гаразд, це все.", "OK")],
+        [
+          Markup.button.callback(
+            "У мене є ще одне питання, пов'язане з візою.",
+            "visas"
+          ),
+        ],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("status_says", async (ctx) => {
+    await ctx.replyWithHTML(
+      `Home Office не може показати ваш імміграційний статус.
+      \nЦе означає, що ти:
+      - зробили помилку в анкеті
+      - ще не маєте візи
+      - подали заявку без використання додатку ID Check.
+      
+      Якщо ви чекаєте на візу "Ukraine Scheme" менше двох місяців, то наразі немає необхідності вживати жодних заходів. Просто наберіться терпіння і чекайте подальших оновлень по вашій заявці.`,
+      Markup.inlineKeyboard([
+        [
+          Markup.button.callback(
+            "У мене є ще одне питання, пов'язане з візою.",
+            "visas"
+          ),
+        ],
+        [Markup.button.callback("Гаразд, це все.", "OK")],
+        [
+          Markup.button.callback(
+            "У мене є ще одне питання, пов'язане з візою.",
+            "visas"
           ),
         ],
       ])
