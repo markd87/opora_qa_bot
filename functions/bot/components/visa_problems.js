@@ -255,6 +255,11 @@ exports.visa_problems = (bot) => {
         ],
       ])
     );
+
+    const imageUrl =
+      "https://thriving-frangollo-33fd04.netlify.app/assets/c_Screenshot 2023-06-10 at 17.28.07.png";
+
+    await ctx.telegram.sendPhoto(ctx.chat.id, imageUrl);
     ctx.answerCbQuery();
   });
 
