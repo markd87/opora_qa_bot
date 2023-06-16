@@ -40,13 +40,6 @@ exports.visas = (bot) => {
         [Markup.button.callback("Проблема з візою або BRP", "problem_visa")],
       ])
     );
-
-    //   "<b>Would you like to figure out which visa do you need to come to the UK?</b>",
-    //   Markup.inlineKeyboard([
-    //     [Markup.button.callback("Yes", "right_visa_yes")],
-    //     [Markup.button.callback("No", "right_visa_no")],
-    //   ])
-    // );
     ctx.answerCbQuery();
   });
 
@@ -74,6 +67,159 @@ exports.visas = (bot) => {
             "visas"
           ),
         ],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("travel_outside", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Якщо ви українець і перебуваєте у Великобританії за однією з українських віз і вам потрібно виїхати за кордон, які проблеми у вас можуть виникнути?</b>
+      \nДля подорожі вам потрібен український біометричний закордонний паспорт. Картка BRP  не замінює паспорт і не буде прийнята в якості проїзного документа.`,
+      Markup.keyboard([
+        [
+          Markup.button.callback(
+            "У мене (або члена моєї сім'ї) є біометричний паспорт, але він продовжений",
+            "i_have_biometric"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "З біометричним паспортом у мене все гаразд, але я ще не маю BRP",
+            "brp_need_to_leave"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "У мене (або члена моєї родини) є паспорт, але він не біометричний",
+            "not_biometric"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "У мене (або члена моєї сім'ї) немає паспорта",
+            "no_passport"
+          ),
+        ],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("brp_need_to_leave", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Ви можете подорожувати країнами, які приймають небіометричні українські паспорти</b>
+      \nПодорожувати за небіометричним українським паспортом можна через Молдову та Румунію. 
+
+      Перед поїздкою перевірте умови подорожі на <a href="https://tripadvisor.mfa.gov.ua">сайті Міністерства закордонних справ України</a> та проконсультуйтеся з обраною вами авіакомпанією. 
+
+      Бронюйте прямий рейс до Румунії або Молдови, уникаючи будь-яких зупинок в межах Шенгенської зони.`,
+      Markup.keyboard([
+        [Markup.button.callback("Гаразд, це все.", "OK")],
+        [Markup.button.callback("У мене єще одне питання.", "visas")],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("not_biometric", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Ви можете подорожувати країнами, які приймають небіометричні українські паспорти</b>
+      \nПодорожувати за небіометричним українським паспортом можна через Молдову та Румунію. 
+
+      Перед поїздкою перевірте умови подорожі на <a href="https://tripadvisor.mfa.gov.ua">сайті Міністерства закордонних справ України</a> та проконсультуйтеся з обраною вами авіакомпанією. 
+
+      Бронюйте прямий рейс до Румунії або Молдови, уникаючи будь-яких зупинок в межах Шенгенської зони.`,
+      Markup.keyboard([
+        [Markup.button.callback("Гаразд, це все.", "OK")],
+        [Markup.button.callback("У мене єще одне питання.", "visas")],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("i_have_biometric", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Для подорожей приймаються біометричні паспорти з продовженим терміном дії</b>
+      \nПодорожу за біометричним українським паспортом з офіційною відміткою про продовження терміну дії.
+
+      Перед поїздкою перевірте умови подорожі на <a href="https://tripadvisor.mfa.gov.ua">сайті Міністерства закордонних справ України</a> та проконсультуйтеся з обраною вами авіакомпанією.`,
+      Markup.keyboard([
+        [Markup.button.callback("Гаразд, це все.", "OK")],
+        [Markup.button.callback("У мене єще одне питання.", "visas")],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("no_passport", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Залежно від терміновості вашої подорожі ви можете подати заяву на отримання нового паспорта або скористатися альтернативними варіантами</b>`,
+      Markup.keyboard([
+        [
+          Markup.button.callback(
+            "Надзвичайна ситуація",
+            "no_passport_emergency"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "Я поспішаю, мені потрібно поїхати в найближчі місяць-два",
+            "no_passport_hurry"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "Я не поспішаю. Моя подорож запланована через кілька місяців.",
+            "no_passport_not_hurry"
+          ),
+        ],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("no_passport_not_hurry", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Мені потрібно поїхати в Україну з Великобританії, у мене немає паспорта і я не поспішаю</b>
+      \nЗверніться за новим паспортом до консульства України в Лондоні або Единбурзі. Подати заяву в обох консульствах можна лише за попереднім записом. Можливі окремі винятки. Записатися на прийом можна тут: https://online.mfa.gov.ua/application. Слідкуйте за оновленнями від Лондонського консульства тут: https://t.me/UAConsulUK
+
+      Слоти для подачі документів регулярно звільняються, але, як правило, в майбутньому (2-3 місяці). На виготовлення та доставку паспорта може знадобитися кілька місяців, після чого вам також потрібно буде забрати його з консульства.`,
+      Markup.keyboard([
+        [Markup.button.callback("Гаразд, це все.", "OK")],
+        [Markup.button.callback("У мене єще одне питання.", "visas")],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("no_passport_hurry", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Мені потрібно поїхати в Україну з Великобританії, у мене немає закордонного паспорта, але мені потрібно поїхати найближчим часом</b>
+      \nПодати заяву на отримання посвідки на повернення до України (білого паспорта). Це дозволить подорожувати в Україну, однак лише через невелику кількість країн.  
+
+      Подача заяви вимагає бронювання місця в консульстві, див. тут: https://online.mfa.gov.ua/application and more information here: https://uk.mfa.gov.ua/konsulysyki-pitannya/pasportni-diyi/posvidchennya-na-povernennya-v-ukrayinu
+      
+      Такий дозвіл може бути виданий того ж дня.`,
+      Markup.keyboard([
+        [Markup.button.callback("Гаразд, це все.", "OK")],
+        [Markup.button.callback("У мене єще одне питання.", "visas")],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("no_passport_emergency", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>У вас немає закордонного паспорта і вам потрібно терміново поїхати в Україну</b>
+      \nУ вас можуть бути термінові причини для подорожі. У такому випадку "білий паспорт" (дозвіл на в'їзд в Україну, https://uk.mfa.gov.ua/konsulysyki-pitannya/pasportni-diyi/posvidchennya-na-povernennya-v-ukrayinu) є більш доречним, ніж оформлення нового паспорта.
+
+      Ми рекомендуємо звертатися безпосередньо до консульства, оскільки "білий паспорт" все одно вимагає попереднього запису на прийом, який може бути недоступним протягом декількох днів.
+
+      Контактні дані консульства внизу сторінки: https://uk.mfa.gov.ua/konsulysyki-pitannya/pasportni-diyi/posvidchennya-na-povernennya-v-ukrayinu`,
+      Markup.keyboard([
+        [Markup.button.callback("Гаразд, це все.", "OK")],
+        [Markup.button.callback("У мене єще одне питання.", "visas")],
       ])
     );
     ctx.answerCbQuery();
