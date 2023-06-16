@@ -121,7 +121,6 @@ exports.visas = (bot) => {
           [Markup.button.callback("У мене єще одне питання.", "visas")],
         ])
       );
-      ctx.answerCbQuery();
     }
   );
 
@@ -135,12 +134,11 @@ exports.visas = (bot) => {
       Перед поїздкою перевірте умови подорожі на <a href="https://tripadvisor.mfa.gov.ua">сайті Міністерства закордонних справ України</a> та проконсультуйтеся з обраною вами авіакомпанією. 
 
       Бронюйте прямий рейс до Румунії або Молдови, уникаючи будь-яких зупинок в межах Шенгенської зони.`,
-        Markup.keyboard([
+        Markup.inlineKeyboard([
           [Markup.button.callback("Гаразд, це все.", "OK")],
           [Markup.button.callback("У мене єще одне питання.", "visas")],
         ])
       );
-      ctx.answerCbQuery();
     }
   );
 
@@ -152,19 +150,18 @@ exports.visas = (bot) => {
       \nПодорожу за біометричним українським паспортом з офіційною відміткою про продовження терміну дії.
 
       Перед поїздкою перевірте умови подорожі на <a href="https://tripadvisor.mfa.gov.ua">сайті Міністерства закордонних справ України</a> та проконсультуйтеся з обраною вами авіакомпанією.`,
-        Markup.keyboard([
+        Markup.inlineKeyboard([
           [Markup.button.callback("Гаразд, це все.", "OK")],
           [Markup.button.callback("У мене єще одне питання.", "visas")],
         ])
       );
-      ctx.answerCbQuery();
     }
   );
 
   bot.hears("У мене (або члена моєї сім'ї) немає паспорта", async (ctx) => {
     await ctx.replyWithHTML(
       `<b>Залежно від терміновості вашої подорожі ви можете подати заяву на отримання нового паспорта або скористатися альтернативними варіантами</b>`,
-      Markup.keyboard([
+      Markup.inlineKeyboard([
         [
           Markup.button.callback(
             "Надзвичайна ситуація",
@@ -185,7 +182,6 @@ exports.visas = (bot) => {
         ],
       ])
     );
-    ctx.answerCbQuery();
   });
 
   bot.action("no_passport_not_hurry", async (ctx) => {

@@ -630,8 +630,6 @@ exports.visa_problems = (bot) => {
         ctx.chat.id,
         "https://thriving-frangollo-33fd04.netlify.app/assets/brp_post_office_closed.png"
       );
-
-      ctx.answerCbQuery();
     }
   );
 
@@ -651,8 +649,6 @@ exports.visa_problems = (bot) => {
           ],
         ])
       );
-
-      ctx.answerCbQuery();
     }
   );
 
@@ -678,8 +674,6 @@ exports.visa_problems = (bot) => {
         ],
       ])
     );
-
-    ctx.answerCbQuery();
   });
 
   bot.hears("Помилка у моєму BRP", async (ctx) => {
@@ -702,8 +696,6 @@ exports.visa_problems = (bot) => {
         ],
       ])
     );
-
-    ctx.answerCbQuery();
   });
 
   bot.hears("Втратив свій BRP", async (ctx) => {
@@ -714,8 +706,6 @@ exports.visa_problems = (bot) => {
         [Markup.button.callback("Усередині Великої Британії", "lost_inside")],
       ])
     );
-
-    ctx.answerCbQuery();
   });
 
   bot.action("lost_outside", async (ctx) => {
@@ -792,8 +782,6 @@ exports.visa_problems = (bot) => {
           ],
         ])
       );
-
-      ctx.answerCbQuery();
     }
   );
 
