@@ -448,9 +448,8 @@ exports.visa_problems = (bot) => {
 
   bot.action("problem_visa_brp", async (ctx) => {
     await ctx.replyWithHTML(
-      `<b>Що найкраще описує вашу ситуацію?</b>
-      \nЩоб зрозуміти причину відмови у видачі візи, уважно перегляньте розділ "Reasons for Refusal" в їхньому електронному листі "Application Update".`,
-      Markup.inlineKeyboard([
+      `<b>Що найкраще описує вашу ситуацію?</b>`,
+      Markup.keyboard([
         [
           Markup.button.callback(
             "Не отримав свій BRP вчасно після надання біометричних даних у Великобританії",
