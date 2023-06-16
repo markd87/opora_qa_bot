@@ -481,17 +481,20 @@ exports.visa_problems = (bot) => {
     ctx.answerCbQuery();
   });
 
-  bot.action("didnt_get_brp_ontime", async (ctx) => {
-    await ctx.replyWithHTML(
-      `<b>Перевірте звичайний час отримання вашого BRP після надання біометричних даних у Великій Британії</b>
+  bot.hears(
+    "Не отримав свій BRP вчасно після надання біометричних даних у Великобританії",
+    async (ctx) => {
+      await ctx.replyWithHTML(
+        `<b>Перевірте звичайний час отримання вашого BRP після надання біометричних даних у Великій Британії</b>
         \nПісля надання біометричних даних у Великій Британії ви, як правило, можете розраховувати на отримання листа з рішенням протягом 10 днів. Після отримання цього листа ваш біометричний дозвіл на проживання (BRP) повинен бути доставлений до місцевого поштового відділення або безпосередньо на вашу адресу у Великобританії кур'єром протягом 10 робочих днів.`,
-      Markup.inlineKeyboard([
-        [Markup.button.callback("Гаразд, це все.", "OK")],
-        [Markup.button.callback("Воно затримується", "it_is_delayed")],
-      ])
-    );
-    ctx.answerCbQuery();
-  });
+        Markup.inlineKeyboard([
+          [Markup.button.callback("Гаразд, це все.", "OK")],
+          [Markup.button.callback("Воно затримується", "it_is_delayed")],
+        ])
+      );
+      ctx.answerCbQuery();
+    }
+  );
 
   bot.action("it_is_delayed", async (ctx) => {
     await ctx.replyWithHTML(
@@ -522,9 +525,11 @@ exports.visa_problems = (bot) => {
     ctx.answerCbQuery();
   });
 
-  bot.action("brp_not_in_postoffice", async (ctx) => {
-    await ctx.replyWithHTML(
-      `<b>Перевірте звичайний час отримання вашого BRP на пошті</b>
+  bot.hears(
+    "Мій BRP не був на пошті, коли я прийшов забрати його",
+    async (ctx) => {
+      await ctx.replyWithHTML(
+        `<b>Перевірте звичайний час отримання вашого BRP на пошті</b>
         \nПри отриманні BRP у поштовому відділенні терміни залежать від способу, яким ви подавали заяву на отримання візи до Великобританії. 
 
         1. Якщо ви подали заяву через додаток ID Check, відсканували свій біометричний паспорт і отримали електронний лист з дозволом на в'їзд (Application Update), ваш BRP можна буде отримати у вказаному поштовому відділенні через 28 днів після отримання дозволу на в'їзд. 
@@ -532,24 +537,25 @@ exports.visa_problems = (bot) => {
         2. Якщо ви здали біометричні дані у візовому центрі та отримали візову віньєтку, ваш BRP буде доставлено до поштового відділення через 10 днів після отримання рішення про видачу візи.
         
         Повідомлення про те, що BRP вже в поштовому відділенні, не буде. У всіх випадках BRP зберігатиметься на пошті протягом 60 днів, і якщо ви не заберете його вчасно, його буде відправлено назад до Home Office.`,
-      Markup.inlineKeyboard([
-        [Markup.button.callback("Гаразд, це все.", "OK")],
-        [
-          Markup.button.callback(
-            "Воно затримується",
-            "it_is_delayed_postoffice"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "Я не встиг забрати його вчасно",
-            "failed_to_collect"
-          ),
-        ],
-      ])
-    );
-    ctx.answerCbQuery();
-  });
+        Markup.inlineKeyboard([
+          [Markup.button.callback("Гаразд, це все.", "OK")],
+          [
+            Markup.button.callback(
+              "Воно затримується",
+              "it_is_delayed_postoffice"
+            ),
+          ],
+          [
+            Markup.button.callback(
+              "Я не встиг забрати його вчасно",
+              "failed_to_collect"
+            ),
+          ],
+        ])
+      );
+      ctx.answerCbQuery();
+    }
+  );
 
   bot.action("it_is_delayed_postoffice", async (ctx) => {
     await ctx.replyWithHTML(
@@ -576,7 +582,7 @@ exports.visa_problems = (bot) => {
     ctx.answerCbQuery();
   });
 
-  bot.action("brp_failed_collect", async (ctx) => {
+  bot.hears("Я не зміг вчасно забрати свій BRP з пошти", async (ctx) => {
     await ctx.replyWithHTML(
       `<b>Якщо ви не змогли забрати свій BRP на пошті протягом 60 днів</b>
         \nМи все ще радимо вам звернутися на пошту, може його ще не відправили назад.  
@@ -603,48 +609,54 @@ exports.visa_problems = (bot) => {
     ctx.answerCbQuery();
   });
 
-  bot.action("brp_post_office_closed", async (ctx) => {
-    await ctx.replyWithHTML(
-      `<b>Якщо ваше поштове відділення закрите назавжд</b>
+  bot.hears(
+    "Поштове відділення, де я маю забрати свій BRP зачинено назавжди",
+    async (ctx) => {
+      await ctx.replyWithHTML(
+        `<b>Якщо ваше поштове відділення закрите назавжд</b>
         \nЯкщо це сталося з вами, спробуйте заповнити форму https://www.biometric-residence-permit.service.gov.uk/collection/where вибравши опцію "<b>I don't know which Post Office I need to collect my BRP from</b>" і написавши в розділі коментарів "<b>my post office is permanently closed</b>":`,
-      Markup.inlineKeyboard([
-        [Markup.button.callback("Гаразд, це все.", "OK")],
-        [
-          Markup.button.callback(
-            "У мене ще одна проблема з моїм BRP",
-            "problem_visa_brp"
-          ),
-        ],
-      ])
-    );
+        Markup.inlineKeyboard([
+          [Markup.button.callback("Гаразд, це все.", "OK")],
+          [
+            Markup.button.callback(
+              "У мене ще одна проблема з моїм BRP",
+              "problem_visa_brp"
+            ),
+          ],
+        ])
+      );
 
-    await ctx.telegram.sendPhoto(
-      ctx.chat.id,
-      "https://thriving-frangollo-33fd04.netlify.app/assets/brp_post_office_closed.png"
-    );
+      await ctx.telegram.sendPhoto(
+        ctx.chat.id,
+        "https://thriving-frangollo-33fd04.netlify.app/assets/brp_post_office_closed.png"
+      );
 
-    ctx.answerCbQuery();
-  });
+      ctx.answerCbQuery();
+    }
+  );
 
-  bot.action("brp_postoffice_far", async (ctx) => {
-    await ctx.replyWithHTML(
-      `<b>Якщо ваше поштове відділення знаходиться занадто далеко</b>
+  bot.hears(
+    "Поштове відділення, де я маю забрати свій BRP, знаходиться занадто далеко",
+    async (ctx) => {
+      await ctx.replyWithHTML(
+        `<b>Якщо ваше поштове відділення знаходиться занадто далеко</b>
         \nУ деяких випадках візова анкета не дозволяє українцям вказати адресу поштового відділення, де вони хочуть отримати BRP, і замість цього їм автоматично призначається поштове відділення (наприклад, десь у Лондоні, в той час як вони живуть зі спонсором у Ноттінгемі). Ці люди можуть змінити адресу доставки BRP тут: https://visa-address-update.service.gov.uk/`,
-      Markup.inlineKeyboard([
-        [Markup.button.callback("Гаразд, це все.", "OK")],
-        [
-          Markup.button.callback(
-            "У мене ще одна проблема з моїм BRP",
-            "problem_visa_brp"
-          ),
-        ],
-      ])
-    );
+        Markup.inlineKeyboard([
+          [Markup.button.callback("Гаразд, це все.", "OK")],
+          [
+            Markup.button.callback(
+              "У мене ще одна проблема з моїм BRP",
+              "problem_visa_brp"
+            ),
+          ],
+        ])
+      );
 
-    ctx.answerCbQuery();
-  });
+      ctx.answerCbQuery();
+    }
+  );
 
-  bot.action("brp_postoffice_refused", async (ctx) => {
+  bot.hears("Пошта відмовилася видати мені BRP", async (ctx) => {
     await ctx.replyWithHTML(
       `<b>Якщо пошта відмовила вам у видачі BRP</b>
         \nПерш за все, зверніть увагу, що доросла людина може забрати BRP з поштового відділення лише особисто.  
@@ -670,7 +682,7 @@ exports.visa_problems = (bot) => {
     ctx.answerCbQuery();
   });
 
-  bot.action("brp_mistake", async (ctx) => {
+  bot.hears("Помилка у моєму BRP", async (ctx) => {
     await ctx.replyWithHTML(
       `<b>Якщо ви помітили помилку після отримання вашого BRP</b>
         \nНаприклад, ваше ім'я, прізвище або дата народження написані неправильно) - ви повинні повідомити про це Home Office протягом 10 днів, заповнивши форму під кнопкою "Повідомити про проблему" тут: https://www.gov.uk/biometric-residence-permits/report-problem
@@ -694,7 +706,7 @@ exports.visa_problems = (bot) => {
     ctx.answerCbQuery();
   });
 
-  bot.action("brp_lost", async (ctx) => {
+  bot.hears("Втратив свій BRP", async (ctx) => {
     await ctx.replyWithHTML(
       `<b>Де ви загубили свій BRP?</b>`,
       Markup.inlineKeyboard([
@@ -754,6 +766,36 @@ exports.visa_problems = (bot) => {
 
     ctx.answerCbQuery();
   });
+
+  bot.hears(
+    "Потрібно виїхати з Великобританії до отримання BRP",
+    async (ctx) => {
+      await ctx.replyWithHTML(
+        `<b>Чи можу я виїхати за межі Великобританії без BRP?</b>
+      \nВраховуючи затримки з отриманням BRP, це питання хвилює багатьох. Ось цитата з Home Office з цього приводу: "Ви не повинні бронювати поїздки за межі Великої Британії, поки не отримаєте свій BRP. Це може означати, що ви не отримаєте свій BRP. Якщо ви не матимете при собі BRP під час подорожі, ви не зможете довести свій імміграційний статус у Великій Британії, і у вас можуть виникнути затримки на кордоні Великої Британії, коли ви повернетеся, поки триватиме подальша перевірка". - Тобто ми наполегливо рекомендуємо вам не виїжджати з Великої Британії, поки ви не отримаєте BRP для вашої "української" візи. 
+
+      На практиці ви зможете виїхати з Великої Британії без BRP, оскільки це внутрішній документ, необхідний для перетину кордону Великої Британії для в'їзду. Жодна інша країна, окрім Великої Британії, не вимагає BRP для в'їзду і не визнає його як проїзний документ. 
+      
+      Однак у вас можуть виникнути проблеми, якщо ви захочете повернутися до Великої Британії пізніше без BRP. Розглянемо сценарій, коли ви виїхали з Великої Британії, а потім повернулися до Великої Британії з листом про дозвіл на в'їзд (з яким ви вже в'їжджали раніше):
+      - Авіакомпанія може відмовити вам у посадці на рейс до Великої Британії, особливо якщо лист про дозвіл був отриманий давно, і ще більш ймовірно, якщо вони побачать у вашому паспорті штамп про те, що ви вже перетинали кордон Великої Британії раніше.  
+      - Якщо авіакомпанія все ж пропустить вас, то у вас можуть виникнути питання на самому кордоні. Як мінімум, це може призвести до тривалої затримки при перетині кордону, а теоретично прикордонник має право відмовити вам у в'їзді.
+      
+      Ми знаємо, що багатьом людям з дійсною українською візою за Програмою вдалося повторно в'їхати до Великої Британії за допомогою BRP, але є також приклади людей, яким це не вдалося, в основному через відмови авіакомпаній у посадці на літак.
+      Ніхто не може гарантувати, що ви зможете знову в'їхати до Великобританії. Оцініть свої ризики в разі відмови, такі як втрата авіаквитка та інші витрати (проїзд до аеропорту, готелю тощо). Розгляньте можливість подати заяву на 'replacement BRP visa', якщо вам потрібно повернутися до Великої Британії без BRP і ви не хочете ризикувати.`,
+        Markup.inlineKeyboard([
+          [Markup.button.callback("Гаразд, це все.", "OK")],
+          [
+            Markup.button.callback(
+              "У мене ще одна проблема з моїм BRP",
+              "problem_visa_brp"
+            ),
+          ],
+        ])
+      );
+
+      ctx.answerCbQuery();
+    }
+  );
 
   bot.action("brp_need_to_leave", async (ctx) => {
     await ctx.replyWithHTML(
