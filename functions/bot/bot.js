@@ -94,9 +94,6 @@ bot.action("OK", async (ctx) => {
 //   ctx.answerCbQuery();
 // });
 
-process.once("SIGINT", () => bot.stop("SIGINT"));
-process.once("SIGTERM", () => bot.stop("SIGTERM"));
-
 exports.handler = async (event) => {
   try {
     await bot.handleUpdate(JSON.parse(event.body));
