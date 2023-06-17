@@ -425,22 +425,85 @@ exports.visas = (bot) => {
     ctx.answerCbQuery();
   });
 
-  // become_spo
-  // bot.hears("Як вони можуть стати моїм спонсором?",
-  // )
+  // become_sponsor
+  bot.hears("Як вони можуть стати моїм спонсором?", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Про що ваше питання?</b>`,
+      Markup.inlineKeyboard([
+        [
+          Markup.button.callback(
+            "Чи можу я стати спонсором?",
+            "can_become_sponsor"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "Що відбувається після подання заявки",
+            "what_happens_after_application"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "Вашому гостю Homes for Ukraine було відмовлено у видачі візи",
+            "guest_visa_refused"
+          ),
+        ],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
 
-  // bot.action("become_sponsor", async (ctx) => {
-  //   await ctx.replyWithHTML(
-  //     `<b>Про що ваше питання?</b>`,
-  //     Markup.inlineKeyboard([
-  //       [
-  //         Markup.button.callback(
-  //           "Продовжити",
-  //           "valid_biometric_passport_continue"
-  //         ),
-  //       ],
-  //     ])
-  //   );
-  //   ctx.answerCbQuery();
-  // });
+  bot.action("become_sponsor", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Про що ваше питання?</b>`,
+      Markup.inlineKeyboard([
+        [
+          Markup.button.callback(
+            "Чи можу я стати спонсором?",
+            "can_become_sponsor"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "Що відбувається після подання заявки",
+            "what_happens_after_application"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "Вашому гостю Homes for Ukraine було відмовлено у видачі візи",
+            "guest_visa_refused"
+          ),
+        ],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("what_happens_after_application", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Що відбувається після подання заявки?</b>
+      \nДля того, щоб ваша гостьова віза була схвалена, вам потрібно буде пройти наступні перевірки:
+
+      <b>1.перевірка безпеки та судимості, також відома як DBS Check</b>
+
+      Ви (головний спонсор) та всі повнолітні особи віком від 18 років, які проживатимуть в одному домогосподарстві з гостями, повинні пройти перевірку DBS Check. Якщо ви не згодні на це, ви не зможете стати спонсором.
+
+      Ваша місцева рада вирішить, який тип перевірки DBS необхідний, і ініціює її проведення. Ці перевірки є безкоштовними.
+
+      <b>2. перевірка вашого житла, щоб переконатися, що воно підходить для всіх ваших гостей</b>
+      
+      Місцева рада здійснить щонайменше один особистий візит, щоб перевірити, чи підходить ваше житло для всіх гостей. Якщо в результаті цих перевірок ви не відповідаєте вимогам придатності бути спонсором, розгляд візової заяви може бути призупинено, а гостю будуть запропоновані інші варіанти, якщо віза ще не була видана.`,
+      Markup.inlineKeyboard([
+        [Markup.button.callback("Ок", "OK")],
+        [
+          Markup.button.callback(
+            "У мене є ще одне питання, пов'язане з візою",
+            "visas"
+          ),
+        ],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
 };
