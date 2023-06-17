@@ -551,7 +551,6 @@ exports.homes_for_ukraine = (bot) => {
           ],
         ])
       );
-      ctx.answerCbQuery();
 
       await ctx.telegram.sendPhoto(
         ctx.chat.id,
