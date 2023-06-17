@@ -264,7 +264,6 @@ exports.visas = (bot) => {
         ],
       ])
     );
-    ctx.answerCbQuery();
   });
 
   bot.hears(
@@ -351,7 +350,7 @@ exports.visas = (bot) => {
       \nЗверніться за новим паспортом до консульства України в Лондоні або Единбурзі. Подати заяву в обох консульствах можна лише за попереднім записом. Можливі окремі винятки. Записатися на прийом можна тут: https://online.mfa.gov.ua/application. Слідкуйте за оновленнями від Лондонського консульства тут: https://t.me/UAConsulUK
 
       Слоти для подачі документів регулярно звільняються, але, як правило, в майбутньому (2-3 місяці). На виготовлення та доставку паспорта може знадобитися кілька місяців, після чого вам також потрібно буде забрати його з консульства.`,
-      Markup.keyboard([
+      Markup.inlineKeyboard([
         [Markup.button.callback("Гаразд, це все.", "OK")],
         [Markup.button.callback("У мене єще одне питання.", "visas")],
       ])
@@ -367,7 +366,7 @@ exports.visas = (bot) => {
       Подача заяви вимагає бронювання місця в консульстві, див. тут: https://online.mfa.gov.ua/application and more information here: https://uk.mfa.gov.ua/konsulysyki-pitannya/pasportni-diyi/posvidchennya-na-povernennya-v-ukrayinu
       
       Такий дозвіл може бути виданий того ж дня.`,
-      Markup.keyboard([
+      Markup.inlineKeyboard([
         [Markup.button.callback("Гаразд, це все.", "OK")],
         [Markup.button.callback("У мене єще одне питання.", "visas")],
       ])
@@ -383,12 +382,11 @@ exports.visas = (bot) => {
       Ми рекомендуємо звертатися безпосередньо до консульства, оскільки "білий паспорт" все одно вимагає попереднього запису на прийом, який може бути недоступним протягом декількох днів.
 
       Контактні дані консульства внизу сторінки: https://uk.mfa.gov.ua/konsulysyki-pitannya/pasportni-diyi/posvidchennya-na-povernennya-v-ukrayinu`,
-      Markup.keyboard([
+      Markup.inlineKeyboard([
         [Markup.button.callback("Гаразд, це все.", "OK")],
         [Markup.button.callback("У мене єще одне питання.", "visas")],
       ])
     );
-    ctx.answerCbQuery();
   });
 
   //
