@@ -43,6 +43,167 @@ exports.visas = (bot) => {
     ctx.answerCbQuery();
   });
 
+  bot.action("extension_scheme", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Чи відповідаєте ви всім вимогам по Ukraine Extension Scheme?</b>
+    \n- ви є українцем або близьким членом сім'ї українця
+    - ви мали дозвіл на перебування у Великій Британії з 18 березня 2022 року по 16 травня 2023 року або між цими датами - дозвіл не обов'язково повинен охоплювати весь період
+    - ви раніше мали дозвіл на перебування у Великій Британії, термін дії якого закінчився 1 січня 2022 року або пізніше`,
+      Markup.inlineKeyboard([
+        [Markup.button.callback("Так", "extension_scheme_yes")],
+        [Markup.button.callback("Нi", "extension_scheme_no")],
+        [
+          Markup.button.callback(
+            "У мене є ще одне питання, пов'язане з візою.",
+            "visas"
+          ),
+        ],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("extension_scheme_no", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Що найкраще описує вашу ситуацію?</b>`,
+      Markup.inlineKeyboard([
+        [
+          Markup.button.callback(
+            "Моя поточна віза до Великобританії починається після 16 травня 2023 року",
+            "extension_scheme_no_visa_start"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "Я перебуваю у Великобританії нелегально",
+            "immigration_lawyers"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            'Я тут за однією з "українських" віз',
+            "stay_forever"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            'Я тут за однією з "українських" віз',
+            "extension_scheme_no_visa"
+          ),
+        ],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("immigration_lawyers", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Якщо вам потрібна додаткова інформація про можливості в'їзду або проживання у Великій Британії, ось кілька джерел, які варто розглянути</b>
+      \nВи (або член вашої родини у Великобританії) можете розглянути наступні варіанти:`,
+      Markup.inlineKeyboard([
+        [Markup.button.callback("Ukraine Advice Project", "advice_project")],
+        [
+          Markup.button.callback(
+            "Settled UK (благодійна організація)",
+            "settled_uk_charity"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "UK Visa and Immigration",
+            "visa_and_immigration"
+          ),
+        ],
+        [Markup.button.callback("Юрист з питань імміграції", "lawyer")],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("lawyer", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Opora не надає направлень до імміграційних юристів</b>
+      \nВи можете шукати варіанти через вашу особисту мережу, а офіційні рекомендації можна переглянути тут: https://www.gov.uk/find-an-immigration-adviser.`,
+      Markup.inlineKeyboard([
+        [Markup.button.callback("Гаразд, це все.", "OK")],
+        [Markup.button.callback("У мене є ще одне питання", "visas")],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("visa_and_immigration", async (ctx) => {
+    await ctx.replyWithHTML(
+      `Зв'яжіться з UK Visa and Immigration тут https://www.gov.uk/contact-ukvi-inside-outside-uk`,
+      Markup.inlineKeyboard([
+        [Markup.button.callback("Гаразд, це все.", "OK")],
+        [Markup.button.callback("У мене є ще одне питання", "visas")],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("settled_uk_charity", async (ctx) => {
+    await ctx.replyWithHTML(
+      `Зв'яжіться з Settled UK (благодійна організація) тут: https://settled.org.uk/ukraine-ukr/`,
+      Markup.inlineKeyboard([
+        [Markup.button.callback("Гаразд, це все.", "OK")],
+        [Markup.button.callback("У мене є ще одне питання", "visas")],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("advice_project", async (ctx) => {
+    await ctx.replyWithHTML(
+      `Зв'яжіться з Ukraine Advice Project тут: https://www.advice-ukraine.co.uk/home/en/`,
+      Markup.inlineKeyboard([
+        [Markup.button.callback("Гаразд, це все.", "OK")],
+        [Markup.button.callback("У мене є ще одне питання", "visas")],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("extension_scheme_no_visa_start", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Якщо ви отримали візу після 16 травня 2023 року</b>
+      \nВи зможете подати заявку на Ukraine Extension Scheme, як тільки нові правила набудуть чинності в серпні.
+
+      Вам слід зачекати, поки з'явиться більше інформації, перш ніж подавати заявку.
+      
+      Вам слід подумати, чи хочете ви зберегти свою поточну візу або перейти на Ukraine Extension Scheme. Ця віза наразі не веде до постійного проживання - це означає, що ви не зможете зарахувати час, проведений у Великій Британії за цією візою, як частину заяви на отримання безстрокового дозволу на перебування у Великій Британії в майбутньому.
+      https://www.gov.uk/guidance/apply-to-stay-in-the-uk-under-the-ukraine-extension-scheme`,
+      Markup.inlineKeyboard([
+        [Markup.button.callback("Ок", "OK")],
+        [
+          Markup.button.callback(
+            "У мене є ще одне питання, пов'язане з візою.",
+            "visas"
+          ),
+        ],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("extension_scheme_yes", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Підготуйте візову анкету та подайте її на сайті gov.uk</b>
+    \nПерейдіть на урядовий веб-сайт, щоб подати заявку на Ukraine Extension Scheme https://www.gov.uk/guidance/apply-to-stay-in-the-uk-under-the-ukraine-extension-scheme`,
+      Markup.inlineKeyboard([
+        [Markup.button.callback("Ок", "OK")],
+        [
+          Markup.button.callback(
+            "У мене є ще одне питання, пов'язане з візою.",
+            "visas"
+          ),
+        ],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
   bot.action("stay_forever", async (ctx) => {
     await ctx.replyWithHTML(
       `<b>Шлях до постійного проживання у Великобританії (ILR)?</b>
@@ -230,180 +391,56 @@ exports.visas = (bot) => {
     ctx.answerCbQuery();
   });
 
-  bot.action("right_visa_yes", async (ctx) => {
+  //
+  bot.action("valid_non_biometric_passport", async (ctx) => {
     await ctx.replyWithHTML(
-      "<b>What is the purpose of your visit to the UK?</b>",
-      Markup.inlineKeyboard([
-        [Markup.button.callback("Fleeing the war in Ukraine", "right_visa_o1")],
-        [
-          Markup.button.callback(
-            "Short visit to see family or friends",
-            "tourist_visa"
-          ),
-        ],
-        [Markup.button.callback("Work in the UK", "work_visa")],
-        [Markup.button.callback("Other purpose", "right_visa_o5")],
-        [Markup.button.callback("I am already in the UK", "extension_scheme")],
-      ])
-    );
-    ctx.answerCbQuery();
-  });
-
-  bot.action("right_visa_o5", async (ctx) => {
-    await ctx.replyWithHTML(
-      `<b>Check gov.uk for available visa types</b>
-          \nhttps://www.gov.uk/check-uk-visa`
-    );
-    ctx.answerCbQuery();
-  });
-
-  bot.action(["family_scheme_yes", "right_visa_o1"], async (ctx) => {
-    await ctx.replyWithHTML(
-      `<b>Do you have a family member in the UK?</b>
-
-      Your UK-based family member must be one of the following:
-      1. your immediate family member
-      Your or your UK-based family member's:
-      - spouse or civil partner
-      - unmarried partner (you must have been living together in a relationship for at least 2 years)
-      - child who is under 18
-      - parent (if you are under 18)
-      - fiancé(e) or proposed civil partner
+      `<b>Якщо ви не можете скористатися додатком ID Check і маєте дійсний український закордонний паспорт</b>
+      \nВам не потрібно відвідувати візовий центр для здачі біометричних даних. Замість цього ви повинні надати свої біометричні дані протягом шести місяців після прибуття до Великої Британії.
+  
+      Під час подання заяви обов'язково завантажте копію сторінки з фотографією вашого паспорта. Залежно від країни, в якій ви подаєте заяву, ви можете зробити це за допомогою додатку для завантаження документів, наданого комерційним партнером Міністерства внутрішніх справ - TLS або VFS. Завантажте додаток з веб-сайту TLS або VFS, коли ви починаєте подавати заяву.
       
-      2. your extended family member 
-      Your UK-based family member's:
-      - parent (if you are over 18)
-      - child who is over 18
-      - grandparent
-      - grandchild or your partner's grandchild
-      - brother or sister
-      - aunt or uncle
-      - niece or nephew
-      - cousin
-      - mother-in-law or father-in-law
-      - grandparent-in-law
-      - brother-in-law or sister-in-law
-      - spouse or civil partner, unmarried partner, child, parent, or fiancé(e) or proposed civil partner of your extended family member`,
+      Якщо вам потрібна допомога у завантаженні документів, ви можете записатися на прийом до візового центру.`,
       Markup.inlineKeyboard([
-        [Markup.button.callback("Yes", "right_visa_o1_yes")],
-        [Markup.button.callback("No ", "right_visa_o1_no")],
+        [Markup.button.callback("Продовжити", "valid_iphone_continue")],
       ])
     );
-
     ctx.answerCbQuery();
   });
 
-  bot.action("right_visa_o1_yes", async (ctx) => {
+  bot.action("valid_non_biometric_passport", async (ctx) => {
     await ctx.replyWithHTML(
-      "<b>What is their immigration status in the UK?</b>",
+      `<b>Ви можете підтвердити свою особу за допомогою додатку ID Check</b>
+      \nВи можете скористатися додатком "UK Immigration: ID check", щоб підтвердити свою особу, якщо у вас є дійсний український біометричний закордонний паспорт. Вам не потрібно відвідувати візовий центр, щоб здати біометричні дані або подавати заяву на продовження перебування після прибуття до Великої Британії.
+
+      Якщо ваш спонсор подає заяву від вашого імені, вам все одно потрібно буде використовувати додаток для підтвердження вашої особи. Після того, як ваш спонсор створить дані вашого облікового запису онлайн, він отримає інструкції, як почати користуватися додатком.`,
       Markup.inlineKeyboard([
         [
           Markup.button.callback(
-            "They are British citizens",
-            "right_visa_o1_yes_status1"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "They have settled or pre-settled status",
-            "right_visa_o1_yes_status2"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "They are here on a sponsorship (Homes for Ukraine) visa",
-            "right_visa_o1_yes_status3"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "They are here on Ukraine Family Scheme visa",
-            "right_visa_o1_yes_status4"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "They are in the UK illegally",
-            "right_visa_o1_yes_status5"
+            "Продовжити",
+            "valid_biometric_passport_continue"
           ),
         ],
       ])
     );
-
     ctx.answerCbQuery();
   });
 
-  bot.action("right_visa_o1_yes_status1", async (ctx) => {
-    await ctx.replyWithHTML(
-      "Your family member can invite you on Ukraine Family Scheme visa.",
-      Markup.inlineKeyboard([
-        [Markup.button.callback("Continue", "family_scheme")],
-      ])
-    );
-  });
+  // become_spo
+  // bot.hears("Як вони можуть стати моїм спонсором?",
+  // )
 
-  bot.action("right_visa_o1_yes_status2", async (ctx) => {
-    await ctx.replyWithHTML(
-      "Your family member can invite you on Ukraine Family Scheme visa."
-    );
-  });
-
-  bot.action("right_visa_o1_yes_status3", async (ctx) => {
-    await ctx.replyWithHTML(
-      `<b>Your family member can not invite you on Ukraine Family Scheme visa</b>.
-      Your family member can either find a suitable sponsor for you or choose to become your sponsor themselves. This will enable you to apply for the Homes for Ukraine (sponsorship) visa.`,
-      Markup.inlineKeyboard([
-        [
-          Markup.button.callback(
-            "How do they find a sponsor for me?",
-            "sponsor_how"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "How can they become my sponsor?",
-            "right_visa_o1_yes_status3_o2"
-          ),
-        ],
-      ])
-    );
-  });
-
-  bot.action("right_visa_o1_yes_status4", async (ctx) => {
-    await ctx.replyWithHTML(
-      `<b>Your family member can not invite you on Ukraine Family Scheme visa</b>.
-
-      Your family member can either find a suitable sponsor for you or choose to become your sponsor themselves. This will enable you to apply for the Homes for Ukraine (sponsorship) visa.
-      `,
-      [
-        Markup.inlineKeyboard([
-          [
-            Markup.button.callback(
-              "How do they find a sponsor for me?",
-              "sponsor_how"
-            ),
-          ],
-          [
-            Markup.button.callback(
-              "How can they become my sponsor?",
-              "right_visa_o1_yes_status3_o2"
-            ),
-          ],
-        ]),
-      ]
-    );
-  });
-
-  bot.action("right_visa_o1_yes_status3_o2", async (ctx) => {
-    await ctx.replyWithHTML(
-      `<b>Become a sponsor for a relative or friend (PLACEHOLDER)</b>`
-    );
-  });
-
-  bot.action("right_visa_o1_yes_status5", async (ctx) => {
-    await ctx.replyWithHTML(
-      `<b>Your family member can not invite you if they are in the UK illegally.</b>\nYou need to find a sponsor to come to the UK.`,
-      Markup.inlineKeyboard([[Markup.button.callback("Continue", "sponsor")]])
-    );
-  });
+  // bot.action("become_sponsor", async (ctx) => {
+  //   await ctx.replyWithHTML(
+  //     `<b>Про що ваше питання?</b>`,
+  //     Markup.inlineKeyboard([
+  //       [
+  //         Markup.button.callback(
+  //           "Продовжити",
+  //           "valid_biometric_passport_continue"
+  //         ),
+  //       ],
+  //     ])
+  //   );
+  //   ctx.answerCbQuery();
+  // });
 };
