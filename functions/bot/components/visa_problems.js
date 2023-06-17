@@ -209,11 +209,11 @@ exports.visa_problems = (bot) => {
         ],
       ])
     );
-    const imageUrl =
-      "https://thriving-frangollo-33fd04.netlify.app/assets/what_decision_look.jpeg";
-    await ctx.telegram.sendPhoto(ctx.chat.id, imageUrl);
 
-    ctx.answerCbQuery();
+    await ctx.telegram.sendPhoto(
+      ctx.chat.id,
+      "https://thriving-frangollo-33fd04.netlify.app/assets/what_decision_look.jpeg"
+    );
   });
 
   bot.action("status_says", async (ctx) => {
@@ -240,8 +240,6 @@ exports.visa_problems = (bot) => {
       ctx.chat.id,
       "https://thriving-frangollo-33fd04.netlify.app/assets/status_says.jpeg"
     );
-
-    ctx.answerCbQuery();
   });
 
   bot.action("problem_visa_refused", async (ctx) => {
@@ -604,8 +602,6 @@ exports.visa_problems = (bot) => {
       ctx.chat.id,
       "https://thriving-frangollo-33fd04.netlify.app/assets/failed_to_collect.png"
     );
-
-    ctx.answerCbQuery();
   });
 
   bot.hears(
