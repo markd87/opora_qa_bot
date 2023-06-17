@@ -128,7 +128,6 @@ exports.right_visa = (bot) => {
         ],
       ])
     );
-    ctx.answerCbQuery();
   });
 
   //   they british or pre_settled

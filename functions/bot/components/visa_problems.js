@@ -478,7 +478,6 @@ exports.visa_problems = (bot) => {
         ],
       ])
     );
-    ctx.answerCbQuery();
   });
 
   bot.hears(

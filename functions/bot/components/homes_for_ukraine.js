@@ -510,7 +510,6 @@ exports.homes_for_ukraine = (bot) => {
         ],
       ])
     );
-    ctx.answerCbQuery();
 
     await ctx.telegram.sendPhoto(
       ctx.chat.id,
@@ -661,7 +660,6 @@ exports.homes_for_ukraine = (bot) => {
         ],
       ])
     );
-    ctx.answerCbQuery();
   });
 
   // passport_not_ukraine/no_valid_passport
