@@ -18,9 +18,9 @@ const ok_markup = Markup.inlineKeyboard([[Markup.button.callback("Ок", "OK")]]
 
 // initialize actions paths
 visas(bot);
+right_visa(bot);
 visa_problems(bot);
 homes_for_ukraine(bot);
-right_visa(bot);
 sponsor(bot);
 
 bot.action("housing", async (ctx) => {
