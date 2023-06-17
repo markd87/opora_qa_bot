@@ -131,9 +131,12 @@ exports.right_visa = (bot) => {
     ctx.answerCbQuery();
   });
 
-  //   they british | pre_settled
+  //   they british or pre_settled
   bot.hears(
-    "Вони є громадянами Великої Британії|Вони мають settled або pre-settled статус",
+    [
+      "Вони є громадянами Великої Британії",
+      "Вони мають settled або pre-settled статус",
+    ],
     async (ctx) => {
       await ctx.replyWithHTML(
         `<b>Член Вашої родини може запросити Вас по візі Ukraine Family Scheme<b/>`,
@@ -144,9 +147,13 @@ exports.right_visa = (bot) => {
     }
   );
 
-  //   they_sponsorhip|they_extension|they_family_scheme
+  //   they_sponsorhip or they_extension or they_family_scheme
   bot.hears(
-    "Вони перебувають тут за спонсорською візою (Homes for Ukraine)|Вони перебувають у Великобританії легально, але за іншою візою (напр., студентською, робочою або подружжя)|Вони перебувають тут по візі Ukraine Family Scheme",
+    [
+      "Вони перебувають тут за спонсорською візою (Homes for Ukraine)",
+      "Вони перебувають у Великобританії легально, але за іншою візою (напр., студентською, робочою або подружжя)",
+      "Вони перебувають тут по візі Ukraine Family Scheme",
+    ],
     async (ctx) => {
       await ctx.replyWithHTML(
         `<b>Член вашої родини НЕ МОЖЕ запросити вас по візі Ukraine Family Scheme.<b/>
