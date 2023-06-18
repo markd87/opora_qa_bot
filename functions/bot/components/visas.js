@@ -478,6 +478,80 @@ exports.visas = (bot) => {
     ctx.answerCbQuery();
   });
 
+  bot.action("guest_visa_refused", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Вашому гостю Homes for Ukraine було відмовлено у видачі візи</b>
+      \nЩоб зрозуміти причину відмови у видачі візи вашому гостю, уважно перегляньте розділ "Reasons for Refusal" в його електронному листі "Application Update". 
+
+      Це дасть вам уявлення про конкретні проблеми, які призвели до відмови, і допоможе врахувати їх при наступних спробах подати заяву.`,
+      Markup.inlineKeyboard([
+        [
+          Markup.button.callback(
+            `Написано, що "sponsor doesn't meet the requirements"`,
+            "sposnor_doesnt_meet_requirements"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "Мої гості не отримали жодної відповіді на свої візові заяви",
+            "problem_visa_delayed"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "Інша причина відмови",
+            "homes_for_ukraine_refused"
+          ),
+        ],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("sposnor_doesnt_meet_requirements", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Ви не були схвалені як спонсор</b>
+      \nякщо ви бачите цю причину відмови в оновленні їхньої заявки, це означає, що <b>вас не було схвалено як спонсора</b>. 
+
+      Найпопулярніші **причини, що призводять до такого рішення**:
+      - ваш гість не зміг довести свій імміграційний статус, наприклад, не завантажив копію британського паспорта, BRP або іншого підтвердження імміграційного статусу
+      - рада дійшла висновку, що ваше житло не відповідає вимогам (переповнене або недоступне щонайменше 6 місяців).
+      - Записи Міністерства внутрішніх справ свідчать про численні заяви на спонсорство, подані з вашою участю, і підозри на шахрайство.
+      
+      Перевірте <a href="https://www.gov.uk/guidance/eligibility-safeguarding-dbs-and-accommodation-checks-homes-for-ukraine#eligibility-and-checks">урядовий веб-сайт</a> для отримання більш детальної інформації про право на спонсорство.
+      
+      Якщо ви вважаєте, що можете вирішити проблему, ваш гість може повторно подати заяву на візу, вказавши вас як свого спонсора. Якщо ж ні, йому доведеться шукати іншого спонсора.
+      
+      Якщо вам потрібна допомога, зверніться до Служби віз та імміграції Великої Британії: **+44 808 164 8810** (з понеділка по п'ятницю, з 9:00 до 17:30, дзвінки безкоштовні)`,
+      Markup.inlineKeyboard([
+        [
+          Markup.button.callback(
+            "Як вони знаходять іншого спонсора?",
+            "how_find_sponsor"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "Ми виправили проблему і хочемо подати заявку повторно",
+            "apply_home_for_ukraine"
+          ),
+        ],
+        [Markup.button.callback("Гаразд, це все.", "OK")],
+        [
+          Markup.button.callback(
+            "У мене є ще одне питання, пов'язане з візою",
+            "visas"
+          ),
+        ],
+      ])
+    );
+
+    await ctx.telegram.sendPhoto(
+      ctx.chat.id,
+      "https://thriving-frangollo-33fd04.netlify.app/assets/sponsor_dosnt_meet_req.jpeg.jpeg"
+    );
+  });
+
   bot.action("what_happens_after_application", async (ctx) => {
     await ctx.replyWithHTML(
       `<b>Що відбувається після подання заявки?</b>
@@ -492,6 +566,281 @@ exports.visas = (bot) => {
       <b>2. перевірка вашого житла, щоб переконатися, що воно підходить для всіх ваших гостей</b>
       
       Місцева рада здійснить щонайменше один особистий візит, щоб перевірити, чи підходить ваше житло для всіх гостей. Якщо в результаті цих перевірок ви не відповідаєте вимогам придатності бути спонсором, розгляд візової заяви може бути призупинено, а гостю будуть запропоновані інші варіанти, якщо віза ще не була видана.`,
+      Markup.inlineKeyboard([
+        [Markup.button.callback("Ок", "OK")],
+        [
+          Markup.button.callback(
+            "У мене є ще одне питання, пов'язане з візою",
+            "visas"
+          ),
+        ],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("can_become_sponsor", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Що відбувається після подання заявки?</b>
+      \nДля того, щоб ваша гостьова віза була схвалена, вам потрібно буде пройти наступні перевірки:
+
+      <b>1.перевірка безпеки та судимості, також відома як DBS Check</b>
+
+      Ви (головний спонсор) та всі повнолітні особи віком від 18 років, які проживатимуть в одному домогосподарстві з гостями, повинні пройти перевірку DBS Check. Якщо ви не згодні на це, ви не зможете стати спонсором.
+
+      Ваша місцева рада вирішить, який тип перевірки DBS необхідний, і ініціює її проведення. Ці перевірки є безкоштовними.
+
+      <b>2. перевірка вашого житла, щоб переконатися, що воно підходить для всіх ваших гостей</b>
+      
+      Місцева рада здійснить щонайменше один особистий візит, щоб перевірити, чи підходить ваше житло для всіх гостей. Якщо в результаті цих перевірок ви не відповідаєте вимогам придатності бути спонсором, розгляд візової заяви може бути призупинено, а гостю будуть запропоновані інші варіанти, якщо віза ще не була видана.`,
+      Markup.inlineKeyboard([
+        [
+          Markup.button.callback(
+            "Орендую приватне житло / Орендую комунальне житло",
+            "rent"
+          ),
+        ],
+        [Markup.button.callback("У мене власне житло", "own_house")],
+        [Markup.button.callback("Я живу зі спонсором", "live_with_sponsor")],
+        [
+          Markup.button.callback(
+            "Нічого з перерахованого вище",
+            "unfotunatley_cannot"
+          ),
+        ],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action(["rent", "own_house"], async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Ви легально проживаєте у Великобританії?</b>
+      \nЩоб стати спонсором, ви повинні довести, що ви
+      - легально проживаєте у Великій Британії, і 
+      - ваш дозвіл на перебування у Великобританії дійсний протягом <b>6 місяців або довше</b>. 
+      
+      Докази: 
+      - Британський паспорт, 
+      - BRP (біометричний дозвіл на проживання) або 
+      - інші документи, що підтверджують імміграційний статус.
+      
+      https://www.gov.uk/guidance/eligibility-safeguarding-dbs-and-accommodation-checks-homes-for-ukraine#eligibility-and-checks
+      
+      Ви <b>ЗОБОВ'ЯЗАНІ</b> надати копії цих документів разом із заявою.
+      
+      ПРИМІТКА: Якщо ви є громадянином Великобританії, але не проживаєте у Великобританії - ви не можете бути спонсором.`,
+      Markup.inlineKeyboard([
+        [Markup.button.callback("Так", "rent_own_yes")],
+        [[Markup.button.callback("Нi", "rent_own_no")]],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("rent_own_yes", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Чи є у вас житло для вашого гостя?</b>
+      \nЩоб стати спонсором, ви повинні довести, що ви:
+      - Маєте достатньо просторе та безпечне житло, щоб прийняти всіх гостей, яких ви спонсоруєте, [не створюючи при цьому перенаселення](https://bit.ly/3Cf0BGN). 
+      - Гарантувати, що це житло буде доступне протягом 6 місяців або довше.
+      
+      Вам потрібно буде надати наступні докази: 
+      - договір про оренду житла та 
+      - лист від орендодавця про згоду на розміщення додаткових осіб у помешканні (якщо ви орендуєте житло у місцевої ради/житлової асоціації, орендодавцем є ваша рада/житлова асоціація)
+      
+      Дізнайтеся більше про <a href="https://bit.ly/3P43UIw">[вимоги до житла</a>`,
+      Markup.inlineKeyboard([
+        [Markup.button.callback("Так", "accomadation_guest_yes")],
+        [Markup.button.callback("Нi", "accomadation_guest_no")],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("accomadation_guest_yes", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Для кого ви збираєтеся бути спонсором?</b>`,
+      Markup.inlineKeyboard([
+        [Markup.button.callback("Взрослые", "accomadation_guest_yes_adult")],
+        [
+          [
+            Markup.button.callback(
+              "Дитина до 18 років",
+              "accomadation_guest_yes_child"
+            ),
+          ],
+        ],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("accomadation_guest_yes_adult", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Чи відповідає ця особа всім вимогам?</b>
+      \n1. Є громадянином України або близьким родичем громадянина України, який вже отримав спонсорську візу або подає заяву на отримання такої візи та відповідає її критеріям. [https://www.gov.uk/guidance/apply-for-a-visa-under-the-ukraine-sponsorship-scheme.uk#section-1] (https://www.gov.uk/guidance/apply-for-a-visa-under-the-ukraine-sponsorship-scheme.uk#section-1)
+      2.  Постійно проживав в Україні станом на 1 січня 2022 року.
+      3. Наразі перебуває за межами Великої Британії.`,
+      Markup.inlineKeyboard([
+        [
+          Markup.button.callback(
+            "Так",
+            "accomadation_guest_yes_adult_meets_yes"
+          ),
+        ],
+        [Markup.button.callback("Нi", "accomadation_guest_yes_adult_meets_no")],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("accomadation_guest_yes_adult_meets_yes", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Ви можете стати їхнім спонсором</b>
+      \nЇм потрібно подати заявку на Homes for Ukraine.`,
+      Markup.inlineKeyboard([
+        [Markup.button.callback("Продолжить", "apply_home_for_ukraine")],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("accomadation_guest_yes_adult_meets_no", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Вони не мають права на отримання візи Homes for Ukraine </b>
+      \nЇм потрібно подати заявку на Homes for Ukraine.`,
+      Markup.inlineKeyboard([
+        [Markup.button.callback("Ок", "OK")],
+        [
+          Markup.button.callback(
+            "У мене є ще одне питання, пов'язане з візою",
+            "visas"
+          ),
+        ],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("accomadation_guest_yes_child", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Які у вас стосунки з дитиною, яку ви збираєтеся спонсорувати?</b>
+      \nПерейдіть за посиланням https://www.gov.uk/guidance/apply-for-a-visa-under-the-ukraine-sponsorship-scheme.uk#applicants-aged-under-18`,
+      Markup.inlineKeyboard([
+        [
+          Markup.button.callback(
+            "Я батько",
+            "accomadation_guest_yes_child_parent"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "Я законний опікун",
+            "accomadation_guest_yes_child_legal"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "Нічого з перерахованого вище",
+            "accomadation_guest_yes_child_none"
+          ),
+        ],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action(
+    [
+      "accomadation_guest_yes_child_parent",
+      "accomadation_guest_yes_child_legal",
+    ],
+    async (ctx) => {
+      await ctx.replyWithHTML(
+        `<b>Подайте заявку Homes for Ukraine на ім'я дитини</b>
+      \nДіти до 18 років можуть подати заяву на вступ разом з батьками або законними опікунами що вже перебувають у Великій Британії. 
+
+      Якщо дитина подає заяву на в'їзд з батьками або законними опікунами, батьки або законні опікуни також повинні
+      - приїхати, щоб зустріти дитину до від'їзду, а потім разом приїхати до Великої Британії
+      - забрати дитину з аеропорту, порту, залізничного вокзалу або іншого пункту в'їзду до Сполученого Королівства
+      
+      Уряд рекомендує, щоб діти не подорожували через Кале, Кокелль або Дюнкерк без батьків або законних опікунів.`,
+        Markup.inlineKeyboard([
+          [Markup.button.callback("Продовжити", "apply_home_for_ukraine")],
+        ])
+      );
+      ctx.answerCbQuery();
+    }
+  );
+
+  bot.action("accomadation_guest_yes_child_none", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Чи відповідає дитина всім цим вимогам?</b>
+      \nЩоб мати право на участь, дитина повинна мати:
+
+      - підтвердження згоди батьків або законних опікунів, нотаріально завірене або засвідчене службою опіки та піклування міської або обласної ради в Україні; або, якщо дитина перебуває в іншій країні, нотаріально завірене в нотаріальній конторі цієї країни або в посольстві чи консульстві України в цій країні.
+      
+      - підтвердження згоди батьків або законних опікунів на надання спонсорської допомоги
+      
+      - зобов'язання спонсорувати дитину протягом 3 років або до досягнення дитиною 18 років (за умови, що спонсорство триває не менше 6 місяців)
+      
+      - затвердження договору про спонсорство місцевою радою, де буде проживати дитина.`,
+      Markup.inlineKeyboard([
+        [
+          Markup.button.callback(
+            "Так",
+            "accomadation_guest_yes_child_none_yes"
+          ),
+        ],
+        [Markup.button.callback("Нi", "unfotunatley_cannot")],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("unfotunatley_cannot", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>На жаль, ви не можете бути спонсором</b>
+      \nВи можете спробувати знайти для них відповідного спонсора - будь ласка, <a href="https://ua.opora.uk/blog/yakim-chinom-ukrayincyam-zaraz-mozhna-znajti-sponsora-shob-priyihati-do-uk">прочитайте нашу статтю</a> для більш детальної інформації`,
+      Markup.inlineKeyboard([
+        [Markup.button.callback("Ок", "OK")],
+        [
+          Markup.button.callback(
+            "У мене є ще одне питання, пов'язане з візою",
+            "visas"
+          ),
+        ],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("accomadation_guest_yes_child_none_yes", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Чи можете ви довести, що були особисто знайомі з батьками або законним представником дитини до 24 лютого 2022 року?</b>
+      \nЩоб бути затвердженим спонсором для дитини без супроводу, ви повинні довести, що
+      - ви особисто знали батьків або законних опікунів дитини (НЕ тих, з ким ви знайомі лише онлайн, через соціальні мережі)
+      - ви були знайомі з ними до 24 лютого 2022 року.
+
+      Рада шукатиме докази того, що між вами та батьками або законним опікуном існують відповідні, попередні стосунки. Ці докази можуть бути у формі листів або електронних повідомлень, фотографій або активності в соціальних мережах до 24 лютого 2022 року.`,
+      Markup.inlineKeyboard([
+        [
+          Markup.button.callback(
+            "Так",
+            "accomadation_guest_yes_child_none_yes_prove_yes"
+          ),
+        ],
+        [Markup.button.callback("Нi", "unfotunatley_cannot")],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("accomadation_guest_yes_child_none_yes_prove_yes", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Ви можете бути схвалені як їхній спонсор, але після додаткових перевірок</b>
+      \Будь ласка, уважно прочитайте [цю інструкцію](https://www.gov.uk/guidance/homes-for-ukraine-guidance-for-sponsors-children-and-minors-applying-without-parents-or-legal-guardians#overview-and-purpose-of-this-guidance) та проконсультуйтеся на гарячій лінії Homes for Ukraine +44 808 164 8810, якщо у вас виникнуть запитання.`,
       Markup.inlineKeyboard([
         [Markup.button.callback("Ок", "OK")],
         [
