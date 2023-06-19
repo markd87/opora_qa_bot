@@ -715,7 +715,24 @@ exports.visas = (bot) => {
 
   // can_become_sponsor
   bot.hears("Чи можу я стати спонсором?", async (ctx) => {
-    await ctx.telegram.sendMessage(
+    const inline_keyboard = [
+      [
+        {
+          text: "Орендую приватне житло / Орендую комунальне житло",
+          callback: "rent",
+        },
+      ],
+      [{ text: "У мене власне житло", callback: "own_house" }],
+      [{ text: "Я живу зі спонсором", callback: "live_with_sponsor" }],
+      [
+        {
+          text: "Нічого з перерахованого вище",
+          callback: "unfotunatley_cannot",
+        },
+      ],
+    ];
+
+    await ctx.reply(
       `<b>Що відбувається після подання заявки?</b>
       \nДля того, щоб ваша гостьова віза була схвалена, вам потрібно буде пройти наступні перевірки:
 
@@ -728,23 +745,13 @@ exports.visas = (bot) => {
       <b>2. перевірка вашого житла, щоб переконатися, що воно підходить для всіх ваших гостей</b>
       
       Місцева рада здійснить щонайменше один особистий візит, щоб перевірити, чи підходить ваше житло для всіх гостей. Якщо в результаті цих перевірок ви не відповідаєте вимогам придатності бути спонсором, розгляд візової заяви може бути призупинено, а гостю будуть запропоновані інші варіанти, якщо віза ще не була видана.`,
-      Markup.inlineKeyboard([
-        [
-          Markup.button.callback(
-            "Орендую приватне житло / Орендую комунальне житло",
-            "rent"
-          ),
-        ],
-        [Markup.button.callback("У мене власне житло", "own_house")],
-        [Markup.button.callback("Я живу зі спонсором", "live_with_sponsor")],
-        [
-          Markup.button.callback(
-            "Нічого з перерахованого вище",
-            "unfotunatley_cannot"
-          ),
-        ],
-      ]),
-      { parse_mode: "HTML", reply_markup: { remove_keyboard: true } }
+      {
+        reply_markup: {
+          inline_keyboard: inline_keyboard,
+          remove_keyboard: true,
+        },
+        parse_mode: "HTML",
+      }
     );
   });
 
