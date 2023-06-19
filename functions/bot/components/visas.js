@@ -715,7 +715,7 @@ exports.visas = (bot) => {
 
   // can_become_sponsor
   bot.hears("Чи можу я стати спонсором?", async (ctx) => {
-    await ctx.replyWithHTML(
+    await ctx.telegram.sendMessage(
       `<b>Що відбувається після подання заявки?</b>
       \nДля того, щоб ваша гостьова віза була схвалена, вам потрібно буде пройти наступні перевірки:
 
@@ -744,7 +744,7 @@ exports.visas = (bot) => {
           ),
         ],
       ]),
-      { reply_markup: { remove_keyboard: true } }
+      { parse_mode: "HTML", reply_markup: { remove_keyboard: true } }
     );
   });
 
