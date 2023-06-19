@@ -778,7 +778,7 @@ exports.visas = (bot) => {
       ПРИМІТКА: Якщо ви є громадянином Великобританії, але не проживаєте у Великобританії - ви не можете бути спонсором.`,
       Markup.inlineKeyboard([
         [Markup.button.callback("Так", "rent_own_yes")],
-        [[Markup.button.callback("Нi", "rent_own_no")]],
+        [Markup.button.callback("Нi", "rent_own_no")],
       ])
     );
     ctx.answerCbQuery();
@@ -945,7 +945,7 @@ exports.visas = (bot) => {
     ctx.answerCbQuery();
   });
 
-  bot.action("unfotunatley_cannot", async (ctx) => {
+  bot.action(["live_with_sponsor", "unfotunatley_cannot"], async (ctx) => {
     await ctx.replyWithHTML(
       `<b>На жаль, ви не можете бути спонсором</b>
       \nВи можете спробувати знайти для них відповідного спонсора - будь ласка, <a href="https://ua.opora.uk/blog/yakim-chinom-ukrayincyam-zaraz-mozhna-znajti-sponsora-shob-priyihati-do-uk">прочитайте нашу статтю</a> для більш детальної інформації`,
