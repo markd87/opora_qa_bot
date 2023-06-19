@@ -795,7 +795,7 @@ exports.visas = (bot) => {
       - договір про оренду житла та 
       - лист від орендодавця про згоду на розміщення додаткових осіб у помешканні (якщо ви орендуєте житло у місцевої ради/житлової асоціації, орендодавцем є ваша рада/житлова асоціація)
       
-      Дізнайтеся більше про <a href="https://bit.ly/3P43UIw">[вимоги до житла</a>`,
+      Дізнайтеся більше про <a href="https://bit.ly/3P43UIw">вимоги до житла</a>`,
       Markup.inlineKeyboard([
         [Markup.button.callback("Так", "accomadation_guest_yes")],
         [Markup.button.callback("Нi", "accomadation_guest_no")],
@@ -810,12 +810,10 @@ exports.visas = (bot) => {
       Markup.inlineKeyboard([
         [Markup.button.callback("Взрослые", "accomadation_guest_yes_adult")],
         [
-          [
-            Markup.button.callback(
-              "Дитина до 18 років",
-              "accomadation_guest_yes_child"
-            ),
-          ],
+          Markup.button.callback(
+            "Дитина до 18 років",
+            "accomadation_guest_yes_child"
+          ),
         ],
       ])
     );
