@@ -715,6 +715,10 @@ exports.visas = (bot) => {
 
   // can_become_sponsor
   bot.hears("Чи можу я стати спонсором?", async (ctx) => {
+    await ctx.editMessageReplyMarkup({
+      reply_markup: { remove_keyboard: true },
+    });
+
     await ctx.replyWithHTML(
       `<b>Чи можу я стати спонсором?</b>`,
       Markup.inlineKeyboard([
