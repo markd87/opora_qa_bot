@@ -167,7 +167,7 @@ exports.right_visa = (bot) => {
   bot.hears(
     [
       "Вони перебувають тут за спонсорською візою (Homes for Ukraine)",
-      "Вони перебувають у Великобританії легально, але за іншою візою (напр., студентською, робочою або подружжя)",
+      "У них Ukraine Extension Scheme Visa",
       "Вони перебувають тут по візі Ukraine Family Scheme",
     ],
     async (ctx) => {
