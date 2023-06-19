@@ -489,7 +489,6 @@ exports.visa_problems = (bot) => {
           [Markup.button.callback("Воно затримується", "it_is_delayed")],
         ])
       );
-      ctx.answerCbQuery();
     }
   );
 
@@ -550,7 +549,6 @@ exports.visa_problems = (bot) => {
           ],
         ])
       );
-      ctx.answerCbQuery();
     }
   );
 
