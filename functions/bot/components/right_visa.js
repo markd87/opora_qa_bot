@@ -174,7 +174,6 @@ exports.right_visa = (bot) => {
       await ctx.replyWithHTML(
         `<b>Член вашої родини НЕ МОЖЕ запросити вас по візі Ukraine Family Scheme.</b>
         \nВаш член сім'ї може або знайти відповідного спонсора для вас, або сам стати вашим спонсором. 
-
         Це дозволить вам подати заяву на отримання Homes for Ukraine (спонсорської) візи.`,
         Markup.inlineKeyboard([
           [
