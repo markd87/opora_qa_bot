@@ -6,8 +6,8 @@ exports.right_visa = (bot) => {
       `<b>Яка мета вашого візиту до Великобританії?</b>`,
       Markup.inlineKeyboard([
         [Markup.button.callback("Втеча від війни в Україні", "fleeing_war")],
-        [Markup.button.callback("Робота у Великобританії", "work_uk")], // done
-        [Markup.button.callback("Короткий візит до сім'ї або друзів", "visit")], //done
+        [Markup.button.callback("Робота у Великобританії", "work_uk")],
+        [Markup.button.callback("Короткий візит до сім'ї або друзів", "visit")],
         [
           Markup.button.callback(
             "Я вже у Великобританії і хочу залишитися",
@@ -15,6 +15,23 @@ exports.right_visa = (bot) => {
           ),
         ],
         [Markup.button.callback("Інше призначення", "other_purpose")], //done
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("work_uk", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Робочі візи</b>
+      \nПерейдіть на урядовий сайт, щоб перевірити варіанти отримання робочої візи https://www.gov.uk/browse/visas-immigration/work-visas`,
+      Markup.inlineKeyboard([
+        [Markup.button.callback("Ок", "OK")],
+        [
+          Markup.button.callback(
+            "У мене є ще одне питання, пов'язане з візою",
+            "visas"
+          ),
+        ],
       ])
     );
     ctx.answerCbQuery();
