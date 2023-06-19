@@ -751,7 +751,7 @@ exports.visas = (bot) => {
         [
           Markup.button.callback(
             "Нічого з перерахованого вище",
-            "unfotunatley_cannot"
+            "unfortunatley_cannot"
           ),
         ],
       ])
@@ -937,28 +937,31 @@ exports.visas = (bot) => {
             "accomadation_guest_yes_child_none_yes"
           ),
         ],
-        [Markup.button.callback("Нi", "unfotunatley_cannot")],
+        [Markup.button.callback("Нi", "unfortunatley_cannot")],
       ])
     );
     ctx.answerCbQuery();
   });
 
-  bot.action(["live_with_sponsor", "unfotunatley_cannot"], async (ctx) => {
-    await ctx.replyWithHTML(
-      `<b>На жаль, ви не можете бути спонсором</b>
+  bot.action(
+    ["live_with_sponsor", "unfortunatley_cannot", "accomadation_guest_no"],
+    async (ctx) => {
+      await ctx.replyWithHTML(
+        `<b>На жаль, ви не можете бути спонсором</b>
       \nВи можете спробувати знайти для них відповідного спонсора - будь ласка, <a href="https://ua.opora.uk/blog/yakim-chinom-ukrayincyam-zaraz-mozhna-znajti-sponsora-shob-priyihati-do-uk">прочитайте нашу статтю</a> для більш детальної інформації`,
-      Markup.inlineKeyboard([
-        [Markup.button.callback("Ок", "OK")],
-        [
-          Markup.button.callback(
-            "У мене є ще одне питання, пов'язане з візою",
-            "visas"
-          ),
-        ],
-      ])
-    );
-    ctx.answerCbQuery();
-  });
+        Markup.inlineKeyboard([
+          [Markup.button.callback("Ок", "OK")],
+          [
+            Markup.button.callback(
+              "У мене є ще одне питання, пов'язане з візою",
+              "visas"
+            ),
+          ],
+        ])
+      );
+      ctx.answerCbQuery();
+    }
+  );
 
   bot.action("accomadation_guest_yes_child_none_yes", async (ctx) => {
     await ctx.replyWithHTML(
