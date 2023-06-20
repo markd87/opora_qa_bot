@@ -288,35 +288,21 @@ exports.right_visa = (bot) => {
   bot.action(
     "apply_ukraine_family_scheme_continue_biometric_phone_not_eligible",
     async (ctx) => {
+      const keyboard = Markup.keyboard([
+        ["Я маю дійсний український закордонний паспорт"],
+        [
+          "У мене прострочений український закордонний паспорт з офіційним штампом продовження",
+        ],
+        ["У мене немає дійсного українського закордонного паспорта"],
+        ["У мене є паспорт, виданий не Україною, а іншою країною"],
+      ])
+        .resize()
+        .oneTime();
+
       await ctx.replyWithHTML(
         `<b>Ви не зможете користуватися додатком ID Check.</b>
         \n Ваші подальші кроки залежать від документа, який підтверджує вашу особу:`,
-        Markup.keyboard([
-          [
-            Markup.button.callback(
-              "Я маю дійсний український закордонний паспорт",
-              "not_eligible_valid_ukranian_passport"
-            ),
-          ],
-          [
-            Markup.button.callback(
-              "У мене прострочений український закордонний паспорт з офіційним штампом продовження",
-              "not_eligible_expired_ukranian_passport"
-            ),
-          ],
-          [
-            Markup.button.callback(
-              "У мене немає дійсного українського закордонного паспорта",
-              "not_eligible_not_valid_ukranian_passport"
-            ),
-          ],
-          [
-            Markup.button.callback(
-              "ЯУ мене є паспорт, виданий не Україною, а іншою країною",
-              "not_eligible_not_ukranian_passport"
-            ),
-          ],
-        ])
+        keyboard
       );
     }
   );
@@ -479,32 +465,23 @@ exports.right_visa = (bot) => {
   );
 
   bot.action("apply_ukraine_family_scheme_upload", async (ctx) => {
+    const keyboard = Markup.keyboard([
+      ["Я використовував додаток ID Check, щоб підтвердити особу заявника"],
+      [
+        "Надав документи, що посвідчують особу заявника, використовуючи додатки TLS або VFS",
+      ],
+      ["Мені довелося записатися на прийом до візового центру (ВЦ)"],
+    ])
+      .resize()
+      .oneTime();
+
     await ctx.replyWithHTML(
       `<b>Після заповнення заявки завантажте докази</b>
         \n
         Після того, як ви дійдете до розділу "Provide evidence", натисніть "Evidence upload" і завантажте свої документи та документи члена сім'ї:
 
         <b>Ваші наступні кроки залежатимуть від того, як ви надали документи, що посвідчують особу заявника:</b>.`,
-      Markup.keyboard([
-        [
-          Markup.button.callback(
-            "Я використовував додаток ID Check, щоб підтвердити особу заявника",
-            "apply_ukraine_family_scheme_upload_id_check"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "Надав документи, що посвідчують особу заявника, використовуючи додатки TLS або VFS",
-            "apply_ukraine_family_scheme_upload_tls_vfs"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "Мені довелося записатися на прийом до візового центру (ВЦ)",
-            "apply_ukraine_family_scheme_upload_book"
-          ),
-        ],
-      ])
+      keyboard
     );
 
     await ctx.telegram.sendPhoto(

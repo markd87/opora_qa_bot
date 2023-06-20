@@ -97,53 +97,24 @@ exports.right_visa = (bot) => {
   });
 
   bot.action("family_scheme_yes", async (ctx) => {
+    const keyboard = Markup.keyboard([
+      ["У них Ukraine Extension Scheme Visa"],
+      ["Вони перебувають тут по візі Ukraine Family Scheme"],
+      [
+        "Вони перебувають у Великобританії легально, але за іншою візою (напр., студентською, робочою або подружжя)",
+      ],
+      ["Вони перебувають у Великобританії нелегально"],
+      ["Вони перебувають тут за спонсорською візою (Homes for Ukraine)"],
+      ["Вони мають settled або pre-settled статус"],
+      ["Вони є громадянами Великої Британії"],
+    ])
+      .resize()
+      .oneTime();
+
     await ctx.replyWithHTML(
       `<b>Який їхній імміграційний статус у Великій Британії?</b>
       \nПерейдіть на урядовий сайт, щоб перевірити варіанти отримання робочої візи https://www.gov.uk/browse/visas-immigration/work-visas`,
-      Markup.keyboard([
-        [
-          Markup.button.callback(
-            "У них Ukraine Extension Scheme Visa",
-            "they_have_extension_scheme_visa"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "Вони перебувають тут по візі Ukraine Family Scheme",
-            "they_have_family_scheme"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "Вони перебувають у Великобританії легально, але за іншою візою (напр., студентською, робочою або подружжя)",
-            "they_different_visa"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "Вони перебувають у Великобританії нелегально",
-            "they_illegal"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "Вони перебувають тут за спонсорською візою (Homes for Ukraine)",
-            "they_sponsorship"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "Вони мають settled або pre-settled статус",
-            "they_pre_settled"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "Вони є громадянами Великої Британії",
-            "they_british"
-          ),
-        ],
-      ])
+      keyboard
     );
   });
 
@@ -208,6 +179,16 @@ exports.right_visa = (bot) => {
   bot.hears(
     "Вони перебувають у Великобританії легально, але за іншою візою (напр., студентською, робочою або подружжя)",
     async (ctx) => {
+      const keyboard = Markup.keyboard([
+        ["Як їм знайти для мене спонсора?"],
+        ["Як вони можуть стати моїм спонсором?"],
+        [
+          "Чи існують інші шляхи до возз'єднання сім'ї, якщо вони не можуть мене спонсорувати або знайти мені спонсора?",
+        ],
+      ])
+        .resize()
+        .oneTime();
+
       await ctx.replyWithHTML(
         `<b>Член вашої родини НЕ МОЖЕ запросити вас по візі Ukraine Family Scheme</b>
         \nЧлени Вашої родини НЕ МОЖУТЬ запросити Вас по Українській сімейній програмі, якщо вони не мають типу/статусу візи, перелічених тут: https://www.gov.uk/guidance/apply-for-a-ukraine-family-scheme-visa.uk#section-1
@@ -215,26 +196,7 @@ exports.right_visa = (bot) => {
         Член Вашої родини може або знайти для Вас відповідного спонсора, або сам стати Вашим спонсором. 
         
         Це дозволить Вам подати заяву на отримання візи Homes for Ukraine (спонсорської).`,
-        Markup.keyboard([
-          [
-            Markup.button.callback(
-              "Як їм знайти для мене спонсора?",
-              "how_find_sponsor"
-            ),
-          ],
-          [
-            Markup.button.callback(
-              "Як вони можуть стати моїм спонсором?",
-              "become_sponsor"
-            ),
-          ],
-          [
-            Markup.button.callback(
-              "Чи існують інші шляхи до возз'єднання сім'ї, якщо вони не можуть мене спонсорувати або знайти мені спонсора?",
-              "family_unification"
-            ),
-          ],
-        ])
+        keyboard
       );
     }
   );

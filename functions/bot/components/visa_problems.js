@@ -426,55 +426,27 @@ exports.visa_problems = (bot) => {
   });
 
   bot.action("problem_visa_brp", async (ctx) => {
+    const keyboard = Markup.keyboard([
+      [
+        "Не отримав свій BRP вчасно після надання біометричних даних у Великобританії",
+      ],
+      ["Мій BRP не був на пошті, коли я прийшов забрати його"],
+      ["Поштове відділення, де я маю забрати свій BRP зачинено назавжди"],
+      ["Я не зміг вчасно забрати свій BRP з пошти"],
+      [
+        "Поштове відділення, де я маю забрати свій BRP, знаходиться занадто далеко",
+      ],
+      ["Пошта відмовилася видати мені BRP"],
+      ["Помилка у моєму BRP"],
+      ["Втратив свій BRP"],
+      ["Потрібно виїхати з Великобританії до отримання BRP"],
+    ])
+      .resize()
+      .oneTime();
+
     await ctx.replyWithHTML(
       `<b>Що найкраще описує вашу ситуацію?</b>`,
-      Markup.keyboard([
-        [
-          Markup.button.callback(
-            "Не отримав свій BRP вчасно після надання біометричних даних у Великобританії",
-            "didnt_get_brp_ontime"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "Мій BRP не був на пошті, коли я прийшов забрати його",
-            "brp_not_in_postoffice"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "Поштове відділення, де я маю забрати свій BRP зачинено назавжди",
-            "brp_post_office_closed"
-          ),
-        ],
-
-        [
-          Markup.button.callback(
-            "Я не зміг вчасно забрати свій BRP з пошти",
-            "brp_failed_collect"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "Поштове відділення, де я маю забрати свій BRP, знаходиться занадто далеко",
-            "brp_postoffice_far"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "Пошта відмовилася видати мені BRP",
-            "brp_postoffice_refused"
-          ),
-        ],
-        [Markup.button.callback("Помилка у моєму BRP", "brp_mistake")],
-        [Markup.button.callback("Втратив свій BRP", "brp_lost")],
-        [
-          Markup.button.callback(
-            "Потрібно виїхати з Великобританії до отримання BRP",
-            "brp_need_to_leave"
-          ),
-        ],
-      ])
+      keyboard
     );
   });
 

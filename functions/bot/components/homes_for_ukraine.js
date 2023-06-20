@@ -481,31 +481,22 @@ exports.homes_for_ukraine = (bot) => {
   });
 
   bot.action("upload_evidence", async (ctx) => {
+    const keyboard = Markup.keyboard([
+      [
+        "Надав документи, що посвідчують особу заявника, використовуючи додатки TLS або VFS",
+      ],
+      ["Я використовував додаток ID Check, щоб підтвердити особу заявника"],
+      ["Мені довелося записатися на прийом до візового центру (ВЦ)"],
+    ])
+      .resize()
+      .oneTime();
+
     await ctx.replyWithHTML(
       `<b>Після заповнення заявки завантажте докази</b>
       \nПісля того, як ви дійдете до розділу "Provide evidence", натисніть "Evidence upload" і завантажте свої документи та документи спонсора:
       
       <b>Ваші наступні кроки залежатимуть від того, як ви надали документи, що посвідчують особу заявника:</b>.`,
-      Markup.keyboard([
-        [
-          Markup.button.callback(
-            "Надав документи, що посвідчують особу заявника, використовуючи додатки TLS або VFS",
-            "provided_tls_vfs"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "Я використовував додаток ID Check, щоб підтвердити особу заявника",
-            "id_check_app"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "Мені довелося записатися на прийом до візового центру (ВЦ)",
-            "book_appointment"
-          ),
-        ],
-      ])
+      keyboard
     );
 
     await ctx.telegram.sendPhoto(
@@ -625,35 +616,21 @@ exports.homes_for_ukraine = (bot) => {
   });
 
   bot.action("invalid_phone", async (ctx) => {
+    const keyboard = Markup.keyboard([
+      ["Я маю дійсний український закордонний паспорт"],
+      ["У мене немає дійсного українського закордонного паспорта"],
+      ["У мене є паспорт, виданий не Україною, а іншою країною"],
+      [
+        "У мене прострочений український закордонний паспорт з офіційним штампом продовження",
+      ],
+    ])
+      .resize()
+      .oneTime();
+
     await ctx.replyWithHTML(
       `<b>Ви не зможете користуватися додатком ID Check</b>
       \nВаші подальші кроки залежать від документа, який підтверджує вашу особу:`,
-      Markup.keyboard([
-        [
-          Markup.button.callback(
-            "Я маю дійсний український закордонний паспорт",
-            "valid_ukraine_passport"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "У мене немає дійсного українського закордонного паспорта",
-            "no_valid_passport"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "У мене є паспорт, виданий не Україною, а іншою країною",
-            "passport_not_ukraine"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "У мене прострочений український закордонний паспорт з офіційним штампом продовження",
-            "expired_ukraine_passport"
-          ),
-        ],
-      ])
+      keyboard
     );
   });
 

@@ -65,30 +65,20 @@ exports.visas = (bot) => {
   });
 
   bot.action("extension_scheme_no", async (ctx) => {
+    const keyboard = Markup.keyboard([
+      [
+        "Моя поточна віза до Великобританії починається після 16 травня 2023 року",
+      ],
+      ["Я перебуваю у Великобританії нелегально"],
+      ['Я тут за однією з "українських" віз'],
+    ])
+      .resize()
+      .oneTime();
+
     await ctx.replyWithHTML(
       `<b>Що найкраще описує вашу ситуацію?</b>`,
-      Markup.keyboard([
-        [
-          Markup.button.callback(
-            "Моя поточна віза до Великобританії починається після 16 травня 2023 року",
-            "extension_scheme_no_visa_start"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "Я перебуваю у Великобританії нелегально",
-            "immigration_lawyers"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            'Я тут за однією з "українських" віз',
-            "stay_forever"
-          ),
-        ],
-      ])
+      keyboard
     );
-    ctx.answerCbQuery();
   });
 
   //extension_scheme_no_visa_start
@@ -308,35 +298,21 @@ exports.visas = (bot) => {
   });
 
   bot.action("travel_outside", async (ctx) => {
+    const keyboard = Markup.keyboard([
+      [
+        "У мене (або члена моєї сім'ї) є біометричний паспорт, але він продовжений",
+      ],
+      ["З біометричним паспортом у мене все гаразд, але я ще не маю BRP"],
+      ["У мене (або члена моєї родини) є паспорт, але він не біометричний"],
+      ["У мене (або члена моєї сім'ї) немає паспорта"],
+    ])
+      .resize()
+      .oneTime();
+
     await ctx.replyWithHTML(
       `<b>Якщо ви українець і перебуваєте у Великобританії за однією з українських віз і вам потрібно виїхати за кордон, які проблеми у вас можуть виникнути?</b>
       \nДля подорожі вам потрібен український біометричний закордонний паспорт. Картка BRP  не замінює паспорт і не буде прийнята в якості проїзного документа.`,
-      Markup.keyboard([
-        [
-          Markup.button.callback(
-            "У мене (або члена моєї сім'ї) є біометричний паспорт, але він продовжений",
-            "i_have_biometric"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "З біометричним паспортом у мене все гаразд, але я ще не маю BRP",
-            "brp_need_to_leave"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "У мене (або члена моєї родини) є паспорт, але він не біометричний",
-            "not_biometric"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "У мене (або члена моєї сім'ї) немає паспорта",
-            "no_passport"
-          ),
-        ],
-      ])
+      keyboard
     );
   });
 
@@ -499,43 +475,15 @@ exports.visas = (bot) => {
 
   // become_sponsor
   bot.hears("Як вони можуть стати моїм спонсором?", async (ctx) => {
-    const keyboard = [
+    const keyboard = Markup.keyboard([
       ["Чи можу я стати спонсором?"],
       ["Що відбувається після подання заявки"],
       ["Вашому гостю Homes for Ukraine було відмовлено у видачі візи"],
-    ];
+    ])
+      .resize()
+      .oneTime();
 
-    await ctx.telegram.sendMessage(
-      ctx.chat.id,
-      `<b>Про що ваше питання?</b>`,
-      (reply_markup = keyboard),
-      (one_time_keyboard = true),
-      (parse_mode = "HTML")
-    );
-    // await ctx.replyWithHTML(
-    //   `<b>Про що ваше питання?</b>`,
-    //   Markup.inlineKeyboard([
-    //     [
-    //       Markup.button.callback(
-    //         "Чи можу я стати спонсором?",
-    //         "can_become_sponsor"
-    //       ),
-    //     ],
-    //     [
-    //       Markup.button.callback(
-    //         "Що відбувається після подання заявки",
-    //         "what_happens_after_application"
-    //       ),
-    //     ],
-    //     [
-    //       Markup.button.callback(
-    //         "Вашому гостю Homes for Ukraine було відмовлено у видачі візи",
-    //         "guest_visa_refused"
-    //       ),
-    //     ],
-    //   ])
-    // );
-    // ctx.answerCbQuery();
+    await ctx.replyWithHTML(`<b>Про що ваше питання?</b>`, keyboard);
   });
 
   bot.action("become_sponsor", async (ctx) => {
@@ -548,30 +496,6 @@ exports.visas = (bot) => {
       .oneTime();
 
     await ctx.replyWithHTML(`<b>Про що ваше питання?</b>`, keyboard);
-
-    // await ctx.replyWithHTML(
-    //   `<b>Про що ваше питання?</b>`,
-    //   Markup.keyboard([
-    //     [
-    //       Markup.button.callback(
-    //         "Чи можу я стати спонсором?",
-    //         "can_become_sponsor"
-    //       ),
-    //     ],
-    //     [
-    //       Markup.button.callback(
-    //         "Що відбувається після подання заявки",
-    //         "what_happens_after_application"
-    //       ),
-    //     ],
-    //     [
-    //       Markup.button.callback(
-    //         "Вашому гостю Homes for Ukraine було відмовлено у видачі візи",
-    //         "guest_visa_refused"
-    //       ),
-    //     ],
-    //   ])
-    // );
   });
 
   // guest_visa_refused
