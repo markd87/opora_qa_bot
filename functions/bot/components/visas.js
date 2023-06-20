@@ -735,6 +735,23 @@ exports.visas = (bot) => {
     ctx.answerCbQuery();
   });
 
+  bot.action("rent_own_no", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>На жаль, ви не можете бути спонсором</b>
+      \nВи можете спробувати знайти для них відповідного спонсора - будь ласка, [прочитайте нашу статтю](https://ua.opora.uk/blog/yakim-chinom-ukrayincyam-zaraz-mozhna-znajti-sponsora-shob-priyihati-do-uk) для більш детальної інформації`,
+      Markup.inlineKeyboard([
+        [Markup.button.callback("Ок", "OK")],
+        [
+          Markup.button.callback(
+            "У мене є ще одне питання, пов'язане з візою",
+            "visas"
+          ),
+        ],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
   bot.action("rent_own_yes", async (ctx) => {
     await ctx.replyWithHTML(
       `<b>Чи є у вас житло для вашого гостя?</b>
