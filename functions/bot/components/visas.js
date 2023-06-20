@@ -715,6 +715,12 @@ exports.visas = (bot) => {
 
   // can_become_sponsor
   bot.hears("Чи можу я стати спонсором?", async (ctx) => {
+    await ctx.telegram.editMessageReplyMarkup(
+      ctx.chat.id,
+      ctx.message.message_id,
+      undefined
+    );
+
     await ctx.replyWithHTML(
       `<b>Чи можу я стати спонсором?</b>`,
       Markup.inlineKeyboard([
