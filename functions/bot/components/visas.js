@@ -547,9 +547,9 @@ exports.visas = (bot) => {
 
     await ctx.telegram.sendMessage(
       ctx.chat.id,
-      `<b>Про що ваше питання?</b>`,
+      (text = `<b>Про що ваше питання?</b>`),
       (reply_markup = keyboard),
-      (one_time_keyboard = True),
+      (one_time_keyboard = true),
       (parse_mode = "HTML")
     );
 
