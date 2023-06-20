@@ -1,4 +1,4 @@
-const { Markup, Telegraf, ReplyKeyboardMarkup } = require("telegraf");
+const { Markup, Telegraf } = require("telegraf");
 
 exports.visas = (bot) => {
   bot.action("visas", async (ctx) => {
@@ -547,10 +547,10 @@ exports.visas = (bot) => {
 
     await ctx.telegram.sendMessage(
       ctx.chat.id,
-      (text = `<b>Про що ваше питання?</b>`),
+      (text = `*Про що ваше питання?*`),
       (reply_markup = keyboard),
       (one_time_keyboard = true),
-      (parse_mode = "html")
+      (parse_mode = "markup")
     );
 
     // await ctx.replyWithHTML(
