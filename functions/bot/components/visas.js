@@ -499,30 +499,49 @@ exports.visas = (bot) => {
 
   // become_sponsor
   bot.hears("Як вони можуть стати моїм спонсором?", async (ctx) => {
-    await ctx.replyWithHTML(
+    const keyboard = [
+      ["Чи можу я стати спонсором?"],
+      ["Що відбувається після подання заявки"],
+      ["Вашому гостю Homes for Ukraine було відмовлено у видачі візи"],
+    ];
+
+    const replyOptions = {
+      reply_markup: {
+        keyboard: keyboard,
+        one_time_keyboard: true,
+      },
+    };
+    await ctx.telegram.sendMessage(
+      ctx.chat.id,
       `<b>Про що ваше питання?</b>`,
-      Markup.inlineKeyboard([
-        [
-          Markup.button.callback(
-            "Чи можу я стати спонсором?",
-            "can_become_sponsor"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "Що відбувається після подання заявки",
-            "what_happens_after_application"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "Вашому гостю Homes for Ukraine було відмовлено у видачі візи",
-            "guest_visa_refused"
-          ),
-        ],
-      ])
+      (reply_markup = keyboard),
+      (one_time_keyboard = True),
+      (parse_mode = "HTML")
     );
-    ctx.answerCbQuery();
+    // await ctx.replyWithHTML(
+    //   `<b>Про що ваше питання?</b>`,
+    //   Markup.inlineKeyboard([
+    //     [
+    //       Markup.button.callback(
+    //         "Чи можу я стати спонсором?",
+    //         "can_become_sponsor"
+    //       ),
+    //     ],
+    //     [
+    //       Markup.button.callback(
+    //         "Що відбувається після подання заявки",
+    //         "what_happens_after_application"
+    //       ),
+    //     ],
+    //     [
+    //       Markup.button.callback(
+    //         "Вашому гостю Homes for Ukraine було відмовлено у видачі візи",
+    //         "guest_visa_refused"
+    //       ),
+    //     ],
+    //   ])
+    // );
+    // ctx.answerCbQuery();
   });
 
   bot.action("become_sponsor", async (ctx) => {
@@ -715,8 +734,6 @@ exports.visas = (bot) => {
 
   // can_become_sponsor
   bot.hears("Чи можу я стати спонсором?", async (ctx) => {
-    await ctx.telegram.deleteMessage(ctx.message.message_id);
-
     await ctx.replyWithHTML(
       `<b>Чи можу я стати спонсором?</b>`,
       Markup.inlineKeyboard([
