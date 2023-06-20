@@ -539,20 +539,17 @@ exports.visas = (bot) => {
   });
 
   bot.action("become_sponsor", async (ctx) => {
-    const keyboard = ReplyKeyboardMarkup(
-      [
-        ["Чи можу я стати спонсором?"],
-        ["Що відбувається після подання заявки"],
-        ["Вашому гостю Homes for Ukraine було відмовлено у видачі візи"],
-      ],
-      (one_time_keyboard = true)
-    );
+    const keyboard = [
+      ["Чи можу я стати спонсором?"],
+      ["Що відбувається після подання заявки"],
+      ["Вашому гостю Homes for Ukraine було відмовлено у видачі візи"],
+    ];
 
     await ctx.telegram.sendMessage(
       ctx.chat.id,
-      (text = `<b>Про що ваше питання?</b>`),
+      (text = `*Про що ваше питання?*`),
       (reply_markup = keyboard),
-      (parse_mode = "HTML")
+      (one_time_keyboard = true)((parse_mode = "markup"))
     );
 
     // await ctx.replyWithHTML(
