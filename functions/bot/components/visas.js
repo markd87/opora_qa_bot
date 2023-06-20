@@ -1,4 +1,4 @@
-const { Markup } = require("telegraf");
+const { Markup, Telegraf, ReplyKeyboardMarkup } = require("telegraf");
 
 exports.visas = (bot) => {
   bot.action("visas", async (ctx) => {
@@ -539,17 +539,19 @@ exports.visas = (bot) => {
   });
 
   bot.action("become_sponsor", async (ctx) => {
-    const keyboard = [
-      ["Чи можу я стати спонсором?"],
-      ["Що відбувається після подання заявки"],
-      ["Вашому гостю Homes for Ukraine було відмовлено у видачі візи"],
-    ];
+    const keyboard = ReplyKeyboardMarkup(
+      [
+        ["Чи можу я стати спонсором?"],
+        ["Що відбувається після подання заявки"],
+        ["Вашому гостю Homes for Ukraine було відмовлено у видачі візи"],
+      ],
+      (one_time_keyboard = true)
+    );
 
     await ctx.telegram.sendMessage(
       ctx.chat.id,
       (text = `<b>Про що ваше питання?</b>`),
       (reply_markup = keyboard),
-      (one_time_keyboard = true),
       (parse_mode = "HTML")
     );
 
