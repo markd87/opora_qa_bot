@@ -505,12 +505,6 @@ exports.visas = (bot) => {
       ["Вашому гостю Homes for Ukraine було відмовлено у видачі візи"],
     ];
 
-    const replyOptions = {
-      reply_markup: {
-        keyboard: keyboard,
-        one_time_keyboard: true,
-      },
-    };
     await ctx.telegram.sendMessage(
       ctx.chat.id,
       `<b>Про що ваше питання?</b>`,
@@ -545,29 +539,43 @@ exports.visas = (bot) => {
   });
 
   bot.action("become_sponsor", async (ctx) => {
-    await ctx.replyWithHTML(
+    const keyboard = [
+      ["Чи можу я стати спонсором?"],
+      ["Що відбувається після подання заявки"],
+      ["Вашому гостю Homes for Ukraine було відмовлено у видачі візи"],
+    ];
+
+    await ctx.telegram.sendMessage(
+      ctx.chat.id,
       `<b>Про що ваше питання?</b>`,
-      Markup.keyboard([
-        [
-          Markup.button.callback(
-            "Чи можу я стати спонсором?",
-            "can_become_sponsor"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "Що відбувається після подання заявки",
-            "what_happens_after_application"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "Вашому гостю Homes for Ukraine було відмовлено у видачі візи",
-            "guest_visa_refused"
-          ),
-        ],
-      ])
+      (reply_markup = keyboard),
+      (one_time_keyboard = True),
+      (parse_mode = "HTML")
     );
+
+    // await ctx.replyWithHTML(
+    //   `<b>Про що ваше питання?</b>`,
+    //   Markup.keyboard([
+    //     [
+    //       Markup.button.callback(
+    //         "Чи можу я стати спонсором?",
+    //         "can_become_sponsor"
+    //       ),
+    //     ],
+    //     [
+    //       Markup.button.callback(
+    //         "Що відбувається після подання заявки",
+    //         "what_happens_after_application"
+    //       ),
+    //     ],
+    //     [
+    //       Markup.button.callback(
+    //         "Вашому гостю Homes for Ukraine було відмовлено у видачі візи",
+    //         "guest_visa_refused"
+    //       ),
+    //     ],
+    //   ])
+    // );
   });
 
   // guest_visa_refused
