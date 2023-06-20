@@ -483,7 +483,11 @@ exports.visas = (bot) => {
       .resize()
       .oneTime();
 
-    await ctx.replyWithHTML(`<b>Про що ваше питання?</b>`, keyboard);
+    await ctx.replyWithHTML(
+      `<b>Про що ваше питання?</b>`,
+      keyboard,
+      Markup.removeKeyboard()
+    );
   });
 
   bot.action("become_sponsor", async (ctx) => {
