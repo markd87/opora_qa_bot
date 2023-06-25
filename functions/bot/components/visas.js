@@ -2,6 +2,15 @@ const { Markup, Telegraf } = require("telegraf");
 
 exports.visas = (bot) => {
   bot.action("visas", async (ctx) => {
+    // clear keyboard
+    try {
+      await ctx.editMessageReplyMarkup({
+        reply_markup: { remove_keyboard: true },
+      });
+    } catch (e) {
+      console.log(e);
+    }
+
     await ctx.replyWithHTML(
       `<b>Виберіть тему:</b>`,
       Markup.inlineKeyboard([
