@@ -47,6 +47,33 @@ exports.visa_problems = (bot) => {
     ctx.answerCbQuery();
   });
 
+  bot.action("problem_visa_delayed_more", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Що я можу зробити, якщо я чекаю на візу більше 2 місяців?</b>
+      \nЯкщо ваша віза не надійшла протягом 2 місяців, ви можете спробувати подати ескалацію, зателефонувавши на гарячу лінію Homes for Ukraine: + 44 808 164 8810. Хоча це не гарантує видачу візи, це може допомогти прискорити процес.
+
+      Якщо ескалація не дала результатів, попросіть свого спонсора або родича написати листа до депутата парламенту. Ви можете знайти контакти депутатів тут: https://members.parliament.uk/members/commons.
+
+      Зверніть увагу, що подача нової заяви на отримання "української" візи анулює всі ваші попередні заяви, і час обробки почнеться заново.`,
+      Markup.inlineKeyboard([
+        [Markup.button.callback("Ок", "OK")],
+        [
+          Markup.button.callback(
+            "У мене є ще одне питання, пов'язане з візою",
+            "visas"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "Все ще потребую допомоги",
+            "immigration_lawyers"
+          ),
+        ],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
   bot.action("problem_visa_delayed_less", async (ctx) => {
     await ctx.replyWithHTML(
       `<b>Треба зачекати.</b>
@@ -63,7 +90,7 @@ exports.visa_problems = (bot) => {
         [
           Markup.button.callback(
             "У мене є ще одне питання, пов'язане з візою",
-            "go_to_start"
+            "visas"
           ),
         ],
       ])
