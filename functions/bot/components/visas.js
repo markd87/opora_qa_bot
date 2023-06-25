@@ -11,11 +11,11 @@ exports.visas = (bot) => {
     //   console.log(e);
     // }
 
-    await ctx.replyWithHTML("<b>Виберіть тему:</b>", Markup.removeKeyboard());
+    await ctx.reply(".", Markup.removeKeyboard());
 
     await ctx.replyWithHTML(
-      // `<b>Виберіть тему:</b>`,
-      " ",
+      `<b>Виберіть тему:</b>`,
+      // " ",
       Markup.inlineKeyboard([
         [
           Markup.button.callback(
