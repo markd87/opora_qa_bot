@@ -11,7 +11,10 @@ exports.visas = (bot) => {
     //   console.log(e);
     // }
 
-    // await ctx.replyWithHTML("<b> </b>", Markup.removeKeyboard());
+    await ctx.replyWithHTML(
+      "<b>Візи до Великобританії</b>",
+      Markup.removeKeyboard()
+    );
 
     await ctx.replyWithHTML(
       `<b>Виберіть тему:</b>`,
@@ -37,7 +40,7 @@ exports.visas = (bot) => {
           ),
         ],
         [Markup.button.callback("Проблема з візою або BRP", "problem_visa")],
-      ]).removeKeyboard()
+      ])
     );
     ctx.answerCbQuery();
   });
