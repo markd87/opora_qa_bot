@@ -1,13 +1,13 @@
 const { Markup } = require("telegraf");
 
-exports.right_visa = (bot) => {
+exports.family_scheme = (bot) => {
   bot.action("apply_ukraine_family_scheme", async (ctx) => {
     await ctx.replyWithHTML(
       `<b>Подати заявку на Ukraine Family Scheme</b>
         \nUkraine Family Scheme дозволяє заявникам приєднатися до членів сім'ї або продовжити своє перебування у Великій Британії. Кожен повинен подавати окрему заяву, навіть діти, які подорожують з членом сім'ї.
 
         Подати заяву можна безкоштовно: https://www.gov.uk/guidance/apply-for-a-ukraine-family-scheme-visa.uk
-        
+
         Ви зможете жити, працювати і навчатися у Великій Британії, а також мати доступ до соцвиплат (бенефітів).`,
       Markup.inlineKeyboard([
         [
@@ -24,11 +24,11 @@ exports.right_visa = (bot) => {
   bot.action("apply_ukraine_family_scheme_continue", async (ctx) => {
     await ctx.replyWithHTML(
       `<b>Який документ у вас є?</b>
-            \nUkraine Family Scheme дозволяє заявникам приєднатися до членів сім'ї або продовжити своє перебування у Великій Британії. Кожен повинен подавати окрему заяву, навіть діти, які подорожують з членом сім'ї.
-    
-            Подати заяву можна безкоштовно: https://www.gov.uk/guidance/apply-for-a-ukraine-family-scheme-visa.uk
-            
-            Ви зможете жити, працювати і навчатися у Великій Британії, а також мати доступ до соцвиплат (бенефітів).`,
+      \nUkraine Family Scheme дозволяє заявникам приєднатися до членів сім'ї або продовжити своє перебування у Великій Британії. Кожен повинен подавати окрему заяву, навіть діти, які подорожують з членом сім'ї.
+
+      Подати заяву можна безкоштовно: https://www.gov.uk/guidance/apply-for-a-ukraine-family-scheme-visa.uk
+      
+      Ви зможете жити, працювати і навчатися у Великій Британії, а також мати доступ до соцвиплат (бенефітів).`,
       Markup.inlineKeyboard([
         [
           Markup.button.callback(

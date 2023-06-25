@@ -7,7 +7,7 @@ exports.visas = (bot) => {
       Markup.inlineKeyboard([
         [
           Markup.button.callback(
-            "Виберіть правильну візу до Великобританії",
+            "Як обрати правильну візу до Великобританії",
             "right_visa"
           ),
         ],
@@ -23,18 +23,6 @@ exports.visas = (bot) => {
           Markup.button.callback(
             "Ukraine Extension Scheme",
             "extension_scheme"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "Як залишитися у Великобританії назавжди",
-            "stay_forever"
-          ),
-        ],
-        [
-          Markup.button.callback(
-            "Подорожі за межі Великобританії",
-            "travel_outside"
           ),
         ],
         [Markup.button.callback("Проблема з візою або BRP", "problem_visa")],
@@ -133,7 +121,6 @@ exports.visas = (bot) => {
         ],
       ])
     );
-    ctx.answerCbQuery();
   });
 
   //immigration_lawyers
@@ -571,7 +558,7 @@ exports.visas = (bot) => {
       \nякщо ви бачите цю причину відмови в оновленні їхньої заявки, це означає, що <b>вас не було схвалено як спонсора</b>. 
 
       Найпопулярніші **причини, що призводять до такого рішення**:
-      - ваш гість не зміг довести свій імміграційний статус, наприклад, не завантажив копію британського паспорта, BRP або іншого підтвердження імміграційного статусу
+      - ваш гість не зміг довести ваш імміграційний статус, наприклад, не завантажив копію британського паспорта, BRP або іншого підтвердження імміграційного статусу
       - рада дійшла висновку, що ваше житло не відповідає вимогам (переповнене або недоступне щонайменше 6 місяців).
       - Записи Міністерства внутрішніх справ свідчать про численні заяви на спонсорство, подані з вашою участю, і підозри на шахрайство.
       
@@ -666,25 +653,16 @@ exports.visas = (bot) => {
 
   // can_become_sponsor
   bot.hears("Чи можу я стати спонсором?", async (ctx) => {
-    await ctx.replyWithHTML(
-      `<b>Чи можу я стати спонсором?</b>`,
-      Markup.inlineKeyboard([
-        [
-          Markup.button.callback(
-            "Орендую приватне житло / Орендую комунальне житло",
-            "rent"
-          ),
-        ],
-        [Markup.button.callback("У мене власне житло", "own_house")],
-        [Markup.button.callback("Я живу зі спонсором", "live_with_sponsor")],
-        [
-          Markup.button.callback(
-            "Нічого з перерахованого вище",
-            "unfotunatley_cannot"
-          ),
-        ],
-      ])
-    );
+    const keyboard = Markup.keyboard([
+      ["Я живу зі спонсором"],
+      ["Орендую приватне житло / Орендую комунальне житло"],
+      ["У мене власне житло"],
+      ["Нічого з перерахованого вище"],
+    ])
+      .resize()
+      .oneTime();
+
+    await ctx.replyWithHTML(`<b>Чи можу я стати спонсором?</b>`, keyboard);
   });
 
   bot.action("can_become_sponsor", async (ctx) => {
@@ -709,6 +687,37 @@ exports.visas = (bot) => {
     );
     ctx.answerCbQuery();
   });
+
+  bot.hears(
+    [
+      "Орендую приватне житло / Орендую комунальне житло",
+      "У мене власне житло",
+    ],
+    async (ctx) => {
+      await ctx.replyWithHTML(
+        `<b>Ви легально проживаєте у Великобританії?</b>
+      \nЩоб стати спонсором, ви повинні довести, що ви
+      - легально проживаєте у Великій Британії, і
+      - ваш дозвіл на перебування у Великобританії дійсний протягом <b>6 місяців або довше</b>.
+
+      Докази:
+      - Британський паспорт,
+      - BRP (біометричний дозвіл на проживання) або
+      - інші документи, що підтверджують імміграційний статус.
+
+      https://www.gov.uk/guidance/eligibility-safeguarding-dbs-and-accommodation-checks-homes-for-ukraine#eligibility-and-checks
+
+      Ви <b>ЗОБОВ'ЯЗАНІ</b> надати копії цих документів разом із заявою.
+
+      ПРИМІТКА: Якщо ви є громадянином Великобританії, але не проживаєте у Великобританії - ви не можете бути спонсором.`,
+        Markup.inlineKeyboard([
+          [Markup.button.callback("Так", "rent_own_yes")],
+          [Markup.button.callback("Нi", "rent_own_no")],
+        ])
+      );
+      ctx.answerCbQuery();
+    }
+  );
 
   bot.action(["rent", "own_house"], async (ctx) => {
     await ctx.replyWithHTML(
@@ -776,7 +785,7 @@ exports.visas = (bot) => {
     await ctx.replyWithHTML(
       `<b>Для кого ви збираєтеся бути спонсором?</b>`,
       Markup.inlineKeyboard([
-        [Markup.button.callback("Взрослые", "accomadation_guest_yes_adult")],
+        [Markup.button.callback("Дорослі", "accomadation_guest_yes_adult")],
         [
           Markup.button.callback(
             "Дитина до 18 років",
@@ -791,7 +800,7 @@ exports.visas = (bot) => {
   bot.action("accomadation_guest_yes_adult", async (ctx) => {
     await ctx.replyWithHTML(
       `<b>Чи відповідає ця особа всім вимогам?</b>
-      \n1. Є громадянином України або близьким родичем громадянина України, який вже отримав спонсорську візу або подає заяву на отримання такої візи та відповідає її критеріям. [https://www.gov.uk/guidance/apply-for-a-visa-under-the-ukraine-sponsorship-scheme.uk#section-1] (https://www.gov.uk/guidance/apply-for-a-visa-under-the-ukraine-sponsorship-scheme.uk#section-1)
+      \n1. Є громадянином України або близьким родичем громадянина України, який вже отримав спонсорську візу або подає заяву на отримання такої візи та відповідає її критеріям. https://www.gov.uk/guidance/apply-for-a-visa-under-the-ukraine-sponsorship-scheme.uk#section-1
       2.  Постійно проживав в Україні станом на 1 січня 2022 року.
       3. Наразі перебуває за межами Великої Британії.`,
       Markup.inlineKeyboard([
@@ -812,7 +821,7 @@ exports.visas = (bot) => {
       `<b>Ви можете стати їхнім спонсором</b>
       \nЇм потрібно подати заявку на Homes for Ukraine.`,
       Markup.inlineKeyboard([
-        [Markup.button.callback("Продолжить", "apply_home_for_ukraine")],
+        [Markup.button.callback("Продовжити", "apply_home_for_ukraine")],
       ])
     );
     ctx.answerCbQuery();
@@ -910,6 +919,25 @@ exports.visas = (bot) => {
     );
     ctx.answerCbQuery();
   });
+
+  bot.hears(
+    ["Я живу зі спонсором", "Нічого з перерахованого вище"],
+    async (ctx) => {
+      await ctx.replyWithHTML(
+        `<b>На жаль, ви не можете бути спонсором</b>
+      \nВи можете спробувати знайти для них відповідного спонсора - будь ласка, <a href="https://ua.opora.uk/blog/yakim-chinom-ukrayincyam-zaraz-mozhna-znajti-sponsora-shob-priyihati-do-uk">прочитайте нашу статтю</a> для більш детальної інформації`,
+        Markup.inlineKeyboard([
+          [Markup.button.callback("Ок", "OK")],
+          [
+            Markup.button.callback(
+              "У мене є ще одне питання, пов'язане з візою",
+              "visas"
+            ),
+          ],
+        ])
+      );
+    }
+  );
 
   bot.action(
     ["live_with_sponsor", "unfortunatley_cannot", "accomadation_guest_no"],

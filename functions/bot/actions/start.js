@@ -9,21 +9,59 @@ module.exports = async (ctx) => {
   }
 
   try {
-    await ctx.replyWithHTML(
-      `<b>Про що ваше питання?</b>`,
-      Markup.inlineKeyboard([
-        [Markup.button.callback("Візи до Великобританії", "visas")],
-        [Markup.button.callback("Житло", "housing")],
-        [Markup.button.callback("Працевлаштування", "employment")],
+    // await ctx.replyWithHTML(
+    //   `<b>Про що ваше питання?</b>`,
+    //   Markup.inlineKeyboard([
+    //     [Markup.button.callback("Візи до Великобританії", "visas")],
+    //     [Markup.button.callback("Житло", "housing")],
+    //     [Markup.button.callback("Працевлаштування", "employment")],
 
-        [Markup.button.callback("Соцвиплати (бенефіти)", "benefits")],
+    //     [Markup.button.callback("Соцвиплати (бенефіти)", "benefits")],
+    //     [
+    //       Markup.button.callback(
+    //         "Підтримка психічного здоров'я",
+    //         "mental_health"
+    //       ),
+    //     ],
+    //     [Markup.button.callback("Загальні питання після прибуття", "general")],
+    //   ])
+    // );
+    await ctx.replyWithHTML(
+      `<b>Виберіть тему:</b>`,
+      Markup.inlineKeyboard([
         [
           Markup.button.callback(
-            "Підтримка психічного здоров'я",
-            "mental_health"
+            "Як обрати правильну візу до Великобританії",
+            "right_visa"
           ),
         ],
-        [Markup.button.callback("Загальні питання після прибуття", "general")],
+        [
+          Markup.button.callback(
+            "Схема Homes for Ukraine (спонсорська допомога)",
+            "homes_for_ukraine"
+          ),
+        ],
+        [Markup.button.callback("Ukraine Family Scheme", "family_scheme")],
+
+        [
+          Markup.button.callback(
+            "Ukraine Extension Scheme",
+            "extension_scheme"
+          ),
+        ],
+        // [
+        //   Markup.button.callback(
+        //     "Як залишитися у Великобританії назавжди",
+        //     "stay_forever"
+        //   ),
+        // ],
+        // [
+        //   Markup.button.callback(
+        //     "Подорожі за межі Великобританії",
+        //     "travel_outside"
+        //   ),
+        // ],
+        [Markup.button.callback("Проблема з візою або BRP", "problem_visa")],
       ])
     );
   } catch (e) {

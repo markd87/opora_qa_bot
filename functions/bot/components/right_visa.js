@@ -45,14 +45,14 @@ exports.right_visa = (bot) => {
       - Homes for Ukraine - якщо ви хочете приїхати до спонсора на 6 місяців або довше
       - Ukraine Extension Scheme - якщо ви вже перебуваєте у Великій Британії і хочете продовжити своє перебування`,
       Markup.inlineKeyboard([
+        [Markup.button.callback("Ukraine Family Scheme", "family_scheme")],
+        [Markup.button.callback("Homes for Ukraine", "homes_for_ukraine")],
         [
           Markup.button.callback(
             "Ukraine Extension Scheme",
             "extension_scheme"
           ),
         ],
-        [Markup.button.callback("Ukraine Family Scheme", "family_scheme")],
-        [Markup.button.callback("Homes for Ukraine", "homes_for_ukraine")],
       ])
     );
     ctx.answerCbQuery();
