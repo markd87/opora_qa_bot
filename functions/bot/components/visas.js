@@ -11,7 +11,7 @@ exports.visas = (bot) => {
     //   console.log(e);
     // }
 
-    await ctx.replyWithHTML("\n", Markup.removeKeyboard());
+    await ctx.replyWithHTML("<b> </b>", Markup.removeKeyboard());
 
     await ctx.replyWithHTML(
       `<b>Виберіть тему:</b>`,
