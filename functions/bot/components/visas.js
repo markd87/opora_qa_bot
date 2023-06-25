@@ -715,7 +715,6 @@ exports.visas = (bot) => {
           [Markup.button.callback("Нi", "rent_own_no")],
         ])
       );
-      ctx.answerCbQuery();
     }
   );
 
