@@ -15,7 +15,6 @@ exports.visas = (bot) => {
 
     await ctx.replyWithHTML(
       `<b>Виберіть тему:</b>`,
-      // " ",
       Markup.inlineKeyboard([
         [
           Markup.button.callback(
@@ -38,8 +37,7 @@ exports.visas = (bot) => {
           ),
         ],
         [Markup.button.callback("Проблема з візою або BRP", "problem_visa")],
-      ]),
-      (reply_markup = Markup.removeKeyboard())
+      ]).removeKeyboard()
     );
     ctx.answerCbQuery();
   });
