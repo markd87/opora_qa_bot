@@ -11,7 +11,7 @@ exports.visas = (bot) => {
     //   console.log(e);
     // }
 
-    await ctx.replyWithHTML("<b> </b>", Markup.removeKeyboard());
+    // await ctx.replyWithHTML("<b> </b>", Markup.removeKeyboard());
 
     await ctx.replyWithHTML(
       `<b>Виберіть тему:</b>`,
@@ -38,7 +38,8 @@ exports.visas = (bot) => {
           ),
         ],
         [Markup.button.callback("Проблема з візою або BRP", "problem_visa")],
-      ])
+      ]),
+      (reply_markup = Markup.removeKeyboard())
     );
     ctx.answerCbQuery();
   });
