@@ -15,7 +15,7 @@ exports.visas = (bot) => {
 
     await ctx.replyWithHTML(
       // `<b>Виберіть тему:</b>`,
-      "",
+      " ",
       Markup.inlineKeyboard([
         [
           Markup.button.callback(
