@@ -11,12 +11,12 @@ exports.visas = (bot) => {
     //   console.log(e);
     // }
 
-    await ctx.reply(".", Markup.removeKeyboard());
+    // await ctx.reply(".", Markup.removeKeyboard());
 
     await ctx.replyWithHTML(
       `<b>Виберіть тему:</b>`,
       // " ",
-      Markup.inlineKeyboard([
+      Markup.removeKeyboard().inlineKeyboard([
         [
           Markup.button.callback(
             "Як обрати правильну візу до Великобританії",
