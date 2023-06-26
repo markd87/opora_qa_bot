@@ -592,9 +592,9 @@ exports.visa_problems = (bot) => {
     await ctx.replyWithHTML(
       `Ми все ще радимо вам звернутися на пошту, може його ще не відправили назад.  
 
-        На жаль, Home Office не надає чітких письмових інструкцій щодо того, що робити, коли ваш BRP повертається з пошти. 
-        
-        Якщо це сталося з вами, спробуйте заповнити форму https://www.biometric-residence-permit.service.gov.uk/collection/where, вибравши опцію "<b>I don't know which Post Office I need to collect my BRP from</b>" і написати деталі в розділі коментарів:`,
+      На жаль, Home Office не надає чітких письмових інструкцій щодо того, що робити, коли ваш BRP повертається з пошти. 
+
+      Якщо це сталося з вами, спробуйте заповнити форму https://www.biometric-residence-permit.service.gov.uk/collection/where, вибравши опцію "<b>I don't know which Post Office I need to collect my BRP from</b>" і написати деталі в розділі коментарів:`,
       Markup.inlineKeyboard([
         [Markup.button.callback("Гаразд, це все.", "OK")],
         [
@@ -620,6 +620,11 @@ exports.visa_problems = (bot) => {
         Markup.removeKeyboard()
       );
 
+      await ctx.telegram.sendPhoto(
+        ctx.chat.id,
+        "https://thriving-frangollo-33fd04.netlify.app/assets/brp_post_office_closed.png"
+      );
+
       await ctx.replyWithHTML(
         `Якщо це сталося з вами, спробуйте заповнити форму https://www.biometric-residence-permit.service.gov.uk/collection/where вибравши опцію "<b>I don't know which Post Office I need to collect my BRP from</b>" і написавши в розділі коментарів "<b>my post office is permanently closed</b>":`,
         Markup.inlineKeyboard([
@@ -631,11 +636,6 @@ exports.visa_problems = (bot) => {
             ),
           ],
         ])
-      );
-
-      await ctx.telegram.sendPhoto(
-        ctx.chat.id,
-        "https://thriving-frangollo-33fd04.netlify.app/assets/brp_post_office_closed.png"
       );
     }
   );
@@ -730,7 +730,7 @@ exports.visa_problems = (bot) => {
   bot.action("lost_outside", async (ctx) => {
     await ctx.replyWithHTML(
       `<b>Якщо ви загубили свій BRP за межами Великобританії</b>
-      \nТи мусиш:
+      \nВам необхідно:
 
       1. Повідомити про втрату BRP тут https://www.biometric-residence-permit.service.gov.uk/lost-stolen/where обравши опцію "Outside UK" 
       2. Подати заявку на отримання 'replacement BRP visa' на сайті https://visas-immigration.service.gov.uk/country-selection, яка дає право на одноразовий в'їзд до Великої Британії. Щоб отримати цю візу, вам потрібно заплатити 154 фунтів і здати біометричні дані у візовому центрі. 

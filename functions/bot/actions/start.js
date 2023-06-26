@@ -49,19 +49,26 @@ module.exports = async (ctx) => {
             "extension_scheme"
           ),
         ],
-        // [
-        //   Markup.button.callback(
-        //     "Як залишитися у Великобританії назавжди",
-        //     "stay_forever"
-        //   ),
-        // ],
-        // [
-        //   Markup.button.callback(
-        //     "Подорожі за межі Великобританії",
-        //     "travel_outside"
-        //   ),
-        // ],
         [Markup.button.callback("Проблема з візою або BRP", "problem_visa")],
+        [
+          Markup.button.callback(
+            "Дитина, народжена у Великобританії",
+            "child_born_uk"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "Подорожі за межі Великобританії",
+            "travel_outside"
+          ),
+        ],
+
+        [
+          Markup.button.callback(
+            "Як залишитися у Великобританії назавжди",
+            "stay_forever"
+          ),
+        ],
       ])
     );
   } catch (e) {

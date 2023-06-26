@@ -18,7 +18,7 @@ exports.visas = (bot) => {
         ],
         [
           Markup.button.callback(
-            "Схема Homes for Ukraine (спонсорська допомога)",
+            "Схема Homes for Ukraine (спонсорська)",
             "homes_for_ukraine"
           ),
         ],
@@ -31,6 +31,43 @@ exports.visas = (bot) => {
           ),
         ],
         [Markup.button.callback("Проблема з візою або BRP", "problem_visa")],
+        [
+          Markup.button.callback(
+            "Дитина, народжена у Великобританії",
+            "child_born_uk"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "Подорожі за межі Великобританії",
+            "travel_outside"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "Як залишитися у Великобританії назавжди",
+            "stay_forever"
+          ),
+        ],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
+  bot.action("child_born_uk", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>Підготуйте візову анкету та подайте її на сайті gov.uk</b>
+      \nЯкщо дитина народилася у Великій Британії у батьків, які мають одну з віз Ukraine Scheme, їм потрібно подати заяву на Ukraine Extension Scheme для цієї дитини.
+
+      https://www.gov.uk/guidance/apply-to-stay-in-the-uk-under-the-ukraine-extension-scheme.uk`,
+      Markup.inlineKeyboard([
+        [Markup.button.callback("Ок", "OK")],
+        [
+          Markup.button.callback(
+            "У мене є ще одне питання, пов'язане з візою.",
+            "visas"
+          ),
+        ],
       ])
     );
     ctx.answerCbQuery();
