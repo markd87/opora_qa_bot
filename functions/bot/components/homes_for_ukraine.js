@@ -247,14 +247,14 @@ exports.homes_for_ukraine = (bot) => {
   });
 
   bot.action("which_documents", async (ctx) => {
-    keyboard = Markup.keyboard(
+    keyboard = Markup.keyboard([
       ["Дійсний український біометричний паспорт"], //"valid_biometric_passport"
       ["Дійсний український небіометричний паспорт"], //"valid_non_biometric_passport"
       ["Прострочений український паспорт"], //"expired_passport"
       ["Тільки внутрішній український паспорт"], //"internal_passport"
       ["Не український паспорт"], //"non_ukranian_passport"
-      ["Свідоцтво про народження (для дитини до 18 років)"] //"birth_certificate"
-    );
+      ["Свідоцтво про народження (для дитини до 18 років)"], //"birth_certificate"
+    ]);
     await ctx.replyWithHTML(`<b>Який документ у вас є?</b>`, keyboard);
   });
 
