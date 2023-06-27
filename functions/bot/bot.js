@@ -76,6 +76,7 @@ bot.action("OK", async (ctx) => {
     `✅ Дякуємо, що скористалися нашим асистентом!`,
     Markup.removeKeyboard()
   );
+  ctx.answerCbQuery();
 });
 
 // bot.action("q1_1", async (ctx) => {
