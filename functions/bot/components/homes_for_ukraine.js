@@ -254,7 +254,7 @@ exports.homes_for_ukraine = (bot) => {
       ["Тільки внутрішній український паспорт"], //"internal_passport"
       ["Не український паспорт"], //"non_ukranian_passport"
       ["Свідоцтво про народження (для дитини до 18 років)"], //"birth_certificate"
-    ]);
+    ]).oneTime();
     await ctx.replyWithHTML(`<b>Який документ у вас є?</b>`, keyboard);
   });
 
