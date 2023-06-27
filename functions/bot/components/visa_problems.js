@@ -754,7 +754,7 @@ exports.visa_problems = (bot) => {
   bot.action("lost_inside", async (ctx) => {
     await ctx.replyWithHTML(
       `<b>Якщо ви втратили свій BRP і перебуваєте у Великобританії</b>
-      \nТи мусиш:
+      \nВам необхідно:
 
       1. Повідомити про втрату вашого BRP тут https://www.biometric-residence-permit.service.gov.uk/lost-stolen/where і вибрати опцію "UK".  
       2. Потім вам потрібно подати заявку на заміну BRP тут https://visas-immigration.service.gov.uk/product/biometric-residence-permit-replacement-service, заплатити 38 фунтів стерлінгів і пройти біометричний контроль (який коштує 132 фунти за прийом):
