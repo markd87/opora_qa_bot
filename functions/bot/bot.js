@@ -72,7 +72,10 @@ bot.action("general", async (ctx) => {
 });
 
 bot.action("OK", async (ctx) => {
-  await ctx.replyWithHTML(`✅ Дякуємо, що скористалися нашим асистентом!`);
+  await ctx.replyWithHTML(
+    `✅ Дякуємо, що скористалися нашим асистентом!`,
+    Markup.removeKeyboard()
+  );
 });
 
 // bot.action("q1_1", async (ctx) => {
