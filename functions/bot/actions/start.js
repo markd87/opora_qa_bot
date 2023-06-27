@@ -35,6 +35,7 @@ module.exports = async (ctx) => {
             "right_visa"
           ),
         ],
+        [Markup.button.callback("Популярні питання про візи", "faq")],
         [
           Markup.button.callback(
             "Схема Homes for Ukraine (спонсорська допомога)",
