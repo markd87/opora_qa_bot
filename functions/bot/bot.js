@@ -4,6 +4,8 @@ const { visa_problems } = require("./components/visa_problems");
 const { homes_for_ukraine } = require("./components/homes_for_ukraine");
 const { right_visa } = require("./components/right_visa");
 const { family_scheme } = require("./components/family_scheme");
+const { faq } = require("./components/faq");
+
 const startAction = require("./actions/start");
 
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN);
@@ -22,6 +24,7 @@ right_visa(bot);
 visa_problems(bot);
 homes_for_ukraine(bot);
 family_scheme(bot);
+faq(bot);
 
 bot.action("housing", async (ctx) => {
   await ctx.replyWithHTML(
