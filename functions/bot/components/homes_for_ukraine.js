@@ -81,7 +81,7 @@ exports.homes_for_ukraine = (bot) => {
         [
           Markup.button.callback(
             "Так, вони відповідають усім цим критеріям",
-            "yes_they_meet_requirements"
+            "apply_home_for_ukraine_continue"
           ),
         ],
         [
@@ -95,13 +95,11 @@ exports.homes_for_ukraine = (bot) => {
     ctx.answerCbQuery();
   });
 
-  bot.action("yes_they_meet_requirements", async (ctx) => {
+  bot.action("apply_home_for_ukraine_continue_yes", async (ctx) => {
     await ctx.replyWithHTML(
       `<b>Підготуйте візову анкету та подайте її на сайті gov.uk</b>
           \nhttps://www.gov.uk/guidance/apply-for-a-visa-under-the-ukraine-sponsorship-scheme`,
-      Markup.inlineKeyboard([
-        [Markup.button.callback("Ok", "apply_home_for_ukraine")],
-      ])
+      Markup.inlineKeyboard([[Markup.button.callback("Ok", "which_documents")]])
     );
     ctx.answerCbQuery();
   });
@@ -162,17 +160,6 @@ exports.homes_for_ukraine = (bot) => {
       Markup.inlineKeyboard([
         [Markup.button.callback("Ок", "OK")],
         [Markup.button.callback("Повернутися до початку", "visas")],
-      ])
-    );
-    ctx.answerCbQuery();
-  });
-
-  bot.action("apply_home_for_ukraine_continue_yes", async (ctx) => {
-    await ctx.replyWithHTML(
-      `<b>У вас є спонсор?</b>`,
-      Markup.inlineKeyboard([
-        [Markup.button.callback("Так", "yes_sponsor")],
-        [Markup.button.callback("Ні", "no_sponsor")],
       ])
     );
     ctx.answerCbQuery();
@@ -240,7 +227,12 @@ exports.homes_for_ukraine = (bot) => {
     
           Кожен повинен подати окрему заяву, навіть діти, які подорожують з членом сім'ї.`,
       Markup.inlineKeyboard([
-        [Markup.button.callback("Продовжити", "which_documents")],
+        [
+          Markup.button.callback(
+            "Продовжити",
+            "apply_home_for_ukraine_continue"
+          ),
+        ],
       ])
     );
     ctx.answerCbQuery();
