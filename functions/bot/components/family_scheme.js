@@ -184,7 +184,7 @@ exports.family_scheme = (bot) => {
           ],
           [
             Markup.button.callback(
-              "iPhone",
+              "android",
               "apply_ukraine_family_scheme_continue_biometric_phone_android"
             ),
           ],
