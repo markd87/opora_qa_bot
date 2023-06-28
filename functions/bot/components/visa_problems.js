@@ -467,9 +467,7 @@ exports.visa_problems = (bot) => {
       ["Помилка у моєму BRP"],
       ["Втратив свій BRP"],
       ["Потрібно виїхати з Великобританії до отримання BRP"],
-    ])
-      .resize()
-      .oneTime();
+    ]).oneTime();
 
     await ctx.replyWithHTML(
       `<b>Що найкраще описує вашу ситуацію?</b>`,
