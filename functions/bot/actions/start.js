@@ -77,10 +77,10 @@ module.exports = async (ctx) => {
     return ctx.reply(`Error occurred`);
   }
 
-  await ctx.telegram.sendMessage(
-    ctx.chat.id,
-    "Для перезапуску бота, натисніть /start"
-  );
+  // await ctx.telegram.sendMessage(
+  //   ctx.chat.id,
+  //   "Для перезапуску бота, натисніть /start"
+  // );
 
-  await ctx.telegram.pinMessage(ctx.chat.id, ctx.update.message_id);
+  // await ctx.telegram.pinMessage(ctx.chat.id, ctx.update.message_id);
 };
