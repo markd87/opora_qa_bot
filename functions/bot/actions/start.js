@@ -78,7 +78,7 @@ module.exports = async (ctx) => {
   }
 
   const chatId = ctx.chat.id;
-  const pin_message = "Для перезапуску бота, натисніть /start";
+  const pin_message = "Для перезапуску бота, введіть /start";
 
   const sentMessage = await ctx.reply(pin_message);
 
