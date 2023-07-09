@@ -84,15 +84,8 @@ module.exports = async (ctx) => {
 
   const chatId = ctx.chat.id;
 
-  await ctx.getChat(chatId).then((chat) => {
-    if (!chat.pinned_message) {
-      // Pin the new message
-      ctx.telegram
-        .pinChatMessage(chatId, ctx.message.message_id)
-        .catch((error) => {
-          // An error occurred while pinning the message
-          console.error("Failed to pin message:", error);
-        });
-    }
-  });
+  if (!ctx.getChat(chatId).pinned_message) {
+    // Pin the new message
+    await ctx.telegram.pinChatMessage(chatId, ctx.message.message_id);
+  }
 };
