@@ -219,27 +219,33 @@ exports.visa_problems = (bot) => {
     await ctx.replyWithHTML(
       `Перевірте електронну пошту, з якої ви подавали заявку на візу. Чи отримали ви електронний лист "Application Update"?
       \n* Якщо в ньому написано: "<b>Your application under the Ukraine Scheme has been successful</b>", це означає, що віза була <b>схвалена</b>, і ви можете вперше подорожувати Великою Британією з цим листом і вашим паспортом (тобто, це ваш лист про дозвіл на в'їзд). У ньому також вказано точний термін дії вашої візи - 3 роки.
-      * Якщо є слова "<b>rejected</b>" або "<b>refused</b>", це означає, що віза не була схвалена.`,
-      Markup.inlineKeyboard([
-        [
-          Markup.button.callback(
-            "Я не отримав цього листа.",
-            "problem_visa_delayed"
-          ),
-        ],
-        [Markup.button.callback("Гаразд, це все.", "OK")],
-        [
-          Markup.button.callback(
-            "У мене є ще одне питання, пов'язане з візою.",
-            "visas"
-          ),
-        ],
-      ])
+      * Якщо є слова "<b>rejected</b>" або "<b>refused</b>", це означає, що віза не була схвалена.`
     );
+
+    const keyboard = Markup.inlineKeyboard([
+      [
+        Markup.button.callback(
+          "Я не отримав цього листа.",
+          "problem_visa_delayed"
+        ),
+      ],
+      [Markup.button.callback("Гаразд, це все.", "OK")],
+      [
+        Markup.button.callback(
+          "У мене є ще одне питання, пов'язане з візою.",
+          "visas"
+        ),
+      ],
+    ]);
 
     await ctx.telegram.sendPhoto(
       ctx.chat.id,
-      "https://thriving-frangollo-33fd04.netlify.app/assets/what_decision_look.jpeg"
+      "https://thriving-frangollo-33fd04.netlify.app/assets/what_decision_look.jpeg",
+      {
+        reply_markup: {
+          inline_keyboard: keyboard,
+        },
+      }
     );
   });
 
