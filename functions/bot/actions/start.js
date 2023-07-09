@@ -87,7 +87,7 @@ module.exports = async (ctx) => {
 
   if (chatInfo.pinned_message) {
     // unpin
-    ctx.telegram.unpinChatMessage(chatId);
+    await ctx.telegram.unpinChatMessage(chatId);
   }
 
   if (!chatInfo.pinned_message) {
