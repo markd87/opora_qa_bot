@@ -82,5 +82,17 @@ module.exports = async (ctx) => {
     "Для перезапуску бота, натисніть /start"
   );
 
-  await ctx.telegram.pinChatMessage(ctx.chat.id, ctx.message.message_id);
+  const chatId = ctx.chat.id;
+
+  await ctx.getChat(chatId).then((chat) => {
+    if (!chat.pinned_message) {
+      // Pin the new message
+      ctx.telegram
+        .pinChatMessage(chatId, ctx.message.message_id)
+        .catch((error) => {
+          // An error occurred while pinning the message
+          console.error("Failed to pin message:", error);
+        });
+    }
+  });
 };
