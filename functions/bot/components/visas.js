@@ -542,9 +542,9 @@ exports.visas = (bot) => {
 
   bot.action("become_sponsor", async (ctx) => {
     const keyboard = Markup.keyboard([
-      ["Чи можу я стати спонсором?"],
+      ["Як стати спонсором?"], //"Чи можу я стати спонсором?"
       ["Що відбувається після подання заявки"],
-      ["Вашому гостю Homes for Ukraine було відмовлено у видачі візи"],
+      ["Гостю Homes for Ukraine було відмовлено у видачі візи"],
     ])
       .resize()
       .oneTime();
@@ -554,17 +554,16 @@ exports.visas = (bot) => {
 
   // guest_visa_refused
   bot.hears(
-    "Вашому гостю Homes for Ukraine було відмовлено у видачі візи",
+    "Гостю Homes for Ukraine було відмовлено у видачі візи",
     async (ctx) => {
       await ctx.replyWithHTML(
-        `<b>Вашому гостю Homes for Ukraine було відмовлено у видачі візи</b>`,
+        `<b>Гостю Homes for Ukraine було відмовлено у видачі візи</b>`,
         Markup.removeKeyboard()
       );
 
       await ctx.replyWithHTML(
-        `Щоб зрозуміти причину відмови у видачі візи вашому гостю, уважно перегляньте розділ "Reasons for Refusal" в його електронному листі "Application Update". 
-
-      Це дасть вам уявлення про конкретні проблеми, які призвели до відмови, і допоможе врахувати їх при наступних спробах подати заяву.`,
+        `Щоб зрозуміти причину відмови у видачі візи вашому гостю, уважно перегляньте розділ "Reasons for Refusal" в його електронному листі "Application Update".
+        Це дасть вам уявлення про конкретні проблеми, які призвели до відмови, і допоможе врахувати їх при наступних спробах подати заяву.`,
         Markup.inlineKeyboard([
           [
             Markup.button.callback(
@@ -723,31 +722,34 @@ exports.visas = (bot) => {
   });
 
   // can_become_sponsor
-  bot.hears("Чи можу я стати спонсором?", async (ctx) => {
+  bot.hears("Як стати спонсором?", async (ctx) => {
     const keyboard = Markup.keyboard([
-      ["Я живу зі спонсором"],
-      ["Орендую приватне житло / Орендую комунальне житло"],
-      ["У мене власне житло"],
-      ["Нічого з перерахованого вище"],
+      ["Він живе зі спонсором"], //"Я живу зі спонсором"
+      ["Спонсор орендує житло у лендлрда / консілі"], //"Орендую приватне житло / Орендую комунальне житло"
+      ["У спонсора власне житло"], //"У мене власне житло"
+      ["Нічого з перерахованого вище"], //"Нічого з перерахованого вище"
     ])
       .resize()
       .oneTime();
 
-    await ctx.replyWithHTML(`<b>Чи можу я стати спонсором?</b>`, keyboard);
+    await ctx.replyWithHTML(
+      `<b>Виберіть один з варіантів, який описує ситуацію людини, що бажає стати спонсором.</b>`,
+      keyboard
+    );
   });
 
   bot.action("can_become_sponsor", async (ctx) => {
     await ctx.replyWithHTML(
-      `<b>Чи можу я стати спонсором?</b>`,
+      `<b>Як стати спонсором?</b>`,
       Markup.inlineKeyboard([
         [
           Markup.button.callback(
-            "Орендую приватне житло / Орендую комунальне житло",
+            "Спонсор орендує житло у лендлрда / консілі",
             "rent"
           ),
         ],
-        [Markup.button.callback("У мене власне житло", "own_house")],
-        [Markup.button.callback("Я живу зі спонсором", "live_with_sponsor")],
+        [Markup.button.callback("У спонсора власне житло", "own_house")],
+        [Markup.button.callback("Він живе зі спонсором", "live_with_sponsor")],
         [
           Markup.button.callback(
             "Нічого з перерахованого вище",
@@ -760,31 +762,28 @@ exports.visas = (bot) => {
   });
 
   bot.hears(
-    [
-      "Орендую приватне житло / Орендую комунальне житло",
-      "У мене власне житло",
-    ],
+    ["Спонсор орендує житло у лендлрда / консілі", "У спонсора власне житло"],
     async (ctx) => {
       await ctx.replyWithHTML(
-        `<b>Ви легально проживаєте у Великобританії?</b>`,
+        `<b>Чи спонсор легально проживає у Великобританії?</b>`,
         Markup.removeKeyboard()
       );
 
       await ctx.replyWithHTML(
-        `Щоб стати спонсором, ви повинні довести, що ви
-      - легально проживаєте у Великій Британії, і
-      - ваш дозвіл на перебування у Великобританії дійсний протягом <b>6 місяців або довше</b>.
+        `Щоб стати спонсором, людина повинна довести, що вона
+        - легально проживає у Великій Британії, і 
+        - її дозвіл на перебування у Великій Британії дійсний протягом <b>6 місяців або довше</b>.
 
-      Докази:
-      - Британський паспорт,
-      - BRP (біометричний дозвіл на проживання) або
-      - інші документи, що підтверджують імміграційний статус.
+        Докази:
+        - Британський паспорт,
+        - BRP (біометричний дозвіл на проживання) або
+        - інші документи, що підтверджують імміграційний статус.
 
-      https://www.gov.uk/guidance/eligibility-safeguarding-dbs-and-accommodation-checks-homes-for-ukraine#eligibility-and-checks
+        https://www.gov.uk/guidance/eligibility-safeguarding-dbs-and-accommodation-checks-homes-for-ukraine#eligibility-and-checks
 
-      Ви <b>ЗОБОВ'ЯЗАНІ</b> надати копії цих документів разом із заявою.
+        Спонсор <b>ЗОБОВ'ЯЗАНИЙ</b> надати копії цих документів разом із заявою гостя.
 
-      ПРИМІТКА: Якщо ви є громадянином Великобританії, але не проживаєте у Великобританії - ви не можете бути спонсором.`,
+        ПРИМІТКА: Якщо людина є громадянином Великобританії, але не проживає у Великобританії - вона не може бути спонсором.`,
         Markup.inlineKeyboard([
           [Markup.button.callback("Так", "rent_own_yes")],
           [Markup.button.callback("Нi", "rent_own_no")],
@@ -818,35 +817,35 @@ exports.visas = (bot) => {
     ctx.answerCbQuery();
   });
 
-  bot.action("rent_own_no", async (ctx) => {
-    await ctx.replyWithHTML(
-      `<b>На жаль, ви не можете бути спонсором</b>
-      \nВи можете спробувати знайти для них відповідного спонсора - будь ласка, [прочитайте нашу статтю](https://ua.opora.uk/blog/yakim-chinom-ukrayincyam-zaraz-mozhna-znajti-sponsora-shob-priyihati-do-uk) для більш детальної інформації`,
-      Markup.inlineKeyboard([
-        [Markup.button.callback("Ок", "OK")],
-        [
-          Markup.button.callback(
-            "У мене є ще одне питання, пов'язане з візою",
-            "visas"
-          ),
-        ],
-      ])
-    );
-    ctx.answerCbQuery();
-  });
+  // bot.action("rent_own_no", async (ctx) => {
+  //   await ctx.replyWithHTML(
+  //     `<b>На жаль, таке спонсорство не буде схвалено</b>
+  //     \nТакому гостю потрібно знайти відповідного спонсора - докладніше про це <a href='https://ua.opora.uk/blog/yakim-chinom-ukrayincyam-zaraz-mozhna-znajti-sponsora-shob-priyihati-do-uk'>читайте в нашій статті</a>`,
+  //     Markup.inlineKeyboard([
+  //       [Markup.button.callback("Ок", "OK")],
+  //       [
+  //         Markup.button.callback(
+  //           "У мене є ще одне питання, пов'язане з візою",
+  //           "visas"
+  //         ),
+  //       ],
+  //     ])
+  //   );
+  //   ctx.answerCbQuery();
+  // });
 
   bot.action("rent_own_yes", async (ctx) => {
     await ctx.replyWithHTML(
-      `<b>Чи є у вас житло для вашого гостя?</b>
-      \nЩоб стати спонсором, ви повинні довести, що ви:
-      - Маєте достатньо просторе та безпечне житло, щоб прийняти всіх гостей, яких ви спонсоруєте, [не створюючи при цьому перенаселення](https://bit.ly/3Cf0BGN). 
+      `<b>Чи є у спонсора житло для гостя?</b>
+      \nЩоб стати спонсором, людина повинна довести, що вона:
+      - Має достатньо велике і безпечне житло, щоб прийняти всіх гостей, яких вона спонсорує, <a href='https://bit.ly/3Cf0BGN'>не створюючи при цьому перенаселеності</a>.
       - Гарантувати, що це житло буде доступне протягом 6 місяців або довше.
       
-      Вам потрібно буде надати наступні докази: 
+      Спонсор повинен надати наступні докази:
       - договір про оренду житла та 
-      - лист від орендодавця про згоду на розміщення додаткових осіб у помешканні (якщо ви орендуєте житло у місцевої ради/житлової асоціації, орендодавцем є ваша рада/житлова асоціація)
+      - лист від орендодавця про згоду на розміщення додаткових осіб у помешканні (якщо вони винаймають житло у місцевої ради/житлової асоціації, орендодавцем є рада/житлова асоціація)
       
-      Дізнайтеся більше про <a href="https://bit.ly/3P43UIw">вимоги до житла</a>`,
+      Детальніше про <a href='https://bit.ly/3P43UIw'>вимоги до житла</a>`,
       Markup.inlineKeyboard([
         [Markup.button.callback("Так", "accomadation_guest_yes")],
         [Markup.button.callback("Нi", "accomadation_guest_no")],
@@ -857,7 +856,7 @@ exports.visas = (bot) => {
 
   bot.action("accomadation_guest_yes", async (ctx) => {
     await ctx.replyWithHTML(
-      `<b>Для кого ви збираєтеся бути спонсором?</b>`,
+      `<b>Кого будуть спонсорувати?</b>`,
       Markup.inlineKeyboard([
         [Markup.button.callback("Дорослі", "accomadation_guest_yes_adult")],
         [
@@ -873,7 +872,7 @@ exports.visas = (bot) => {
 
   bot.action("accomadation_guest_yes_adult", async (ctx) => {
     await ctx.replyWithHTML(
-      `<b>Чи відповідає ця особа всім вимогам?</b>
+      `<b>Чи відповідає гість усім вимогам?</b>
       \n1. Є громадянином України або близьким родичем громадянина України, який вже отримав спонсорську візу або подає заяву на отримання такої візи та відповідає її критеріям. https://www.gov.uk/guidance/apply-for-a-visa-under-the-ukraine-sponsorship-scheme.uk#section-1
       2.  Постійно проживав в Україні станом на 1 січня 2022 року.
       3. Наразі перебуває за межами Великої Британії.`,
@@ -892,8 +891,8 @@ exports.visas = (bot) => {
 
   bot.action("accomadation_guest_yes_adult_meets_yes", async (ctx) => {
     await ctx.replyWithHTML(
-      `<b>Ви можете стати їхнім спонсором</b>
-      \nЇм потрібно подати заявку на Homes for Ukraine.`,
+      `<b>Такого гостя можна спонсорувати по Homes for Ukraine</b>
+      \nГостю потрібно подати заявку на візу Homes for Ukraine.`,
       Markup.inlineKeyboard([
         [Markup.button.callback("Продовжити", "apply_home_for_ukraine")],
       ])
@@ -903,8 +902,7 @@ exports.visas = (bot) => {
 
   bot.action("accomadation_guest_yes_adult_meets_no", async (ctx) => {
     await ctx.replyWithHTML(
-      `<b>Вони не мають права на отримання візи Homes for Ukraine </b>
-      \nЇм потрібно подати заявку на Homes for Ukraine.`,
+      `<b>Гість не має права на отримання візи Homes for Ukraine</b>`,
       Markup.inlineKeyboard([
         [Markup.button.callback("Ок", "OK")],
         [
@@ -920,7 +918,7 @@ exports.visas = (bot) => {
 
   bot.action("accomadation_guest_yes_child", async (ctx) => {
     await ctx.replyWithHTML(
-      `<b>Які у вас стосунки з дитиною, яку ви збираєтеся спонсорувати?</b>
+      `<b>Які стосунки спонсора з дитиною, яку він збирається спонсорувати?</b>
       \nПерейдіть за посиланням https://www.gov.uk/guidance/apply-for-a-visa-under-the-ukraine-sponsorship-scheme.uk#applicants-aged-under-18`,
       Markup.inlineKeyboard([
         [
@@ -1018,11 +1016,16 @@ exports.visas = (bot) => {
   );
 
   bot.action(
-    ["live_with_sponsor", "unfortunatley_cannot", "accomadation_guest_no"],
+    [
+      "live_with_sponsor",
+      "unfortunatley_cannot",
+      "accomadation_guest_no",
+      "rent_own_no",
+    ],
     async (ctx) => {
       await ctx.replyWithHTML(
-        `<b>На жаль, ви не можете бути спонсором</b>
-      \nВи можете спробувати знайти для них відповідного спонсора - будь ласка, <a href="https://ua.opora.uk/blog/yakim-chinom-ukrayincyam-zaraz-mozhna-znajti-sponsora-shob-priyihati-do-uk">прочитайте нашу статтю</a> для більш детальної інформації`,
+        `<b>На жаль, таке спонсорство не буде схвалено</b>
+      \nТакому гостю потрібно знайти відповідного спонсора - докладніше про це <a href='https://ua.opora.uk/blog/yakim-chinom-ukrayincyam-zaraz-mozhna-znajti-sponsora-shob-priyihati-do-uk'>читайте в нашій статті</a> `,
         Markup.inlineKeyboard([
           [Markup.button.callback("Ок", "OK")],
           [
@@ -1039,12 +1042,12 @@ exports.visas = (bot) => {
 
   bot.action("accomadation_guest_yes_child_none_yes", async (ctx) => {
     await ctx.replyWithHTML(
-      `<b>Чи можете ви довести, що були особисто знайомі з батьками або законним представником дитини до 24 лютого 2022 року?</b>
-      \nЩоб бути затвердженим спонсором для дитини без супроводу, ви повинні довести, що
-      - ви особисто знали батьків або законних опікунів дитини (НЕ тих, з ким ви знайомі лише онлайн, через соціальні мережі)
-      - ви були знайомі з ними до 24 лютого 2022 року.
+      `<b>Чи може спонсор довести, що він був особисто знайомий з батьками або законним представником дитини до 24 лютого 2022 року?</b>
+      \nДля того, щоб бути затвердженим в якості спонсора для дитини без супроводу, спонсор повинен довести, що
+      - він особисто знав батьків або законного опікуна дитини (НЕ того, кого він знає лише онлайн, через соціальні мережі)
+      - він був знайомий з ними до початку конфлікту 24 лютого 2022 року.
 
-      Рада шукатиме докази того, що між вами та батьками або законним опікуном існують відповідні, попередні стосунки. Ці докази можуть бути у формі листів або електронних повідомлень, фотографій або активності в соціальних мережах до 24 лютого 2022 року.`,
+      Консіл шукатиме докази того, що між спонсором та батьками або законним опікуном існують відповідні, попередні стосунки. Ці докази можуть бути у формі листів або електронних повідомлень, фотографій або активності в соціальних мережах до 24 лютого 2022 року.`,
       Markup.inlineKeyboard([
         [
           Markup.button.callback(
@@ -1052,16 +1055,33 @@ exports.visas = (bot) => {
             "accomadation_guest_yes_child_none_yes_prove_yes"
           ),
         ],
-        [Markup.button.callback("Нi", "unfotunatley_cannot")],
+        [Markup.button.callback("Нi", "unfortunatley_cannot")],
       ])
     );
     ctx.answerCbQuery();
   });
 
+  // bot.action("unfotunatley_cannot", async (ctx) => {
+  //   await ctx.replyWithHTML(
+  //     `<b>На жаль, таке спонсорство не буде схвалено</b>
+  //     \nТакому гостю потрібно знайти відповідного спонсора - докладніше про це <a href='https://ua.opora.uk/blog/yakim-chinom-ukrayincyam-zaraz-mozhna-znajti-sponsora-shob-priyihati-do-uk'>читайте в нашій статті</a> `,
+  //     Markup.inlineKeyboard([
+  //       [Markup.button.callback("Ок", "OK")],
+  //       [
+  //         Markup.button.callback(
+  //           "У мене є ще одне питання, пов'язане з візою",
+  //           "visas"
+  //         ),
+  //       ],
+  //     ])
+  //   );
+  //   ctx.answerCbQuery();
+  // });
+
   bot.action("accomadation_guest_yes_child_none_yes_prove_yes", async (ctx) => {
     await ctx.replyWithHTML(
-      `<b>Ви можете бути схвалені як їхній спонсор, але після додаткових перевірок</b>
-      \Будь ласка, уважно прочитайте [цю інструкцію](https://www.gov.uk/guidance/homes-for-ukraine-guidance-for-sponsors-children-and-minors-applying-without-parents-or-legal-guardians#overview-and-purpose-of-this-guidance) та проконсультуйтеся на гарячій лінії Homes for Ukraine +44 808 164 8810, якщо у вас виникнуть запитання.`,
+      `<b>Таке спонсорство може бути схвалене за умови додаткових перевірок</b>
+      \nБудь ласка, уважно прочитайте <a href='https://www.gov.uk/guidance/homes-for-ukraine-guidance-for-sponsors-children-and-minors-applying-without-parents-or-legal-guardians#overview-and-purpose-of-this-guidance'>цю інструкцію</a> та проконсультуйтеся на гарячій лінії Homes for Ukraine +44 808 164 8810, якщо у вас виникнуть запитання.`,
       Markup.inlineKeyboard([
         [Markup.button.callback("Ок", "OK")],
         [
