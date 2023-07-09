@@ -517,6 +517,12 @@ exports.visa_problems = (bot) => {
             "problem_visa_brp"
           ),
         ],
+        [
+          Markup.button.callback(
+            "У мене є ще одне питання, пов'язане з візою",
+            "visas"
+          ),
+        ],
       ])
     );
     ctx.answerCbQuery();
@@ -576,6 +582,12 @@ exports.visa_problems = (bot) => {
             "problem_visa_brp"
           ),
         ],
+        [
+          Markup.button.callback(
+            "У мене є ще одне питання, пов'язане з візою",
+            "visas"
+          ),
+        ],
       ])
     );
     ctx.answerCbQuery();
@@ -599,6 +611,12 @@ exports.visa_problems = (bot) => {
           Markup.button.callback(
             "У мене ще одна проблема з моїм BRP",
             "problem_visa_brp"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "У мене є ще одне питання, пов'язане з візою",
+            "visas"
           ),
         ],
       ])
@@ -633,6 +651,12 @@ exports.visa_problems = (bot) => {
               "problem_visa_brp"
             ),
           ],
+          [
+            Markup.button.callback(
+              "У мене є ще одне питання, пов'язане з візою",
+              "visas"
+            ),
+          ],
         ])
       );
     }
@@ -654,6 +678,12 @@ exports.visa_problems = (bot) => {
             Markup.button.callback(
               "У мене ще одна проблема з моїм BRP",
               "problem_visa_brp"
+            ),
+          ],
+          [
+            Markup.button.callback(
+              "У мене є ще одне питання, пов'язане з візою",
+              "visas"
             ),
           ],
         ])
@@ -685,6 +715,12 @@ exports.visa_problems = (bot) => {
             "problem_visa_brp"
           ),
         ],
+        [
+          Markup.button.callback(
+            "У мене є ще одне питання, пов'язане з візою",
+            "visas"
+          ),
+        ],
       ])
     );
   });
@@ -709,6 +745,12 @@ exports.visa_problems = (bot) => {
           Markup.button.callback(
             "У мене ще одна проблема з моїм BRP",
             "problem_visa_brp"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "У мене є ще одне питання, пов'язане з візою",
+            "visas"
           ),
         ],
       ])
@@ -743,6 +785,12 @@ exports.visa_problems = (bot) => {
             "problem_visa_brp"
           ),
         ],
+        [
+          Markup.button.callback(
+            "У мене є ще одне питання, пов'язане з візою",
+            "visas"
+          ),
+        ],
       ])
     );
 
@@ -766,6 +814,12 @@ exports.visa_problems = (bot) => {
           Markup.button.callback(
             "У мене ще одна проблема з моїм BRP",
             "problem_visa_brp"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "У мене є ще одне питання, пов'язане з візою",
+            "visas"
           ),
         ],
       ])
@@ -801,6 +855,12 @@ exports.visa_problems = (bot) => {
               "problem_visa_brp"
             ),
           ],
+          [
+            Markup.button.callback(
+              "У мене є ще одне питання, пов'язане з візою",
+              "visas"
+            ),
+          ],
         ])
       );
     }
@@ -825,6 +885,12 @@ exports.visa_problems = (bot) => {
           Markup.button.callback(
             "У мене ще одна проблема з моїм BRP",
             "problem_visa_brp"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "У мене є ще одне питання, пов'язане з візою",
+            "visas"
           ),
         ],
       ])
