@@ -76,4 +76,11 @@ module.exports = async (ctx) => {
     console.log(e);
     return ctx.reply(`Error occurred`);
   }
+
+  await ctx.telegram.sendMessage(
+    ctx.chat.id,
+    "Для перезапуску бота, натисніть /start"
+  );
+
+  await ctx.telegram.pinMessage(ctx.chat.id, ctx.update.message_id);
 };
