@@ -83,8 +83,9 @@ module.exports = async (ctx) => {
   );
 
   const chatId = ctx.chat.id;
+  const chatInfo = await ctx.getChat(chatId);
 
-  if (!ctx.getChat(chatId).pinned_message) {
+  if (!chatInfo.pinned_message) {
     // Pin the new message
     await ctx.telegram.pinChatMessage(chatId, ctx.message.message_id);
   }
