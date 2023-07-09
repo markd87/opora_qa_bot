@@ -77,12 +77,11 @@ module.exports = async (ctx) => {
     return ctx.reply(`Error occurred`);
   }
 
-  await ctx.telegram.sendMessage(
-    ctx.chat.id,
-    "Для перезапуску бота, натисніть /start"
-  );
-
   const chatId = ctx.chat.id;
+  const pin_message = "Для перезапуску бота, натисніть /start";
+
+  const sentMessage = await ctx.reply(pin_message);
+
   const chatInfo = await ctx.telegram.getChat(chatId);
 
   if (chatInfo.pinned_message) {
@@ -90,5 +89,5 @@ module.exports = async (ctx) => {
     await ctx.telegram.unpinChatMessage(chatId);
   }
 
-  await ctx.telegram.pinChatMessage(chatId, ctx.message.message_id);
+  await ctx.telegram.pinChatMessage(chatId, sentMessage.message_id);
 };
