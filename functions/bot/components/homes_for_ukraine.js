@@ -65,7 +65,6 @@ exports.homes_for_ukraine = (bot) => {
         [Markup.button.callback("Гаразд, це все.", "OK")],
       ])
     );
-    ctx.answerCbQuery();
   });
 
   bot.action("already_have_sponsor", async (ctx) => {
@@ -539,7 +538,6 @@ exports.homes_for_ukraine = (bot) => {
           [Markup.button.callback("Продовжити", "book_appointment_continue")],
         ])
       );
-      ctx.answerCbQuery();
     }
   );
 
@@ -643,7 +641,6 @@ exports.homes_for_ukraine = (bot) => {
           [Markup.button.callback("Продовжити", "start_application")],
         ])
       );
-      ctx.answerCbQuery();
     }
   );
 
@@ -664,7 +661,6 @@ exports.homes_for_ukraine = (bot) => {
         [Markup.button.callback("Продовжити", "start_application")],
       ])
     );
-    ctx.answerCbQuery();
   });
 
   // expired_passport
@@ -691,7 +687,6 @@ exports.homes_for_ukraine = (bot) => {
           [Markup.button.callback("Продовжити", "start_application")],
         ])
       );
-      ctx.answerCbQuery();
     }
   );
 };

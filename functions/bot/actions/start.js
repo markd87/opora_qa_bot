@@ -1,5 +1,5 @@
 const { Markup } = require("telegraf");
-const { getUser, main_topics } = require("../components/helper");
+const { getUser } = require("../components/helper");
 
 module.exports = async (ctx) => {
   const { id, isBot, name, username } = getUser(ctx.from);
