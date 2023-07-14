@@ -1,4 +1,4 @@
-const { Telegraf, session, Scenes, Markup, Extra } = require("telegraf");
+const { Telegraf, Markup } = require("telegraf");
 const { visas } = require("./components/visas");
 const { visa_problems } = require("./components/visa_problems");
 const { homes_for_ukraine } = require("./components/homes_for_ukraine");
@@ -9,8 +9,6 @@ const { faq } = require("./components/faq");
 const startAction = require("./actions/start");
 
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN);
-
-// bot.use(session());
 
 bot.start((ctx) => {
   return startAction(ctx);

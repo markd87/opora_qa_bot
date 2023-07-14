@@ -1,12 +1,20 @@
 const { Markup } = require("telegraf");
 const { getUser } = require("../components/helper");
 
+var COUNT = 0;
+var USERS = new Set();
+
 module.exports = async (ctx) => {
   const { id, isBot, name, username } = getUser(ctx.from);
 
   if (isBot) {
     return ctx.reply(`Sorry I only interact with humans!`);
   }
+
+  COUNT = COUNT + 1;
+  USERS.add(id);
+  console.log("Total uses: ", COUNT);
+  console.log("Unique users: ", USERS.size);
 
   try {
     // await ctx.replyWithHTML(
