@@ -8,7 +8,7 @@ module.exports = async (ctx) => {
     return ctx.reply(`Sorry I only interact with humans!`);
   }
 
-  console.log("USER: ", id);
+  console.log("USER:", id);
 
   try {
     // await ctx.replyWithHTML(
