@@ -2,6 +2,7 @@ const { Markup } = require("telegraf");
 
 exports.homes_for_ukraine = (bot) => {
   bot.action("homes_for_ukraine", async (ctx) => {
+    console.log("Question:", "homes_for_ukraine");
     await ctx.replyWithHTML(
       `<b>Щоб приїхати до Великобританії за програмою "Homes for Ukraine" (спонсорства), вам потрібен спонсор</b>`,
       Markup.inlineKeyboard([

@@ -2,6 +2,7 @@ const { Markup } = require("telegraf");
 
 exports.right_visa = (bot) => {
   bot.action("right_visa", async (ctx) => {
+    console.log("Question:", "right_visa");
     await ctx.replyWithHTML(
       `<b>Яка мета вашого візиту до Великобританії?</b>`,
       Markup.inlineKeyboard([

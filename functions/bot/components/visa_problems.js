@@ -2,6 +2,7 @@ const { Markup } = require("telegraf");
 
 exports.visa_problems = (bot) => {
   bot.action("problem_visa", async (ctx) => {
+    console.log("Question:", "problem_visa");
     await ctx.replyWithHTML(
       `<b>Яка у вас проблема?</b>`,
       Markup.inlineKeyboard([

@@ -56,6 +56,7 @@ exports.visas = (bot) => {
   });
 
   bot.action("child_born_uk", async (ctx) => {
+    console.log("Question", "child_born_uk");
     await ctx.replyWithHTML(
       `<b>Підготуйте візову анкету та подайте її на сайті gov.uk</b>
       \nЯкщо дитина народилася у Великій Британії у батьків, які мають одну з віз Ukraine Scheme, їм потрібно подати заяву на Ukraine Extension Scheme для цієї дитини.
@@ -75,6 +76,7 @@ exports.visas = (bot) => {
   });
 
   bot.action("extension_scheme", async (ctx) => {
+    console.log("Question:", "extension_scheme");
     await ctx.replyWithHTML(
       `<b>Чи відповідаєте ви всім вимогам по Ukraine Extension Scheme?</b>
     \n
@@ -311,6 +313,7 @@ exports.visas = (bot) => {
   });
 
   bot.action("stay_forever", async (ctx) => {
+    console.log("Question:", "stay_forever");
     await ctx.replyWithHTML(
       `<b>Шлях до постійного проживання у Великобританії (ILR)?</b>
       \nНаразі офіційна позиція британського уряду полягає в тому, що візи Homes for Ukraine, Ukraine Family Scheme та Ukraine Extension Scheme не можуть бути продовжені і не зараховуються до періоду, необхідного для отримання посвідки на постійне проживання (ILR).
@@ -340,6 +343,7 @@ exports.visas = (bot) => {
   });
 
   bot.action("travel_outside", async (ctx) => {
+    console.log("Question:", "travel_outside");
     const keyboard = Markup.keyboard([
       [
         "У мене (або члена моєї сім'ї) є біометричний паспорт, але він продовжений",
