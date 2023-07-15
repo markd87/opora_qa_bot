@@ -70,6 +70,7 @@ bot.action("general", async (ctx) => {
 });
 
 bot.action("OK", async (ctx) => {
+  console.log("__OK__");
   await ctx.replyWithHTML(
     `✅ Дякуємо, що скористалися нашим асистентом! Щоб перейти до візового чату, натисніть https://t.me/oporaukchat`,
     Markup.removeKeyboard()
