@@ -47,6 +47,7 @@ exports.faq = (bot) => {
     .oneTime();
 
   bot.action("faq", async (ctx) => {
+    console.log("Question:", "FAQ");
     await ctx.replyWithHTML(`<b>Популярні питання про візи (1/3)</b>`, faq_1);
     ctx.answerCbQuery();
   });

@@ -56,7 +56,7 @@ exports.visas = (bot) => {
   });
 
   bot.action("child_born_uk", async (ctx) => {
-    console.log("Question", "child_born_uk");
+    console.log("Question:", "child_born_uk");
     await ctx.replyWithHTML(
       `<b>Підготуйте візову анкету та подайте її на сайті gov.uk</b>
       \nЯкщо дитина народилася у Великій Британії у батьків, які мають одну з віз Ukraine Scheme, їм потрібно подати заяву на Ukraine Extension Scheme для цієї дитини.
