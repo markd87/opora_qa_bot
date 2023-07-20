@@ -303,19 +303,48 @@ exports.visa_problems = (bot) => {
     ctx.answerCbQuery();
   });
 
+  bot.action("sponsor_guest_refused", async (ctx) => {
+    await ctx.replyWithHTML(
+      `<b>В визе гостя Homes for Ukraine было отказано</b>
+      \nЩоб зрозуміти причину відмови у видачі візи вашому гостю, уважно перегляньте розділ "Reasons for Refusal" в його електронному листі "Application Update".
+
+      Це дасть вам уявлення про конкретні проблеми, які призвели до відмови, і допоможе врахувати їх при наступних спробах подати заяву.`,
+      Markup.inlineKeyboard([
+        [
+          Markup.button.callback(
+            "Мої гості не отримали жодної відповіді на свої візові заяви",
+            "problem_visa_delayed"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "Інша причина відмови",
+            "homes_for_ukraine_refused"
+          ),
+        ],
+        [
+          Markup.button.callback(
+            "Написано, що 'sponsor doesn't meet the requirements'",
+            "sposnor_doesnt_meet_requirements"
+          ),
+        ],
+      ])
+    );
+    ctx.answerCbQuery();
+  });
+
   bot.action("applicant_refused", async (ctx) => {
     await ctx.replyWithHTML(
       `<b>На яку візу ви подавали?</b>`,
       Markup.inlineKeyboard([
         [
-          [
-            Markup.button.callback(
-              "Homes for Ukraine",
-              "homes_for_ukraine_refused"
-            ),
-          ],
-          Markup.button.callback("Ukraine Family Scheme", "family_refused"),
+          Markup.button.callback(
+            "Homes for Ukraine",
+            "homes_for_ukraine_refused"
+          ),
         ],
+        [Markup.button.callback("Ukraine Family Scheme", "family_refused")],
+        ,
         [
           Markup.button.callback(
             "Ukraine Extension Scheme",
