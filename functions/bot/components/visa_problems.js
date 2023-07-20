@@ -281,12 +281,12 @@ exports.visa_problems = (bot) => {
       `<b>Що найкраще описує вашу ситуацію?</b>`,
       Markup.inlineKeyboard([
         [
-          [
-            Markup.button.callback(
-              "Я заявник, і мені відмовили у видачі візи",
-              "applicant_refused"
-            ),
-          ],
+          Markup.button.callback(
+            "Я заявник, і мені відмовили у видачі візи",
+            "applicant_refused"
+          ),
+        ],
+        [
           Markup.button.callback(
             "Я є спонсором, і моєму гостю відмовили у видачі візи",
             "sponsor_guest_refused"
