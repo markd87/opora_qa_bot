@@ -344,7 +344,6 @@ exports.visa_problems = (bot) => {
           ),
         ],
         [Markup.button.callback("Ukraine Family Scheme", "family_refused")],
-        ,
         [
           Markup.button.callback(
             "Ukraine Extension Scheme",
