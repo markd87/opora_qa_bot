@@ -4,16 +4,15 @@ exports.family_scheme = (bot) => {
   bot.action("apply_ukraine_family_scheme", async (ctx) => {
     await ctx.replyWithHTML(
       `<b>Подати заявку на Ukraine Family Scheme</b>
-        \nUkraine Family Scheme дозволяє заявникам приєднатися до членів сім'ї або продовжити своє перебування у Великій Британії. Кожен повинен подавати окрему заяву, навіть діти, які подорожують з членом сім'ї.
+        \nUkraine Family Scheme програма була офіційно **закрита** для нових заявок о 15:00 19 лютого 2024 року. Таким чином, подати заяву за цією програмою більше неможливо.
 
-        Подати заяву можна безкоштовно: https://www.gov.uk/guidance/apply-for-a-ukraine-family-scheme-visa.uk
-
-        Ви зможете жити, працювати і навчатися у Великій Британії, а також мати доступ до соцвиплат (бенефітів).`,
+        Члени вашої родини можуть розглянути можливість спонсорування вас за програмою "Homes for Ukraine", якщо вони відповідають критеріям.`,
       Markup.inlineKeyboard([
         [
+          Markup.button.callback("Ок", "OK"),
           Markup.button.callback(
-            "Продовжити",
-            "apply_ukraine_family_scheme_continue"
+            "Я хочу знати критерії для Homes for Ukraine",
+            "apply_home_for_ukraine"
           ),
         ],
       ])
